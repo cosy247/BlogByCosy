@@ -8,7 +8,7 @@ set title=%1
 if "%2" neq "" set title=%2
 
 if exist %toFile% (
-	echo 已存在%1.md文件!
+	echo 已存在 %1.md 文件!
 ) else (
 	for /f "tokens=*" %%a in (.md) do (
 		set line=%%a
@@ -20,5 +20,5 @@ if exist %toFile% (
 		set line=!line:{ date }=%date:~3,14%!
 		echo !line!>>%toFile%
 	)
-	echo 🐲生成草稿文件成功：%toFile%
+	echo 🐲生成草稿文件成功: %toFile%
 )
