@@ -63,7 +63,7 @@ div.class           /* (0,1,1) */
 
 在浏览器的开发者工具中的元素界面，将鼠标移动到选择器上可以查看选择器的权重信息。
 
-![alt text](assets/@CssSpecificity/image-1.png) ![alt text](assets/@CssSpecificity/image.png)
+![alt text](assets/CssSpecificity/image-1.png) ![alt text](assets/CssSpecificity/image.png)
 
 ### 可能引发混淆的选择器
 
