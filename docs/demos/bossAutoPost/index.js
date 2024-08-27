@@ -26,29 +26,6 @@
   }
 })();
 
-(function clickTask(taskCount = 1, jobs = [...document.querySelectorAll(".job-card-left")]) {
-  const job = jobs.pop();
-  if (job) {
-    const jobTitle = job.querySelector(".job-name").textContent;
-    if (!/外派|驻场|短期|调遣/i.test(jobTitle)) {
-      job.querySelector(".start-chat-btn")?.click();
-      setTimeout(() => {
-        if (!document.querySelector(".greet-boss-container")) return;
-        document.querySelector(".greet-boss-container .icon-close").click();
-        console.log(`已投${taskCount}份简历🤖: ${jobTitle}🦄`);
-        clickTask(taskCount + 1, jobs);
-      }, Math.random() * 3 * 1000 + 1000);
-    } else {
-      clickTask(taskCount, jobs);
-    }
-  } else {
-    document.querySelector(".ui-icon-arrow-right").click();
-    setTimeout(() => {
-      clickTask(taskCount);
-    }, 3000);
-  }
-})();
-
 // https://www.zhipin.com/web/geek/chat
 document.querySelector(".label-list > ul > li:nth-child(3)").click();
 
@@ -70,7 +47,3 @@ function sendMsg(taskCount = 1, jobs = [...document.querySelectorAll(".friend-co
     sendMsg(taskCount, jobs);
   }
 }
-
-setTimeout(() => {
-  sendMsg();
-}, 1000);
