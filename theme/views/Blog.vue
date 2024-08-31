@@ -13,6 +13,10 @@
       <span class="blog-info-text">{{ date }}</span>
       <span class="blog-info-icon">&#xe6ad;</span>
     </div>
+    <div class="blog-info" @click="gotoRecom" v-if="recommendations.length">
+      <span class="blog-info-text">相关推荐</span>
+      <span class="blog-info-icon">&#xe6b3;</span>
+    </div>
     <div class="blog-info" @click="gotoComment">
       <span class="blog-info-text">评论</span>
       <span class="blog-info-icon">&#xe6b3;</span>
@@ -23,11 +27,15 @@
     </div>
   </div>
   <MdView class="blog-mdView" :path="userinfo ? '/README.md' : undefined" />
-  <div class="recoms">
-    <a :href="item.path" class="recom" v-for="(item, index) in recommendations" :key="index">
-      {{ item.frontmatter.title }}
-    </a>
-  </div>
+  <template v-if="recommendations.length">
+    <p class="recom-title">✨相关推荐✨</p>
+    <div class="recoms" ref="recom">
+      <a :href="item.path" class="recom" v-for="(item, index) in recommendations" :key="index">
+        ✨ {{ item.frontmatter.title }}
+      </a>
+    </div>
+  </template>
+  <p class="recom-title">🧐评论🧐</p>
   <div class="blog-comment" ref="comment">
     <div class="blog-comment-main">
       <Giscus
@@ -70,10 +78,13 @@ export default {
   watch: {},
   methods: {
     gotoComment() {
-      window.document.documentElement.scrollTop = this.$refs.comment.offsetTop;
+      window.document.documentElement.scrollTop = this.$refs.comment.offsetTop - 200;
     },
     gotoTop() {
       window.document.documentElement.scrollTop = 0;
+    },
+    gotoRecom() {
+      window.document.documentElement.scrollTop = this.$refs.recom.offsetTop - 200;
     },
   },
   created() {
@@ -81,11 +92,11 @@ export default {
 
     console.log(pageData.frontmatter);
     if (pageData.frontmatter.shadow === true) {
-      const shadow = sessionStorage.getItem('shadow');
+      const shadow = sessionStorage.getItem("shadow");
       if (!shadow || md5(shadow.slice(6)) !== themeConfig.shadowPassword) {
-        this.$router.push('/')
+        this.$router.push("/");
       }
-      return
+      return;
     }
 
     this.tags = (pageData.frontmatter.tags || "").split(" ").filter((i) => i);
@@ -190,32 +201,42 @@ export default {
   cursor: pointer;
 }
 .blog-mdView {
-  margin: 5vh auto 0;
+  margin: auto;
   width: 95%;
   max-width: 700px;
+}
+.recom-title {
+  font-size: var(--size3);
+  text-align: center;
+  margin-top: 100px;
 }
 .recoms {
   display: flex;
   gap: 20px;
   width: 95%;
   max-width: 700px;
-  margin: auto;
+  margin: 30px auto 0;
+  flex-wrap: wrap;
+}
+.recoms:empty {
+  margin-top: 0;
 }
 .recom {
-  margin-top: 100px;
   border: 1px solid #1979df88;
   padding: 10px;
   border-radius: 10px;
-  font-size: var(--size2);
+  font-size: var(--size1);
+  font-weight: 900;
 }
 .recom:hover {
   border: 1px solid #1979df;
+  background: #1979df;
+  color: white;
 }
 .blog-comment {
   position: relative;
-  margin-top: 550px;
-  min-height: 50vh;
-  padding-bottom: 450px;
+  margin-top: 400px;
+  padding-bottom: 400px;
   background: linear-gradient(#fff0, #fff 50px);
   z-index: 1;
 }
