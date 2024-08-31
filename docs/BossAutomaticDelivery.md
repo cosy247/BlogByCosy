@@ -13,12 +13,7 @@ shadow: true
 
 ## 常用投递地址
 
-```txt
-https://www.zhipin.com/web/geek/job?query=%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B&city=101020100&experience=104,105&scale=303,304,305,306,302&jobType=1901&salary=405
-```
-```txt
-https://www.zhipin.com/web/geek/job?query=%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B&city=101270100&experience=104,105&scale=303,304,305,306,302&jobType=1901&salary=405
-```
+[上海](https://www.zhipin.com/web/geek/job?query=%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B&city=101020100&experience=104,105&scale=303,304,305,306,302&jobType=1901&salary=405) [成都](https://www.zhipin.com/web/geek/job?query=%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%B7%A5%E7%A8%8B&city=101270100&experience=104,105&scale=303,304,305,306,302&jobType=1901&salary=405)
 
 ## 核心代码
 

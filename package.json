@@ -12,5 +12,8 @@
   },
   "dependencies": {
     "vuepress-theme-cosy": "file:theme"
+  },
+  "devDependencies": {
+    "mermaid": "^10.9.1"
   }
 }

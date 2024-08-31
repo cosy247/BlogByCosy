@@ -1,6 +1,11 @@
 ---
 {
   shadowPassword: "qeqe",
+  motto: [
+    ["我不吃牛肉。", "I don't eat beef."],
+    ["他走了，像是下定了某种决心。", "He left, as if he had made up his mind."],
+    ["耐心是人生的关键。", "Patience is the key in life."],
+  ],
   links:
     [
       { name: "&#xe673;github", href: "https://github.com/cosy247" },
