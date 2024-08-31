@@ -1,8 +1,0 @@
-[submodule "theme"]
-	path = theme
-	url = https://github.com/cosy247/CosyBlog.git
-	branch = theme
-[submodule "docs"]
-	path = docs
-	url = https://github.com/cosy247/CosyBlog.git
-	branch = docs
