@@ -15,7 +15,7 @@
     </div>
     <div class="blog-info" @click="gotoRecom" v-if="recommendations.length">
       <span class="blog-info-text">相关推荐</span>
-      <span class="blog-info-icon">&#xe6b3;</span>
+      <span class="blog-info-icon">&#xe60d;</span>
     </div>
     <div class="blog-info" @click="gotoComment">
       <span class="blog-info-text">评论</span>
@@ -39,7 +39,7 @@
   <div class="blog-comment" ref="comment">
     <div class="blog-comment-main">
       <Giscus
-        repo="cosy247/CosyBlog"
+        repo="cosy247/vuepress-theme-cosy"
         repoId="R_kgDOJI48fw"
         category="Announcements"
         categoryId="DIC_kwDOJI48f84Ceg84"
