@@ -78,6 +78,45 @@ Vue.config.errorHandler = (err, vm, info) => {
 
 `created` 比 `mounted` 在触发时机上要更早的。两者都能拿到实例对象的属性和方法，但放在 `mounted` 中的请求有可能导致页面闪动（因为此时页面 dom 结构已经生成）。如果在页面加载前完成请求，则不会出现此情况。所以建议对页面内容的改动放在 `created` 生命周期当中。
 
+## 为什么 v-if 和 v-for 不建议一起用
+
+**优先级问题**：当 `v-if` 和 `v-for` 同时用在同一个元素上时，`v-for` 有更高的优先级。这意味着 `v-if` 将分别重复运行于每个 `v-for` 循环中，即先进行循环，然后在每个循环中再进行条件判断。这会导致即使某些元素因为 `v-if` 的条件不满足而不会被渲染，Vue 仍然会先遍历整个列表，这会带来性能方面的浪费。
+
+**性能考虑**：如果列表很长，但只有少数几项满足 `v-if` 的条件，每次渲染时仍然需要遍历整个列表，这会增加不必要的计算量。例如，如果有一个包含 1000 个用户的列表，但只有 10 个用户是活跃的，并且你只想显示这些活跃用户，使用 `v-if` 和 `v-for` 一起会导致每次都遍历 1000 个用户，而不是只处理那 10 个活跃用户。
+
+#### 解决方案
+
+- 当 `v-if` 用于控制部分渲染时：使用计算属性（`computed`）来预先过滤列表，这样 `v-for` 可以直接迭代过滤后的数组。
+
+```vue
+<template>
+  <ul>
+    <li v-for="user in activeUsers" :key="user.id">
+      ...
+    </li>
+  </ul>
+</template>
+
+<script>
+export default {
+  computed: {
+    activeUsers() {
+      return this.users.filter((user) => user.isActive);
+    },
+  },
+};
+</script>
+```
+
+- 当 `v-if` 用于控制全部数据渲染时：将 `v-if` 放在包含 `v-for` 的 `<template>` 标签上，这样可以先进行条件判断，再渲染列表。
+
+```vue
+<template v-if="todos.length">
+  <TodoItem v-for="todo in todos" :key="todo.id" />
+</template>
+</script>
+```
+
 ## 参考
 
 1. [web 前端面试](https://vue3js.cn/interview/vue/vue.html)
