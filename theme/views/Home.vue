@@ -1,15 +1,20 @@
 <template>
   <div class="cover" ref="cover">
-    <div class="cover-content">
+    <div
+      class="cover-content"
+      :style="{ paddingTop: 25 * firstPageProportion + '%', transform: `scale(${1 + firstPageProportion * 0.3})` }"
+    >
       <p class="cover-title" v-if="tag || archive">
         {{ tag ? "tag" : "archive" }}
         <span class="cover-title-value">.{{ tag || archive }}</span>
+        <span class="cover-count">【{{ allPageCount }}】</span>
       </p>
       <template v-else>
         <p class="cover-title">
           C
           <img src="../assets/images/icon.png" alt="" />
           SY247
+          <span class="cover-count">【{{ allPageCount }}】</span>
         </p>
         <p class="cover-dictum">{{ motto[0] }}</p>
         <p class="cover-dictum-2" v-for="motto in motto.slice(1)">{{ motto }}</p>
@@ -51,10 +56,12 @@ export default {
     archive: "",
     pageList: [],
     remainPageList: [],
+    allPageCount: 0,
     pageSize: 10,
     isAddingPageList: false,
     themeConfig,
     motto: "",
+    firstPageProportion: 0,
   }),
   computed: {
     cover() {
@@ -88,19 +95,24 @@ export default {
       } else {
         this.remainPageList = pageDatas;
       }
+      this.allPageCount = this.pageList.length + this.remainPageList.length;
       this.pageList = this.remainPageList.splice(0, this.pageSize);
     },
   },
   created() {
     if (themeConfig.motto instanceof Array) {
-      this.motto = themeConfig.motto[(Math.random() * themeConfig.motto.length) >> 0]
+      this.motto = themeConfig.motto[(Math.random() * themeConfig.motto.length) >> 0];
     } else {
-      this.motto = [themeConfig.motto]
+      this.motto = [themeConfig.motto];
     }
   },
   mounted() {
     window.addEventListener("scroll", () => {
       const { clientHeight, scrollTop, scrollHeight } = document.documentElement;
+      console.log({ clientHeight, scrollTop, scrollHeight });
+      if (scrollTop < clientHeight) {
+        this.firstPageProportion = scrollTop / clientHeight;
+      }
       if (this.isAddingPageList || this.remainPageList.length === 0) return;
       if (scrollHeight - clientHeight - scrollTop < 400) {
         this.isAddingPageList = true;
@@ -147,7 +159,7 @@ export default {
   background-clip: text;
   color: transparent;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   animation: outFromBottom 0.5s;
 }
 
@@ -159,9 +171,12 @@ export default {
 }
 
 .cover-title-value {
-  line-height: 0;
   font-size: 0.4em;
-  margin-top: 1em;
+}
+
+.cover-count {
+  font-size: var(--size2);
+  vertical-align: bottom;
 }
 
 .cover-title img {
