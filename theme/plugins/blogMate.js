@@ -18,7 +18,9 @@ export default ({ countMateNames = [], isArrMateNames = [] }) => ({
 
     app.pages.forEach((page) => {
       const { htmlFilePathRelative: path, frontmatter } = page;
-      if (!path || path === "index.html" || path === "404.html" || path[0] === "@") return pageDatas;
+      
+      if (!path || path === "index.html" || path === "404.html") return pageDatas;
+      if (process.env.NODE_ENV !== "development" && path[0] === "@") return pageDatas;
 
       if (frontmatter.shadow === true) {
         // 记录数据
@@ -62,5 +64,6 @@ export default ({ countMateNames = [], isArrMateNames = [] }) => ({
     // app.writeTemp('app.json', JSON.stringify(app));
     app.writeTemp("blogMate.json", JSON.stringify({ pageDatas: pageDatas, countMateData, themeConfig }));
     app.writeTemp("shadows.json", JSON.stringify(shadowDatas));
+    app.writeTemp("appPages.json", JSON.stringify(app.pages));
   },
 });
