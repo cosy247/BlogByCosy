@@ -7,6 +7,7 @@ import { shikiPlugin } from "@vuepress/plugin-shiki";
 import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 import { containerPlugin } from "@vuepress/plugin-container";
 import { getDirname, path } from "@vuepress/utils";
+import { gitPlugin } from "@vuepress/plugin-git";
 
 export default (option = {}) => {
   const initOption = {
@@ -37,6 +38,7 @@ export default (option = {}) => {
     },
     // 插件
     plugins: [
+      gitPlugin({}),
       blogMateData({
         countMateNames: ["tags", "archive"],
         isArrMateNames: ["tags"],
