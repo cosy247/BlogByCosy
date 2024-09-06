@@ -5,15 +5,12 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "build": "vuepress build docs",
+    "build": "vuepress build docs --mode production",
     "clean-dev": "vuepress dev docs --clean-cache",
-    "dev": "vuepress dev docs",
+    "dev": "vuepress dev docs --mode development",
     "update-package": "npx vp-update"
   },
   "dependencies": {
     "vuepress-theme-cosy": "file:theme"
-  },
-  "devDependencies": {
-    "mermaid": "^10.9.1"
   }
 }
