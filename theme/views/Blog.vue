@@ -203,7 +203,7 @@ export default {
 .blog-mdView {
   margin: auto;
   width: 95%;
-  max-width: 700px;
+  max-width: var(--blog-width);
 }
 .recom-title {
   font-size: var(--size3);
@@ -214,7 +214,7 @@ export default {
   display: flex;
   gap: 20px;
   width: 95%;
-  max-width: 700px;
+  max-width: var(--blog-width);
   margin: 30px auto 0;
   flex-wrap: wrap;
 }
@@ -243,7 +243,7 @@ export default {
 }
 .blog-comment-main {
   width: 95%;
-  max-width: 700px;
+  max-width: var(--blog-width);
   margin: -450px auto 0;
   pointer-events: auto;
 }
