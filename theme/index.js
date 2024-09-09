@@ -17,7 +17,10 @@ export default (option = {}) => {
     title: "cosy247博客",
     lang: "zh-Hans-CN",
     description: "cosy247的个人博客 master",
-    head: [["link", { rel: "icon", href: "/assets/logo.png" }]],
+    head: [
+      ["link", { rel: "icon", href: "/assets/logo.png" }],
+      ["meta", { "http-equiv": "Cache-Control", content: "max-age=7200" }],
+    ],
     // 运行设置
     temp: "./.temp",
     cache: "./.cache",
