@@ -26,6 +26,11 @@
   content: "🦋";
 }
 
+.mdContent > p > img {
+  box-shadow: 0 0 5px #8883;
+  border-radius: 5px;
+}
+
 .mdContent > p > img:only-child {
   display: block;
   margin-left: auto;
@@ -105,17 +110,23 @@
   font-weight: 600;
 }
 
-p.hint-container-title {
+.mdContent p.hint-container-title {
   margin-bottom: 0px;
 }
 
-p > strong {
+.mdContent li > strong,
+.mdContent p > strong {
   font-weight: 900;
   color: #0366d6;
 }
 
-.mermaid-actions {
+.mdContent .mermaid-actions {
   height: 0;
   margin-bottom: -20px;
   z-index: 1;
+}
+
+.mdContent .mermaid-color1 > rect {
+  fill: #f38181 !important;
+  stroke: #e4aeae !important;
 }
