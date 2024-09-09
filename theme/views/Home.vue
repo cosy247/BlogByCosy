@@ -1,9 +1,6 @@
 <template>
   <div class="cover" ref="cover">
-    <div
-      class="cover-content"
-      :style="{ paddingTop: 25 * firstPageProportion + '%', transform: `scale(${1 + firstPageProportion * 0.3})` }"
-    >
+    <div class="cover-content" :style="{ paddingTop: 37 * firstPageProportion + '%' }">
       <p class="cover-title" v-if="tag || archive">
         {{ tag ? "tag" : "archive" }}
         <span class="cover-title-value">.{{ tag || archive }}</span>
