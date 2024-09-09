@@ -1,11 +1,12 @@
 ---
 {
   shadowPassword: "qeqe",
-  motto: [
-    ["我不吃牛肉。", "I don't eat beef."],
-    ["他走了，像是下定了某种决心。", "He left, as if he had made up his mind."],
-    ["耐心是人生的关键。", "Patience is the key in life."],
-  ],
+  motto:
+    [
+      ["我不吃牛肉。", "I don't eat beef."],
+      ["他走了，像是下定了某种决心。", "He left, as if he had made up his mind."],
+      ["耐心是人生的关键。", "Patience is the key in life."],
+    ],
   links:
     [
       { name: "&#xe673;github", href: "https://github.com/cosy247" },
@@ -26,47 +27,12 @@
 }
 ---
 
-::: tip warning  
-自定义警告  
-:::
+# README?
 
-::: version  
-node 18.16.0  
-npm 6.7.1  
-:::
+## 我？
 
-::: echarts A Radar Chart
+## 未来可能讨论的话题
 
-```json
-{
-  "legend": {
-    "data": ["Allocated Budget", "Actual Spending"]
-  },
-  "radar": {
-    "indicator": [
-      { "name": "Sales", "max": 6500 },
-      { "name": "Administration", "max": 16000 },
-      { "name": "Information Technology", "max": 30000 },
-      { "name": "Customer Support", "max": 38000 },
-      { "name": "Development", "max": 52000 },
-      { "name": "Marketing", "max": 25000 }
-    ]
-  },
-  "series": [
-    {
-      "name": "Budget vs spending",
-      "type": "radar",
-      "data": [
-        {
-          "value": [4200, 3000, 20000, 35000, 50000, 18000],
-          "name": "Allocated Budget"
-        },
-        {
-          "value": [5000, 14000, 28000, 26000, 42000, 21000],
-          "name": "Actual Spending"
-        }
-      ]
-    }
-  ]
-}
-```
+- glob 模式匹配
+- 让自己的组件库支持按需引入
+- polyfill
