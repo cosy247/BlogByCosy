@@ -235,16 +235,18 @@ export default {
 }
 .blog-comment {
   position: relative;
-  margin-top: 500px;
-  padding-bottom: 400px;
+  top: 200px;
+  padding-bottom: 200px;
   background: linear-gradient(#fff0, #fff 50px);
   z-index: 1;
   pointer-events: none;
 }
 .blog-comment-main {
+  position: relative;
+  top: -150px;
   width: 95%;
   max-width: var(--blog-width);
-  margin: -450px auto 0;
+  margin: auto;
   pointer-events: auto;
 }
 .blog-toc {
