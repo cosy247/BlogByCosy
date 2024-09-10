@@ -107,7 +107,7 @@ nginx代理 <--> ...
 ```nginx
 location dist/ {
   root /dist;
-  add_header Cache-Control max-age=1d;
+  add_header Cache-Control public,max-age=31536000;
 }
 ```
 
