@@ -9,15 +9,20 @@ import { containerPlugin } from "@vuepress/plugin-container";
 import { getDirname, path } from "@vuepress/utils";
 import { gitPlugin } from "@vuepress/plugin-git";
 
-export default (option = {}) => {
+export default (op = {}) => {
+  const option = {
+    title: 'cosy247博客',
+    ...op
+  }
   const initOption = {
     theme: "cosy",
     clientConfigFile: path.resolve(getDirname(import.meta.url), "./client.js"),
     // 网页信息设置
-    title: "cosy247博客",
+    title: option.title,
     lang: "zh-Hans-CN",
     description: "cosy247的个人博客 master",
     head: [
+      ["title", {}, option.title],
       ["link", { rel: "icon", href: "/assets/logo.png" }],
       ["meta", { "http-equiv": "Cache-Control", content: "max-age=7200" }],
     ],

@@ -106,7 +106,6 @@ export default {
   mounted() {
     window.addEventListener("scroll", () => {
       const { clientHeight, scrollTop, scrollHeight } = document.documentElement;
-      console.log({ clientHeight, scrollTop, scrollHeight });
       if (scrollTop < clientHeight) {
         this.firstPageProportion = scrollTop / clientHeight;
       }

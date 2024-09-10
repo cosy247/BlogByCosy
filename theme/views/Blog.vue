@@ -90,7 +90,6 @@ export default {
   created() {
     const pageData = usePageData().value;
 
-    console.log(pageData.frontmatter);
     if (pageData.frontmatter.shadow === true) {
       const shadow = sessionStorage.getItem("shadow");
       if (!shadow || md5(shadow.slice(6)) !== themeConfig.shadowPassword) {

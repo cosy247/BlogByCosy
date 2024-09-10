@@ -26,7 +26,7 @@ export default ({ countMateNames = [], isArrMateNames = [] }) => ({
       } = page;
 
       if (!path || path === "index.html" || path === "404.html") return pageDatas;
-      if (process.env.NODE_ENV !== "development" && path[0] === "@") return pageDatas;
+      if (path[0] === "@" && process.env.NODE_ENV !== "development") return pageDatas;
 
       frontmatter.date = frontmatter.createDate = createdTime ? new Date(createdTime).toLocaleDateString() : "代发布";
       frontmatter.updateDate = updatedTime ? new Date(updatedTime).toLocaleDateString() : "代发布";
@@ -71,9 +71,7 @@ export default ({ countMateNames = [], isArrMateNames = [] }) => ({
     pageDatas.sort((b1, b2) => new Date(b2.frontmatter.date) - new Date(b1.frontmatter.date));
     shadowDatas.sort((b1, b2) => new Date(b2.frontmatter.date) - new Date(b1.frontmatter.date));
 
-    // app.writeTemp('app.json', JSON.stringify(app));
     app.writeTemp("blogMate.json", JSON.stringify({ pageDatas, countMateData, themeConfig }));
     app.writeTemp("shadows.json", JSON.stringify(shadowDatas));
-    app.writeTemp("appPages.json", JSON.stringify(app.pages));
   },
 });
