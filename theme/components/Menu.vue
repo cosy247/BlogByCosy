@@ -103,7 +103,7 @@
         <div class="tool" @click="showSearchBox">&#xe618;</div>
         <!-- <div class="tool" v-if="isSun" @click="changeTheme">&#xe63e;</div>
         <div class="tool" v-else @click="changeTheme">&#xe6c2;</div> -->
-        <a class="tool" href="/userinfo.html">&#xe650;</a>
+        <span class="tool" @click="openReadMeContent">&#xe650;</span>
         <a class="tool home" href="/"> <img src="../assets/images/icon.png" alt="" /></a>
       </div>
     </div>
@@ -146,16 +146,24 @@
       </div>
     </div>
   </div>
+
+  <div class="readme-box" v-show="isShowReadMe" @click.self="closeReadMeContent">
+    <div class="readme-container">
+      <div class="readme-close" @click="closeReadMeContent">&#xe632;</div>
+      <MdView path="/README.md" class="readme-content" />
+    </div>
+  </div>
 </template>
 
 <script>
 import { pageDatas, countMateData, themeConfig } from "@temp/blogMate";
 import shadows from "@temp/shadows";
 import md5 from "md5";
+import MdView from "./MdView.vue";
 
 export default {
   name: "Menu",
-  components: {},
+  components: { MdView },
   data: () => ({
     isSun: true,
     tags: countMateData.tags,
@@ -169,10 +177,21 @@ export default {
     pageDatas: JSON.parse(JSON.stringify(pageDatas)),
     currentSearchLineIndex: 0,
     isShowMenu: false,
+    isShowReadMe: false,
   }),
   computed: {},
   watch: {},
   methods: {
+    openReadMeContent() {
+      this.isShowReadMe = true;
+      window.document.body.style.overflowY = "hidden";
+      window.document.body.style.paddingRight = "var(--outer-width)";
+    },
+    closeReadMeContent() {
+      this.isShowReadMe = false;
+      window.document.body.style.overflowY = "auto";
+      window.document.body.style.paddingRight = "0";
+    },
     showSearchBox() {
       this.isShowSearch = true;
       this.$nextTick(() => {
@@ -451,7 +470,7 @@ export default {
 .tools {
   display: flex;
   width: 115px;
-  gap: 20px;
+  gap: 10px;
   font-size: 18px;
   justify-content: flex-end;
   align-items: center;
@@ -460,6 +479,7 @@ export default {
 
 .tool {
   cursor: pointer;
+  padding: 0.5em;
 }
 
 .tool.home {
@@ -489,6 +509,7 @@ export default {
   margin-bottom: 10vh;
   width: 750px;
   max-width: 90%;
+  animation: readmeContainer 0.3s;
 }
 
 .search-input {
@@ -608,5 +629,63 @@ export default {
   line-height: 2px;
   font-size: var(--size1);
   color: #1b283288;
+}
+
+.readme-box {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0008;
+  z-index: 9999;
+  display: flex;
+  backdrop-filter: blur(4px);
+}
+.readme-container {
+  position: relative;
+  height: 600px;
+  width: 900px;
+  max-width: 95%;
+  max-height: 90%;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: auto;
+  box-sizing: border-box;
+  animation: readmeContainer 0.3s;
+}
+@keyframes readmeContainer {
+  0% {
+    opacity: 0.5;
+    transform: translateY(10%);
+  }
+}
+.readme-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  font-size: var(--size3);
+  color: #555;
+}
+.readme-close:hover {
+  filter: brightness(1.8);
+  transition-duration: 0.1s;
+}
+.readme-content {
+  overflow: auto;
+  height: 100%;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.readme-content::-webkit-scrollbar {
+  display: none;
+}
+
+.readme-content :deep(h1) {
+  padding-top: 0;
+  margin-top: 0;
 }
 </style>

@@ -385,8 +385,8 @@
   font-weight: 600 !important;
 }
 
-.mdContent > :first-child {
-  margin-top: 0 !important;
+.mdContent > h1:first-child {
+  margin-top: 0;
 }
 
 .mdContent > :last-child {

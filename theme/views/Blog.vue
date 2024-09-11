@@ -26,7 +26,7 @@
       <span class="blog-info-icon">&#xe62b;</span>
     </div>
   </div>
-  <MdView class="blog-mdView" :path="userinfo ? '/README.md' : undefined" />
+  <MdView class="blog-mdView"/>
   <template v-if="recommendations.length">
     <p class="recom-title">✨相关推荐✨</p>
     <div class="recoms" ref="recom">
@@ -66,7 +66,7 @@ import md5 from "md5";
 export default {
   name: "Blog",
   components: { MdView, Giscus },
-  props: ["userinfo"],
+  props: [],
   data: () => ({
     date: "",
     tags: [],

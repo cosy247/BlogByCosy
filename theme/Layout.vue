@@ -2,7 +2,6 @@
   <PageOuter />
   <Home v-if="path === 'home'" />
   <Blog v-else-if="path === 'blog'" />
-  <Blog v-else-if="path === 'userinfo'" :userinfo="true" />
   <NotFound v-else-if="path === 'notFound'" />
 </template>
 
@@ -23,9 +22,7 @@ export default {
   computed: {
     path() {
       const { path } = this.$route;
-      if (path === "/userinfo.html") {
-        return "userinfo";
-      } else if (path === "/") {
+      if (path === "/") {
         return "home";
       } else if (this.isNotFound) {
         return "notFound";
