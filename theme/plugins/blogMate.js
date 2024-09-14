@@ -1,6 +1,6 @@
 import md5 from "md5";
 
-export default ({ countMateNames = [], isArrMateNames = [] }) => ({
+export default ({ config, countMateNames = [], isArrMateNames = [] }) => ({
   name: "plugins-blog-meta",
   onPrepared(app) {
     const countMateData = countMateNames.reduce((countMateData, metaName) => {
@@ -71,6 +71,7 @@ export default ({ countMateNames = [], isArrMateNames = [] }) => ({
     pageDatas.sort((b1, b2) => new Date(b2.frontmatter.date) - new Date(b1.frontmatter.date));
     shadowDatas.sort((b1, b2) => new Date(b2.frontmatter.date) - new Date(b1.frontmatter.date));
 
+    app.writeTemp("pageConfig.json", JSON.stringify(config));
     app.writeTemp("blogMate.json", JSON.stringify({ pageDatas, countMateData, themeConfig }));
     app.writeTemp("shadows.json", JSON.stringify(shadowDatas));
   },

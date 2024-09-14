@@ -1,26 +1,28 @@
 <template>
-  <div class="cover" ref="cover">
+  <div class="cover" :class="{ filter: pageFilterType }">
     <div class="cover-content" :style="{ paddingTop: 37 * firstPageProportion + '%' }">
-      <p class="cover-title" v-if="tag || archive">
-        {{ tag ? "tag" : "archive" }}
-        <span class="cover-title-value">.{{ tag || archive }}</span>
+      <p class="cover-title" v-if="pageFilterType">
+        {{ pageFilterType }}
+        <span class="cover-title-value">.{{ pageFilterValue }}</span>
         <span class="cover-count">【{{ allPageCount }}】</span>
       </p>
       <template v-else>
-        <p class="cover-title">
-          C
-          <img src="../assets/images/icon.png" alt="" />
-          SY247
+        <div class="cover-title">
+          <div class="cover-logo">
+            C
+            <img src="../assets/images/icon.png" alt="" />
+            SY247
+          </div>
           <span class="cover-count">【{{ allPageCount }}】</span>
-        </p>
+        </div>
         <p class="cover-dictum">{{ motto[0] }}</p>
         <p class="cover-dictum-2" v-for="motto in motto.slice(1)">{{ motto }}</p>
       </template>
       <div class="cover-links">
         <a
-          v-for="item in themeConfig.links"
+          v-for="item in pageConfig.links"
           class="cover-link"
-          :href="item.href"
+          :href="item.url"
           target="_blank"
           v-html="item.name"
         ></a>
@@ -42,7 +44,8 @@
 </template>
 
 <script>
-import { pageDatas, themeConfig } from "@temp/blogMate";
+import pageConfig from "@temp/pageConfig";
+import { pageDatas } from "@temp/blogMate";
 
 export default {
   name: "Home",
@@ -56,39 +59,39 @@ export default {
     allPageCount: 0,
     pageSize: 10,
     isAddingPageList: false,
-    themeConfig,
     motto: "",
     firstPageProportion: 0,
+    pageConfig,
   }),
   computed: {
-    cover() {
-      return [this.$route.query.tag, this.$route.query.archive];
+    pageFilterType() {
+      return this.pageConfig.countMateNames.find((name) => this.$route.query[name]) || "";
+    },
+    pageFilterValue() {
+      return this.$route.query[this.pageFilterType] || "";
     },
   },
   watch: {
-    cover: {
-      handler([tag, archive]) {
-        this.tag = tag;
-        this.archive = archive;
-        this.$nextTick(() => {
-          if (!this.$refs.cover) return;
-          if (tag || archive) {
-            this.$refs.cover.classList.add("filter");
-          } else {
-            this.$refs.cover.classList.remove("filter");
-          }
-        });
-        this.initPageList();
-      },
-      immediate: true,
+    pageFilterType() {
+      this.initPageList();
+    },
+    pageFilterValue() {
+      this.initPageList();
     },
   },
   methods: {
     initPageList() {
-      if (this.tag) {
-        this.remainPageList = pageDatas.filter((item) => item.frontmatter.tags?.includes(this.tag));
-      } else if (this.archive) {
-        this.remainPageList = pageDatas.filter((item) => item.frontmatter.archive === this.archive);
+      if (this.pageFilterType) {
+        console.log(this.pageFilterType, this.pageFilterValue);
+        if (this.pageConfig.isArrMateNames.includes(this.pageFilterType)) {
+          this.remainPageList = pageDatas.filter((item) =>
+            item.frontmatter[this.pageFilterType].includes(this.pageFilterValue)
+          );
+        } else {
+          this.remainPageList = pageDatas.filter(
+            (item) => item.frontmatter[this.pageFilterType] === this.pageFilterValue
+          );
+        }
       } else {
         this.remainPageList = pageDatas;
       }
@@ -97,11 +100,12 @@ export default {
     },
   },
   created() {
-    if (themeConfig.motto instanceof Array) {
-      this.motto = themeConfig.motto[(Math.random() * themeConfig.motto.length) >> 0];
+    if (this.pageConfig.motto instanceof Array) {
+      this.motto = this.pageConfig.motto[(Math.random() * this.pageConfig.motto.length) >> 0];
     } else {
-      this.motto = [themeConfig.motto];
+      this.motto = [this.pageConfig.motto];
     }
+    this.initPageList();
   },
   mounted() {
     window.addEventListener("scroll", () => {
@@ -172,11 +176,15 @@ export default {
 
 .cover-count {
   font-size: var(--size2);
-  vertical-align: bottom;
 }
 
 .cover-title img {
   height: 1em;
+}
+
+.cover-logo {
+  display: flex;
+  align-items: center;
 }
 
 .cover-dictum {

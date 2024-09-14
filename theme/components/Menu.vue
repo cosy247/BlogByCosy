@@ -12,86 +12,28 @@
         SY247
       </div>
       <div class="menus">
-        <div class="menu">
-          &#xe617;
-          <span class="menu-title">标签</span>
+        <div class="menu" v-for="menu in pageConfig.menus">
+          <span class="menu-title" v-html="menu.menuName"></span>
           <div class="menu-position">
             <div class="menu-mask"></div>
             <div class="menu-content">
-              <div class="menu-content-title">
-                &#xe617;
-                <span class="menu-content-title-main">标签</span>
-                <span class="menu-content-title-describe">
-                  tag&nbsp;∈&nbsp;[1,&nbsp;N]&nbsp;·&nbsp;one;&nbsp;&nbsp;&nbsp;one&nbsp;∈&nbsp;[0,&nbsp;5]&nbsp;·&nbsp;tag
-                </span>
+              <div class="menu-content-title" v-if="menu.description">
+                <span class="menu-content-title-main" v-html="menu.menuName"></span>
+                <span class="menu-content-title-describe" v-html="menu.description"></span>
               </div>
-              <div class="menu-content-list">
-                <a :href="`/?tag=${key}`" class="menu-content-item" v-for="(item, key) in tags"
+              <!-- statistics -->
+              <div class="menu-content-list" v-if="menu.menuType === 'statistics'">
+                <a
+                  :href="`/?${menu.statistics.frontName}=${key}`"
+                  class="menu-content-item"
+                  v-for="(item, key) in countMateData[menu.statistics.frontName]"
                   >{{ key }}({{ item }})</a
                 >
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="menu">
-          &#xe69d;
-          <span class="menu-title">归档</span>
-          <div class="menu-position">
-            <div class="menu-mask"></div>
-            <div class="menu-content">
-              <div class="menu-content-title">
-                &#xe69d;
-                <span class="menu-content-title-main">归档</span>
-                <span class="menu-content-title-describe">
-                  archive&nbsp;∈&nbsp;[1,&nbsp;N]&nbsp;·&nbsp;one;&nbsp;&nbsp;&nbsp;one&nbsp;∈&nbsp;[0,&nbsp;1]&nbsp;·&nbsp;archive
-                </span>
-              </div>
-              <div class="menu-content-list">
-                <a :href="`/?archive=${key}`" class="menu-content-item" v-for="(item, key) in archive"
-                  >{{ key }}[{{ item }}]</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="menu">
-          &#xe67d;
-          <RouterLink to="/album">图册</RouterLink>
-        </div> -->
-        <div class="menu">
-          &#xe64f;
-          <span class="menu-title">独立</span>
-          <div class="menu-position">
-            <div class="menu-mask"></div>
-            <div class="menu-content">
-              <div class="menu-content-title">
-                &#xe64f;
-                <span class="menu-content-title-main">独立</span>
-                <span class="menu-content-title-describe">独立于本网站的应用、网页、服务、插件等。</span>
-              </div>
-              <div class="menu-alone-list">
-                <a :href="item.url" class="menu-alone-item" v-for="item in alones">
-                  <img v-if="item.icon" class="menu-alone-icon" :src="item.icon" :alt="item.name" />
-                  {{ item.name }}
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="menu">
-          &#xe66d;
-          <span class="menu-title">友链</span>
-          <div class="menu-position">
-            <div class="menu-mask"></div>
-            <div class="menu-content">
-              <div class="menu-content-title">
-                &#xe66d;
-                <span class="menu-content-title-main">友链</span>
-                <span class="menu-content-title-describe">相逢何必曾相识，联系我创建关联。</span>
-              </div>
-              <div class="menu-alone-list">
-                <a :href="item.url" class="menu-alone-item" v-for="item in blogFriends">
-                  <img v-if="item.icon" class="menu-alone-icon" :src="item.icon" :alt="item.name" />
+              <!-- exhibit -->
+              <div class="menu-exhibit-list" v-else-if="menu.menuType === 'exhibit'">
+                <a :href="item.url" class="menu-exhibit-item" v-for="item in menu.exhibit">
+                  <img v-if="item.img" class="menu-exhibit-icon" :src="item.img" :alt="item.name" />
                   {{ item.name }}
                 </a>
               </div>
@@ -101,8 +43,6 @@
       </div>
       <div class="tools">
         <div class="tool" @click="showSearchBox">&#xe618;</div>
-        <!-- <div class="tool" v-if="isSun" @click="changeTheme">&#xe63e;</div>
-        <div class="tool" v-else @click="changeTheme">&#xe6c2;</div> -->
         <span class="tool" @click="openReadMeContent">&#xe650;</span>
         <a class="tool home" href="/"> <img src="../assets/images/icon.png" alt="" /></a>
       </div>
@@ -156,7 +96,8 @@
 </template>
 
 <script>
-import { pageDatas, countMateData, themeConfig } from "@temp/blogMate";
+import { pageDatas, countMateData } from "@temp/blogMate";
+import pageConfig from "@temp/pageConfig";
 import shadows from "@temp/shadows";
 import md5 from "md5";
 import MdView from "./MdView.vue";
@@ -166,11 +107,7 @@ export default {
   components: { MdView },
   data: () => ({
     isSun: true,
-    tags: countMateData.tags,
-    archive: countMateData.archive,
-    alones: themeConfig.alones,
-    blogFriends: themeConfig.blogFriends,
-    shadowPassword: themeConfig.shadowPassword,
+    countMateData,
     isShowSearch: false,
     searchText: "",
     searchList: [],
@@ -178,6 +115,7 @@ export default {
     currentSearchLineIndex: 0,
     isShowMenu: false,
     isShowReadMe: false,
+    pageConfig,
   }),
   computed: {},
   watch: {},
@@ -204,7 +142,7 @@ export default {
       if (searchText === "") {
         this.searchList = [];
       } else {
-        if (md5(searchText) === this.shadowPassword) {
+        if (md5(searchText) === this.pageConfig.shadowPassword) {
           this.searchList = shadows;
         } else {
           this.searchList = this.pageDatas
@@ -255,7 +193,7 @@ export default {
         if (!currentLine || !currentLine.path) return;
         path = currentLine.path;
       }
-      if (md5(this.searchText) === this.shadowPassword) {
+      if (md5(this.searchText) === this.pageConfig.shadowPassword) {
         sessionStorage.setItem("shadow", "shadow" + this.searchText);
       }
       window.location.href = path;
@@ -432,7 +370,7 @@ export default {
   color: #000;
 }
 
-.menu-alone-list {
+.menu-exhibit-list {
   margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
@@ -440,11 +378,11 @@ export default {
   justify-content: flex-start;
 }
 
-.menu-alone-list:hover > .menu-alone-item {
+.menu-exhibit-list:hover > .menu-exhibit-item {
   opacity: 0.5;
 }
 
-.menu-alone-item {
+.menu-exhibit-item {
   display: inline-flex;
   align-items: center;
   font-size: var(--size2);
@@ -453,15 +391,15 @@ export default {
   margin: 10px 20px;
 }
 
-.menu-alone-item:hover {
+.menu-exhibit-item:hover {
   opacity: 1 !important;
 }
 
-.menu-alone-icon {
+.menu-exhibit-icon {
   height: 1.5em;
 }
 
-.menu-alone-describe {
+.menu-exhibit-describe {
   font-size: 12px;
   opacity: 0.5;
   font-size: var(--size1);
@@ -654,6 +592,7 @@ export default {
   margin: auto;
   box-sizing: border-box;
   animation: readmeContainer 0.3s;
+  box-shadow: 0 0 10px #8888;
 }
 @keyframes readmeContainer {
   0% {
