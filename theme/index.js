@@ -31,9 +31,11 @@ export default (pConfig = {}) => {
     menus: [
       {
         /** 菜单类型 statistics exhibit */
-        menuType: "statistics",
+        type: "statistics",
         /** 菜单标题 */
-        menuName: "&#xe617; 标签",
+        name: "标签",
+        /** 图标 */
+        icon: "&#xe617;",
         /** 菜单描述 */
         description: "tag ∈ [1, N] · one;   one ∈ [0, 5] · tag",
         /** statistics 相关属性 */
@@ -47,8 +49,9 @@ export default (pConfig = {}) => {
         },
       },
       {
-        menuType: "statistics",
-        menuName: "&#xe69d; 归档",
+        type: "statistics",
+        name: "归档",
+        icon: "&#xe69d;",
         description: "archive ∈ [1, N] · one;   one ∈ [0, 1] · archive",
         /** statistics 相关属性 */
         statistics: {
@@ -58,8 +61,9 @@ export default (pConfig = {}) => {
         },
       },
       {
-        menuType: "exhibit",
-        menuName: "&#xe64f; 独立",
+        type: "exhibit",
+        name: "独立",
+        icon: "&#xe64f;",
         description: "独立于本网站的应用、网页、服务、插件等。",
         /** exhibit 相关属性 */
         exhibit: [
@@ -107,11 +111,9 @@ export default (pConfig = {}) => {
     motto: config.motto,
     links: config.links,
     shadowPassword: config.shadowPassword,
-    countMateNames: config.menus
-      .filter((item) => item.menuType === "statistics")
-      .map((item) => item.statistics.frontName),
+    countMateNames: config.menus.filter((item) => item.type === "statistics").map((item) => item.statistics.frontName),
     isArrMateNames: config.menus
-      .filter((item) => item.menuType === "statistics" && item.statistics.isMultiple)
+      .filter((item) => item.type === "statistics" && item.statistics.isMultiple)
       .map((item) => item.statistics.frontName),
     menus: config.menus,
   };

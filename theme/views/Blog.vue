@@ -1,19 +1,11 @@
 <template>
   <div class="blog-infos">
-    <a :href="`/?tag=${item}`" class="blog-info" v-for="item in tags">
-      <span class="blog-info-text">{{ item }}</span>
-      <span class="blog-info-icon">&#xe617;</span>
+    <a :href="item.url" class="blog-info" v-for="item in staticFrontmatter">
+      <span class="blog-info-text">{{ item.value }}</span>
+      <span class="blog-info-icon" v-html="staticFrontmatterIconMap[item.name]"></span>
     </a>
-    <a v-if="archive" :href="`/?archive=${archive}`" class="blog-info">
-      <span class="blog-info-text">{{ archive }}</span>
-      <span class="blog-info-icon">&#xe69d;</span>
-    </a>
-    <div v-if="tags.length || archive" class="blog-info-br"></div>
-    <div class="blog-info" v-if="date">
-      <span class="blog-info-text">{{ date }}</span>
-      <span class="blog-info-icon">&#xe6ad;</span>
-    </div>
-    <div class="blog-info" @click="gotoRecom" v-if="recommendations.length">
+    <div v-if="staticFrontmatter.length" class="blog-info-br"></div>
+    <div class="blog-info" @click="gotoRecom">
       <span class="blog-info-text">相关推荐</span>
       <span class="blog-info-icon">&#xe60d;</span>
     </div>
@@ -26,15 +18,13 @@
       <span class="blog-info-icon">&#xe62b;</span>
     </div>
   </div>
-  <MdView class="blog-mdView"/>
-  <template v-if="recommendations.length">
-    <p class="recom-title">✨相关推荐✨</p>
-    <div class="recoms" ref="recom">
-      <a :href="item.path" class="recom" v-for="(item, index) in recommendations" :key="index">
-        ✨ {{ item.frontmatter.title }}
-      </a>
-    </div>
-  </template>
+  <MdView class="blog-mdView" />
+  <p class="recom-title">✨相关推荐✨</p>
+  <div class="recoms" ref="recom">
+    <a :href="item.path" class="recom" v-for="(item, index) in recommendations" :key="index">
+      ✨ {{ item.frontmatter.title }}
+    </a>
+  </div>
   <p class="recom-title">🧐评论🧐</p>
   <div class="blog-comment" ref="comment">
     <div class="blog-comment-main">
@@ -59,22 +49,56 @@
 <script>
 import { usePageData } from "@vuepress/client";
 import { pageDatas, themeConfig } from "@temp/blogMate";
+import pageConfig from "@temp/pageConfig";
 import MdView from "../components/MdView.vue";
 import Giscus from "@giscus/vue";
 import md5 from "md5";
+console.log(pageConfig);
 
 export default {
   name: "Blog",
   components: { MdView, Giscus },
   props: [],
   data: () => ({
-    date: "",
-    tags: [],
-    archive: "",
-    recommendations: [],
     currentHash: "",
+    pageData: usePageData().value,
   }),
-  computed: {},
+  computed: {
+    staticFrontmatterIconMap() {
+      return pageConfig.menus
+        .filter((item) => item.type === "statistics")
+        .reduce((staticFrontmatterIconMap, item) => {
+          staticFrontmatterIconMap[item.statistics.frontName] = item.icon;
+          return staticFrontmatterIconMap;
+        }, {});
+    },
+    staticFrontmatter() {
+      return pageConfig.countMateNames.reduce((staticFrontmatter, name) => {
+        if (!this.pageData.frontmatter[name]) return staticFrontmatter;
+        if (pageConfig.isArrMateNames.includes(name)) {
+          this.pageData.frontmatter[name].split(" ").forEach((n) => {
+            staticFrontmatter.push({
+              name: name,
+              value: n,
+              url: `/?${name}=${n}`,
+            });
+          });
+        } else {
+          staticFrontmatter.push({
+            name: name,
+            value: this.pageData.frontmatter[name],
+            url: `/?${name}=${this.pageData.frontmatter[name]}`,
+          });
+        }
+        return staticFrontmatter;
+      }, []);
+    },
+    recommendations() {
+      return Array.from(new Set((String(this.pageData.frontmatter.recommendations) || "").split(" ")))
+        .map((id) => pageDatas.find((i) => i.frontmatter.id === +id))
+        .filter((i) => i);
+    },
+  },
   watch: {},
   methods: {
     gotoComment() {
@@ -88,9 +112,8 @@ export default {
     },
   },
   created() {
-    const pageData = usePageData().value;
-
-    if (pageData.frontmatter.shadow === true) {
+    // 检查是否直接进入隐藏文件
+    if (this.pageData.frontmatter.shadow === true) {
       const shadow = sessionStorage.getItem("shadow");
       if (!shadow || md5(shadow.slice(6)) !== themeConfig.shadowPassword) {
         this.$router.push("/");
@@ -98,19 +121,10 @@ export default {
       return;
     }
 
-    this.tags = (pageData.frontmatter.tags || "").split(" ").filter((i) => i);
-    this.archive = pageData.frontmatter.archive;
-    this.recommendations = Array.from(new Set((String(pageData.frontmatter.recommendations) || "").split(" ")));
-    this.recommendations = this.recommendations
-      .map((id) => pageDatas.find((i) => i.frontmatter.id === +id))
-      .filter((i) => i);
-    this.date = pageData.frontmatter.date;
-
     // toc滚动跟随
     window.addEventListener("scroll", () => {
       if (this.currentHash === location.hash) return;
       this.currentHash = location.hash;
-
       const activeToc = this.$refs.toc.querySelector(".route-link.vuepress-toc-link.active");
       if (!activeToc) return;
       this.$refs.toc.scrollTop = activeToc.offsetTop - this.$refs.toc.clientHeight / 2;
