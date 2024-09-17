@@ -13,16 +13,16 @@
       </div>
       <div class="menus">
         <div class="menu" v-for="menu in pageConfig.menus">
-          <span class="menu-title" v-html="menu.menuName"></span>
+          <span class="menu-title" v-html="`${menu.icon} ${menu.name}`"></span>
           <div class="menu-position">
             <div class="menu-mask"></div>
             <div class="menu-content">
               <div class="menu-content-title" v-if="menu.description">
-                <span class="menu-content-title-main" v-html="menu.menuName"></span>
+                <span class="menu-content-title-main" v-html="`${menu.icon} ${menu.name}`"></span>
                 <span class="menu-content-title-describe" v-html="menu.description"></span>
               </div>
               <!-- statistics -->
-              <div class="menu-content-list" v-if="menu.menuType === 'statistics'">
+              <div class="menu-content-list" v-if="menu.type === 'statistics'">
                 <a
                   :href="`/?${menu.statistics.frontName}=${key}`"
                   class="menu-content-item"
@@ -31,7 +31,7 @@
                 >
               </div>
               <!-- exhibit -->
-              <div class="menu-exhibit-list" v-else-if="menu.menuType === 'exhibit'">
+              <div class="menu-exhibit-list" v-else-if="menu.type === 'exhibit'">
                 <a :href="item.url" class="menu-exhibit-item" v-for="item in menu.exhibit">
                   <img v-if="item.img" class="menu-exhibit-icon" :src="item.img" :alt="item.name" />
                   {{ item.name }}
