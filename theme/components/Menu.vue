@@ -96,11 +96,9 @@
 </template>
 
 <script>
-import { pageDatas, countMateData } from "@temp/blogMate";
-import pageConfig from "@temp/pageConfig";
-import shadows from "@temp/shadows";
-import md5 from "md5";
+import { pageList as pageDatas, countMateData, pageConfig, shadowList as shadows } from "@temp/blogMate";
 import MdView from "./MdView.vue";
+import md5 from "md5";
 
 export default {
   name: "Menu",

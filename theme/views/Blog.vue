@@ -5,7 +5,7 @@
       <span class="blog-info-icon" v-html="staticFrontmatterIconMap[item.name]"></span>
     </a>
     <div v-if="staticFrontmatter.length" class="blog-info-br"></div>
-    <div class="blog-info" @click="gotoRecom">
+    <div class="blog-info" @click="gotoRecom" v-if="recommendations.length">
       <span class="blog-info-text">相关推荐</span>
       <span class="blog-info-icon">&#xe60d;</span>
     </div>
@@ -20,7 +20,7 @@
   </div>
   <MdView class="blog-mdView" />
   <p class="recom-title">✨相关推荐✨</p>
-  <div class="recoms" ref="recom">
+  <div class="recoms" ref="recom" v-if="recommendations.length">
     <a :href="item.path" class="recom" v-for="(item, index) in recommendations" :key="index">
       ✨ {{ item.frontmatter.title }}
     </a>
@@ -47,13 +47,11 @@
 </template>
 
 <script>
+import { pageList as pageDatas, pageConfig } from "@temp/blogMate";
 import { usePageData } from "@vuepress/client";
-import { pageDatas, themeConfig } from "@temp/blogMate";
-import pageConfig from "@temp/pageConfig";
 import MdView from "../components/MdView.vue";
 import Giscus from "@giscus/vue";
 import md5 from "md5";
-console.log(pageConfig);
 
 export default {
   name: "Blog",
@@ -94,7 +92,8 @@ export default {
       }, []);
     },
     recommendations() {
-      return Array.from(new Set((String(this.pageData.frontmatter.recommendations) || "").split(" ")))
+      const pageData = pageDatas.find((i) => i.frontmatter.id === this.pageData.frontmatter.id);
+      return pageData.frontmatter.recommendations
         .map((id) => pageDatas.find((i) => i.frontmatter.id === +id))
         .filter((i) => i);
     },

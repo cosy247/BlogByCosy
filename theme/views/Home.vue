@@ -44,8 +44,7 @@
 </template>
 
 <script>
-import pageConfig from "@temp/pageConfig";
-import { pageDatas } from "@temp/blogMate";
+import { pageList as pageDatas, pageConfig } from "@temp/blogMate";
 
 export default {
   name: "Home",

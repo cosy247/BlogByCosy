@@ -25,6 +25,10 @@ export default (pConfig = {}) => {
     /** 网站图标 */
     icon: "./docs/assets/logo.png",
 
+    /** 是否开启相关推荐 */
+    isOpenBlurRecommend: true,
+    /** 是否开启自动推荐 */
+    maxRecommendQuantity: 5,
     /** 隐藏文件密码 */
     shadowPassword: "qeqe",
     /** 菜单项 */
@@ -110,6 +114,8 @@ export default (pConfig = {}) => {
   const pageConfig = {
     motto: config.motto,
     links: config.links,
+    isOpenBlurRecommend: config.isOpenBlurRecommend,
+    maxRecommendQuantity: config.maxRecommendQuantity,
     shadowPassword: config.shadowPassword,
     countMateNames: config.menus.filter((item) => item.type === "statistics").map((item) => item.statistics.frontName),
     isArrMateNames: config.menus
@@ -153,9 +159,7 @@ export default (pConfig = {}) => {
     plugins: [
       gitPlugin({}),
       blogMateData({
-        config: pageConfig,
-        countMateNames: pageConfig.countMateNames,
-        isArrMateNames: pageConfig.isArrMateNames,
+        pageConfig,
       }),
       tocPlugin({}),
       activeHeaderLinksPlugin({
