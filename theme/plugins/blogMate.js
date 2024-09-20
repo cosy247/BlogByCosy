@@ -142,6 +142,7 @@ export default (pageConfig) => ({
 
     // 排序
     pageList.sort((b1, b2) => new Date(b2.frontmatter.date) - new Date(b1.frontmatter.date));
+    pageList.sort((b1, b2) => (b2.frontmatter.top || 0) - (b1.frontmatter.top || 0));
     shadowList.sort((b1, b2) => new Date(b2.frontmatter.date) - new Date(b1.frontmatter.date));
 
     app.writeTemp("blogMate.json", JSON.stringify({ pageList, countMateData, pageConfig, shadowList }));

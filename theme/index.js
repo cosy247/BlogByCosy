@@ -158,9 +158,7 @@ export default (pConfig = {}) => {
     // 插件
     plugins: [
       gitPlugin({}),
-      blogMateData({
-        pageConfig,
-      }),
+      blogMateData(pageConfig),
       tocPlugin({}),
       activeHeaderLinksPlugin({
         headerLinkSelector: "a.vuepress-toc-link",
