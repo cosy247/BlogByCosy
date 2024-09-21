@@ -44,7 +44,7 @@ const fileTitle = await getInput(`🐲 请输入文章标题(${fileName}): `, fi
 const fileDescription = await getInput(`🐲 请输入文章描述(${fileTitle}): `, fileTitle);
 
 // 生成模板文件
-let templateContent = fs.readFileSync(".md", "utf8");
+let templateContent = fs.readFileSync(`${docsPath}/.md`, "utf8");
 templateContent = templateContent.replaceAll("{ id }", Date.now());
 templateContent = templateContent.replaceAll("{ title }", fileTitle);
 templateContent = templateContent.replaceAll("{ description }", fileDescription);
