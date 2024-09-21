@@ -25,9 +25,9 @@ shadow: false
 | updated       | 组件数据更新之后              | dom 已经更新了                                                         |
 | beforeDestroy | 组件实例销毁之前              | 在这一步，实例仍然完全可用                                             |
 | destroyed     | 组件实例销毁之后              | 所有指令都被解绑，所有的事件监听器被移除，所有的子实例也都被销毁。     |
-| activated     | `keep-alive` 缓存的组件激活时 |
-| deactivated   | `keep-alive` 缓存的组件停用时 |
-| errorCaptured | 捕获一个来自子孙组件的错误时  |
+| activated     | `keep-alive` 缓存的组件激活时 |                                                                        |
+| deactivated   | `keep-alive` 缓存的组件停用时 |                                                                        |
+| errorCaptured | 捕获一个来自子孙组件的错误时  |                                                                        |
 
 **生命周期图示：**
 
