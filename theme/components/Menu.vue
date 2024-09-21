@@ -605,6 +605,7 @@ export default {
   cursor: pointer;
   font-size: var(--size3);
   color: #555;
+  z-index: 9;
 }
 .readme-close:hover {
   filter: brightness(1.8);
