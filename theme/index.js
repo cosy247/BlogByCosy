@@ -13,9 +13,6 @@ const __dirname = getDirname(import.meta.url);
 
 export default (pConfig = {}) => {
   const config = {
-    /** 文章与静态资源路径 */
-    docsPath: "./docs",
-
     /** 网站标题 */
     title: "李十七的个人博客",
     /** 网站介绍 */
@@ -140,7 +137,7 @@ export default (pConfig = {}) => {
     // 运行设置
     temp: "./.temp",
     cache: "./.cache",
-    public: config.docsPath,
+    public: "./docs",
     dest: "./_CosyBlog",
     permalinkPattern: ":raw",
     bundler: viteBundler({

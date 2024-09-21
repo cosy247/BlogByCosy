@@ -5,9 +5,11 @@
 }
 
 .mdContent {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
+  z-index: 1;
 }
 
 .mdContent > h1 a::before {
