@@ -1,8 +1,0 @@
-{
-  "type": "module",
-  "scripts": {
-    "install": "cd ../ & npm install",
-    "dev": "cd ../ & vuepress dev docs",
-    "build": "cd ../ & vuepress build docs"
-  }
-}
