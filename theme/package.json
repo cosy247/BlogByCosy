@@ -14,11 +14,8 @@
   "license": "MIT",
   "type": "module",
   "main": "./index.js",
-  "scripts": {
-    "build": "vuepress build docs",
-    "clean-dev": "vuepress dev docs --clean-cache",
-    "dev": "vuepress dev docs",
-    "update-package": "npx vp-update"
+  "bin": {
+    "cosy-new": "./bin/cli.js"
   },
   "devDependencies": {
     "md5": "^2.3.0",

@@ -5,9 +5,9 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "new": "cosy-new",
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
-    "new": "node new.js",
     "clean-dev": "vuepress dev docs --clean-cache",
     "update-package": "npx vp-update"
   },
