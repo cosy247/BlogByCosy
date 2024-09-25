@@ -107,6 +107,7 @@ export default {
     this.initPageList();
   },
   mounted() {
+    if (typeof window == 'undefined') return;
     window.addEventListener("scroll", () => {
       const { clientHeight, scrollTop, scrollHeight } = document.documentElement;
       if (scrollTop < clientHeight) {
