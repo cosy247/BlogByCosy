@@ -37,7 +37,7 @@ top: 0
 
 **生命周期图示：**
 
-![alt text](assets/@Vue3LifeCycle/image.png =600x)
+![alt text](assets/Vue3LifeCycle/image.png =600x)
 
 ## setup
 
