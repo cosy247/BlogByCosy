@@ -132,3 +132,7 @@
   fill: #f38181 !important;
   stroke: #e4aeae !important;
 }
+
+.mdContent p:not(:has(:not(img))) {
+  columns: 3;
+}
