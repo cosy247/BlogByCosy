@@ -8,3 +8,5 @@
 - 让自己的组件库支持按需引入
 - polyfill
 - JSDoc
+- .npmr文件
+- nrm
