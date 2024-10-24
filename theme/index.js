@@ -9,8 +9,6 @@ import { containerPlugin } from "@vuepress/plugin-container";
 import { getDirname, path } from "@vuepress/utils";
 import { gitPlugin } from "@vuepress/plugin-git";
 
-const __dirname = getDirname(import.meta.url);
-
 export default (pConfig = {}) => {
   const config = {
     /** 网站标题 */
@@ -127,24 +125,20 @@ export default (pConfig = {}) => {
   };
 
   const initOption = {
-    theme: "cosy",
-    clientConfigFile: path.resolve(getDirname(import.meta.url), "./client.js"),
+    port: 2470,
+    theme: 'cosy',
+    clientConfigFile: path.resolve(getDirname(import.meta.url), './client.js'),
     // 网页信息设置
     title: config.title,
-    lang: "zh-Hans-CN",
+    lang: 'zh-Hans-CN',
     description: config.description,
-    head: [
-      ["title", {}, config.title],
-      ["link", { rel: "icon", href: config.icon }],
-      ["meta", { "http-equiv": "Cache-Control", content: "max-age=7200" }],
-      ...config.head,
-    ],
+    head: [['title', {}, config.title], ['link', { rel: 'icon', href: config.icon }], ['meta', { 'http-equiv': 'Cache-Control', content: 'max-age=7200' }], ...config.head],
     // 运行设置
-    temp: "./.temp",
-    cache: "./.cache",
-    public: "./docs",
-    dest: "./_CosyBlog",
-    permalinkPattern: ":raw",
+    temp: './.temp',
+    cache: './.cache',
+    public: './docs',
+    dest: './_CosyBlog',
+    permalinkPattern: ':raw',
     bundler: viteBundler({
       viteOptions: {},
       vuePluginOptions: {},
@@ -163,20 +157,20 @@ export default (pConfig = {}) => {
       blogMateData(pageConfig),
       tocPlugin({}),
       activeHeaderLinksPlugin({
-        headerLinkSelector: "a.vuepress-toc-link",
+        headerLinkSelector: 'a.vuepress-toc-link',
         delay: 0,
         offset: 100,
       }),
       copyCodePlugin({
         selector: '.mdContent div[class*="language-"] pre',
         locales: {
-          "/": {
-            copied: "😘",
+          '/': {
+            copied: '😘',
           },
         },
       }),
       shikiPlugin({
-        theme: "one-dark-pro",
+        theme: 'one-dark-pro',
       }),
       // https://plugin-md-enhance.vuejs.press/zh/guide/
       mdEnhancePlugin({
