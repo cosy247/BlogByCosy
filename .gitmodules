@@ -1,0 +1,3 @@
+[submodule "docs/alones/PackOnePage"]
+	path = docs/alones/PackOnePage
+	url = https://github.com/cosy247/PackOnePage.git

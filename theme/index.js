@@ -14,70 +14,75 @@ const __dirname = getDirname(import.meta.url);
 export default (pConfig = {}) => {
   const config = {
     /** 网站标题 */
-    title: "李十七的个人博客",
+    title: '李十七的个人博客',
     /** 网站介绍 */
-    description: "基于vuepress的的个人博客。李十七的个人博客。个人博客。",
+    description: '基于vuepress的的个人博客。李十七的个人博客。个人博客。',
     /** 头部标签 */
     head: [],
     /** 网站图标 */
-    icon: "./docs/assets/logo.png",
+    icon: './docs/assets/logo.png',
 
     /** 是否开启相关推荐 */
     isOpenBlurRecommend: true,
     /** 是否开启自动推荐 */
     maxRecommendQuantity: 5,
     /** 隐藏文件密码 */
-    shadowPassword: "qeqe",
+    shadowPassword: 'qeqe',
     /** 菜单项 */
     menus: [
       {
         /** 菜单类型 statistics exhibit */
-        type: "statistics",
+        type: 'statistics',
         /** 菜单标题 */
-        name: "标签",
+        name: '标签',
         /** 图标 */
-        icon: "&#xe617;",
+        icon: '&#xe617;',
         /** 菜单描述 */
-        description: "tag ∈ [1, N] · one;   one ∈ [0, 5] · tag",
+        description: 'tag ∈ [1, N] · one;   one ∈ [0, 5] · tag',
         /** statistics 相关属性 */
         statistics: {
           /** 页面标题 */
-          pageName: "tag",
+          pageName: 'tag',
           /** 统计的属性名 */
-          frontName: "tags",
+          frontName: 'tags',
           /** 是否为多值统计属性 */
           isMultiple: true,
         },
       },
       {
-        type: "statistics",
-        name: "归档",
-        icon: "&#xe69d;",
-        description: "archive ∈ [1, N] · one;   one ∈ [0, 1] · archive",
+        type: 'statistics',
+        name: '归档',
+        icon: '&#xe69d;',
+        description: 'archive ∈ [1, N] · one;   one ∈ [0, 1] · archive',
         /** statistics 相关属性 */
         statistics: {
-          pageName: "archive",
-          frontName: "archive",
+          pageName: 'archive',
+          frontName: 'archive',
           isMultiple: false,
         },
       },
       {
-        type: "exhibit",
-        name: "独立",
-        icon: "&#xe64f;",
-        description: "独立于本网站的应用、网页、服务、插件等。",
+        type: 'exhibit',
+        name: '独立',
+        icon: '&#xe64f;',
+        description: '独立于本网站的应用、网页、服务、插件等。',
         /** exhibit 相关属性 */
         exhibit: [
-          { name: "Sevg", url: "https://cosy247.top/sevg", img: "assets/README/Sevg.png" },
+          { name: 'Sevg', url: 'https://cosy247.top/sevg', img: 'assets/README/Sevg.png' },
           {
-            name: "DrinkWater",
-            url: "https://github.com/cosy247/DrinkWater",
-            img: "assets/README/DrinkWater.png",
+            name: 'DrinkWater',
+            url: 'https://github.com/cosy247/DrinkWater',
+            img: 'assets/README/DrinkWater.png',
           },
           {
-            name: "VsBackground",
-            url: "https://marketplace.visualstudio.com/items?itemName=cosy247.vsBackground",
-            img: "assets/README/VsBackground.png",
+            name: 'VsBackground',
+            url: 'https://marketplace.visualstudio.com/items?itemName=cosy247.vsBackground',
+            img: 'assets/README/VsBackground.png',
+          },
+          {
+            name: 'PackOnePage',
+            url: 'alone/PackOnePage/index.html',
+            img: 'assets/README/VsBackground.png',
           },
         ],
       },
@@ -91,16 +96,16 @@ export default (pConfig = {}) => {
     ],
     /** 首页座右铭 */
     motto: [
-      ["我不吃牛肉。", "I don't eat beef."],
-      ["他走了，像是下定了某种决心。", "He left, as if he had made up his mind."],
-      ["耐心是人生的关键。", "Patience is the key in life."],
+      ['我不吃牛肉。', "I don't eat beef."],
+      ['他走了，像是下定了某种决心。', 'He left, as if he had made up his mind.'],
+      ['耐心是人生的关键。', 'Patience is the key in life.'],
     ],
     /** 首页作者链接 */
     links: [
-      { name: "&#xe673;github", url: "https://github.com/cosy247" },
+      { name: '&#xe673;github', url: 'https://github.com/cosy247' },
       {
-        name: "&#xe600;邮箱",
-        url: "http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=al1aX1tTXlxdWSobG0QJBQc",
+        name: '&#xe600;邮箱',
+        url: 'http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=al1aX1tTXlxdWSobG0QJBQc',
       },
     ],
 
