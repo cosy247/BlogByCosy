@@ -79,8 +79,8 @@ export default (pConfig = {}) => {
           },
           {
             name: 'PackOnePage',
-            url: 'alone/PackOnePage/index.html',
-            img: 'assets/README/VsBackground.png',
+            url: 'alones/PackOnePage/index.html',
+            img: 'alones/PackOnePage/icon/icon.png',
           },
         ],
       },
