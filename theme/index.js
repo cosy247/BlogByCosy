@@ -1,13 +1,13 @@
-import blogMateData from "./plugins/blogMate.js";
-import { tocPlugin } from "@vuepress/plugin-toc";
-import { activeHeaderLinksPlugin } from "@vuepress/plugin-active-header-links";
-import { viteBundler } from "@vuepress/bundler-vite";
-import { copyCodePlugin } from "@vuepress/plugin-copy-code";
-import { shikiPlugin } from "@vuepress/plugin-shiki";
-import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
-import { containerPlugin } from "@vuepress/plugin-container";
-import { getDirname, path } from "@vuepress/utils";
-import { gitPlugin } from "@vuepress/plugin-git";
+import blogMateData from './plugins/blogMate.js';
+import { tocPlugin } from '@vuepress/plugin-toc';
+import { activeHeaderLinksPlugin } from '@vuepress/plugin-active-header-links';
+import { viteBundler } from '@vuepress/bundler-vite';
+import { copyCodePlugin } from '@vuepress/plugin-copy-code';
+import { shikiPlugin } from '@vuepress/plugin-shiki';
+import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance';
+import { containerPlugin } from '@vuepress/plugin-container';
+import { getDirname, path } from '@vuepress/utils';
+import { gitPlugin } from '@vuepress/plugin-git';
 
 export default (pConfig = {}) => {
   const config = {
@@ -122,10 +122,8 @@ export default (pConfig = {}) => {
     isOpenBlurRecommend: config.isOpenBlurRecommend,
     maxRecommendQuantity: config.maxRecommendQuantity,
     shadowPassword: config.shadowPassword,
-    countMateNames: config.menus.filter((item) => item.type === "statistics").map((item) => item.statistics.frontName),
-    isArrMateNames: config.menus
-      .filter((item) => item.type === "statistics" && item.statistics.isMultiple)
-      .map((item) => item.statistics.frontName),
+    countMateNames: config.menus.filter((item) => item.type === 'statistics').map((item) => item.statistics.frontName),
+    isArrMateNames: config.menus.filter((item) => item.type === 'statistics' && item.statistics.isMultiple).map((item) => item.statistics.frontName),
     menus: config.menus,
   };
 
@@ -194,8 +192,8 @@ export default (pConfig = {}) => {
 
   // componentsPath 属性，目录下注册 md 文档中主键
   if (config.componentsPath) {
-    const { registerComponentsPlugin } = require("@vuepress/plugin-register-components");
-    const fs = require("fs");
+    const { registerComponentsPlugin } = require('@vuepress/plugin-register-components');
+    const fs = require('fs');
 
     initOption.plugins.push(
       registerComponentsPlugin({
@@ -204,7 +202,7 @@ export default (pConfig = {}) => {
     );
     initOption.plugins.push(
       ...fs.readdirSync(config.componentsPath).map((file) => {
-        const [fileName] = file.split(".");
+        const [fileName] = file.split('.');
         return containerPlugin({
           type: fileName.toLowerCase(),
           before: (...info) => `<ClientOnly><${fileName} info="${info}">\n`,

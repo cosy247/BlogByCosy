@@ -70,16 +70,12 @@
             :class="{ 'search-result-item-active': index === this.currentSearchLineIndex }"
             @mouseover="currentSearchLineIndex = index">
             <p class="search-result-item-title">
-              <span
-                v-for="(key, i) in item.frontmatter.title"
-                :class="{ 'search-result-key': item.countIndexs && item.countIndexs.includes(i) }">
+              <span v-for="(key, i) in item.frontmatter.title" :class="{ 'search-result-key': item.countIndexs && item.countIndexs.includes(i) }">
                 {{ key }}
               </span>
             </p>
             <div class="search-result-item-infos">
-              <p class="search-result-item-info" v-show="item.frontmatter.date">
-                &#xe6ad;{{ item.frontmatter.date }}
-              </p>
+              <p class="search-result-item-info" v-show="item.frontmatter.date">&#xe6ad;{{ item.frontmatter.date }}</p>
             </div>
           </a>
         </div>
@@ -398,7 +394,8 @@
   }
 
   .menu-exhibit-icon {
-    height: 1.5em;
+    height: 1.4em;
+    margin-right: 3px;
   }
 
   .menu-exhibit-describe {
