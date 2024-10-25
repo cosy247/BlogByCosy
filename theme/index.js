@@ -82,6 +82,11 @@ export default (pConfig = {}) => {
             url: 'alones/PackOnePage/index.html',
             img: 'alones/PackOnePage/icon/icon.png',
           },
+          {
+            name: 'StepGuide',
+            url: 'alones/StepGuide/index.html',
+            img: 'alones/StepGuide/icon/icon.png',
+          },
         ],
       },
       // {
