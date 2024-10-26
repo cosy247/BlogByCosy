@@ -135,7 +135,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} 
 
 .cover.filter {
   height: calc(40vh - 60px - var(--outer-width));
