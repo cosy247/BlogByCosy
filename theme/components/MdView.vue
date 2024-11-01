@@ -1,13 +1,13 @@
 <template>
-  <div class="mdView">
-    <Content :path="path" class="mdContent"/>
-  </div>
+    <div class="mdView">
+        <Content :path="path" class="mdContent" />
+    </div>
 </template>
 
 <script>
-  import '../styles/md.css';
+import '../styles/md.css';
 
-  export default {
+export default {
     name: 'MdView',
     components: {},
     props: ['path'],
@@ -18,11 +18,11 @@
     created() {},
     mounted() {},
     destroy() {},
-  };
+};
 </script>
 
 <style scoped>
-  .MdView {
+.MdView {
     position: relative;
-  }
+}
 </style>
