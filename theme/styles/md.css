@@ -98,18 +98,10 @@
   line-height: 1em;
 }
 
-.mdContent > blockquote:has(> blockquote:only-child) {
+.mdContent > blockquote:only-child > blockquote:only-child {
   padding: 1em;
   background: rgb(227, 181, 181);
   border-left: 0.5em solid rgb(199, 39, 39);
-}
-.mdContent > blockquote:has(> blockquote:only-child) > blockquote {
-  border: none;
-  padding: 0;
-  background: transparent;
-  color: black;
-  font-size: 16px;
-  font-weight: 600;
 }
 
 .mdContent p.hint-container-title {

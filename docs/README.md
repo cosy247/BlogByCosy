@@ -8,8 +8,5 @@
 - 让自己的组件库支持按需引入
 - polyfill
 - JSDoc
-- vuex
-- js 的 offline 和 online 事件
-- ESLint
-- package 中的 bin 配置
-- 正则表达式 https://regexr-cn.com/ https://regex-vis.com/
+- .npmr文件
+- nrm

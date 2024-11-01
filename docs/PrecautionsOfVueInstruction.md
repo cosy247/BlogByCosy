@@ -23,6 +23,24 @@ shadow: false
 **v-if** 变为`true` 时，触发 `beforeCreate`、`create`、`beforeMount` 和 `mounted` 钩子。  
 **v-if** 变为 `false` 时，触发 `beforeDestory` 和 `destoryed` 钩子。
 
+当 `v-if` 中表达式的值为 `false` 时，不会渲染其中的 dom。所以其中可能出现的问题也不会出现。
+
+```vue
+<template>
+  <div v-if="false">{{ data.a }}</div>
+</template>
+```
+
+不存在 `data.a` 时不报错
+
+```vue
+<template>
+  <div v-show="false">{{ data.a }}</div>
+</template>
+```
+
+不存在 `data.a` 时报错
+
 ## 为什么 v-if 和 v-for 不建议一起用
 
 **优先级问题**：当 `v-if` 和 `v-for` 同时用在同一个元素上时，`v-for` 有更高的优先级。这意味着 `v-if` 将分别重复运行于每个 `v-for` 循环中，即先进行循环，然后在每个循环中再进行条件判断。这会导致即使某些元素因为 `v-if` 的条件不满足而不会被渲染，Vue 仍然会先遍历整个列表，这会带来性能方面的浪费。
@@ -41,13 +59,13 @@ shadow: false
 </template>
 
 <script>
-export default {
-  computed: {
-    activeUsers() {
-      return this.users.filter((user) => user.isActive);
+  export default {
+    computed: {
+      activeUsers() {
+        return this.users.filter((user) => user.isActive);
+      },
     },
-  },
-};
+  };
 </script>
 ```
 

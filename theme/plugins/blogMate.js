@@ -1,4 +1,4 @@
-import md5 from "md5";
+import md5 from 'md5';
 
 /**
  * 相似度对比
@@ -49,7 +49,7 @@ function similar(s, t, f) {
 }
 
 export default (pageConfig) => ({
-  name: "plugins-blog-meta",
+  name: 'plugins-blog-meta',
   onPrepared(app) {
     const { countMateNames = [], isArrMateNames = [] } = pageConfig;
 
@@ -74,11 +74,13 @@ export default (pageConfig) => ({
         },
       } = page;
 
-      if (!path || path === "index.html" || path === "404.html") return pageList;
-      if (path[0] === "@" && process.env.NODE_ENV !== "development") return pageList;
+      if (!path || path === 'index.html' || path === '404.html') return pageList;
+      if (path[0] === '@' && process.env.NODE_ENV !== 'development') return pageList;
 
-      frontmatter.date = frontmatter.createDate = createdTime ? new Date(createdTime).toLocaleDateString() : "代发布";
-      frontmatter.updateDate = updatedTime ? new Date(updatedTime).toLocaleDateString() : "代发布";
+      frontmatter.date = frontmatter.createDate = createdTime
+        ? new Date(createdTime).toLocaleDateString()
+        : '代发布';
+      frontmatter.updateDate = updatedTime ? new Date(updatedTime).toLocaleDateString() : '代发布';
       frontmatter.updateCount = contributors.reduce((count, contributor) => count + contributor.commits, 0);
 
       if (frontmatter.shadow === true) {
@@ -88,7 +90,7 @@ export default (pageConfig) => ({
         // 数组属性转化
         isArrMateNames.forEach((metaName) => {
           if (frontmatter[metaName]) {
-            frontmatter[metaName] = frontmatter[metaName].split(" ");
+            frontmatter[metaName] = frontmatter[metaName].split(' ');
           }
         });
 
@@ -129,7 +131,7 @@ export default (pageConfig) => ({
         similars.sort((i, j) => j.similar - i.similar).map((i) => i.id);
         if (item.frontmatter.recommendations) {
           item.frontmatter.recommendations = Array.from(
-            new Set((item.frontmatter.recommendations + "").split(" ").concat(similars))
+            new Set((item.frontmatter.recommendations + '').split(' ').concat(similars))
           );
         } else {
           item.frontmatter.recommendations = similars;
@@ -141,10 +143,12 @@ export default (pageConfig) => ({
     }
 
     // 排序
-    pageList.sort((b1, b2) => new Date(b2.frontmatter.date) - new Date(b1.frontmatter.date));
     pageList.sort((b1, b2) => (b2.frontmatter.top || 0) - (b1.frontmatter.top || 0));
+    pageList.sort((b1, b2) =>
+      b1.frontmatter.date == '代发布' ? -1 : new Date(b2.frontmatter.date) - new Date(b1.frontmatter.date)
+    );
     shadowList.sort((b1, b2) => new Date(b2.frontmatter.date) - new Date(b1.frontmatter.date));
 
-    app.writeTemp("blogMate.json", JSON.stringify({ pageList, countMateData, pageConfig, shadowList }));
+    app.writeTemp('blogMate.json', JSON.stringify({ pageList, countMateData, pageConfig, shadowList }));
   },
 });
