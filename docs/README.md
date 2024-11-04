@@ -10,3 +10,4 @@
 - JSDoc
 - .npmr文件
 - nrm
+- nev文件
