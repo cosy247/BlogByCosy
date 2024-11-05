@@ -4,6 +4,19 @@ export default cosyTheme({
     title: '李十七的个人博客',
     description: '基于vuepress的的个人博客。李十七的个人博客。个人博客。',
     shadowPassword: 'qeqe',
+    template: {
+        filePath: 'template.md',
+        inputs: [
+            { name: 'id', defaultValue: '${timestamp}' },
+            { name: 'title', inputPrompt: '文章标题', defaultValue: '${filename}' },
+            { name: 'description', inputPrompt: '文章描述', defaultValue: '${title}' },
+            { name: 'tags', inputPrompt: '文章标签，多个之间用逗号隔开', defaultValue: '杂记' },
+            { name: 'archive', inputPrompt: '文章归档，唯一' },
+            { name: 'recommendations', inputPrompt: '相关推荐文章id，多个之间用逗号隔开' },
+            { name: 'shadow', inputPrompt: '是否为隐藏文件[y/n]', defaultValue: 'n' },
+            { name: 'top', inputPrompt: '是否置顶，数字越大优先级越高', defaultValue: '0'  },
+        ],
+    },
     heads: [['link', { rel: 'stylesheet', href: 'styles/font.css' }]],
     mottos: [
         ['我不吃牛肉。', "I don't eat beef."],

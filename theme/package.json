@@ -15,7 +15,7 @@
   "type": "module",
   "main": "./index.js",
   "bin": {
-    "cosy-new": "./bin/cli.js"
+    "cosy-new": "./bin/newDocs.js"
   },
   "devDependencies": {
     "md5": "^2.3.0",

@@ -25,6 +25,18 @@ const defaultConfig = {
     maxRecommendQuantity: 5,
     /** 隐藏文件密码 */
     shadowPassword: 'qeqe',
+    /** 新文章模板 */
+    template: {
+        filePath: 'template.md',
+        inputs: [
+            { name: 'id', defaultValue: '${timestamp}' },
+            { name: 'title', inputPrompt: '文章标题', defaultValue: '${filename}' },
+            { name: 'description', inputPrompt: '文章描述', defaultValue: '${title}' },
+            { name: 'tags', inputPrompt: '文章标签，多个之间用逗号隔开', defaultValue: '杂记' },
+            { name: 'shadow', inputPrompt: '是否为隐藏文件：y/n', defaultValue: 'n' },
+            { name: 'top', inputPrompt: '是否置顶，数字越大优先级越高' },
+        ],
+    },
     /** 菜单项 */
     menus: [
         // {
@@ -127,6 +139,7 @@ export default (pConfig = {}) => {
         //     description: "Vue 驱动的静态网站生成器",
         //   },
         // },
+        template: config.template,
         // 插件
         plugins: [
             gitPlugin({}),
