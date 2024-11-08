@@ -6,7 +6,7 @@
 
 <script>
 export default {
-    name: 'imgs',
+    name: 'Imgs',
     components: {},
     data: () => ({}),
     computed: {},

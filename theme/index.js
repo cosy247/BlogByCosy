@@ -189,26 +189,25 @@ export default (pConfig = {}) => {
         );
         initOption.plugins.push(
             ...fs.readdirSync(config.componentsPath).map((file) => {
-                const type = file.split('.')[0].toLowerCase();
+                const [fileName] = file.split('.');
                 return containerPlugin({
-                    type,
+                    type: fileName.toLowerCase(),
                     // before: (...params) => `<ClientOnly><${fileName} params="${params}" inset="\`1`,
                     // after: () => `\`"></${fileName}></ClientOnly>`,
                     render: function (tokens, index) {
-                        // if (tokens[index].nesting === 1) {
-                        //     const params = tokens[index].info.trim().slice(type.length);
-                        //     const contents = [];
-                        //     while (tokens[++index].type !== `container_${type}_close`) {
-                        //         if (tokens[index].type !== 'inline') return;
-                        //         contents.push(...tokens[index].content.split('\n'));
-                        //     }
-                        //     return `<${type} params="${params}">
-                        //         <template #content>${JSON.stringify(contents)}</template>
-                        //     <template #default>`;
-                        // } else {
-                        //     return `</template></${type}>`;
-                        // }
-                        return JSON.stringify(tokens[index])
+                        if (tokens[index].nesting === 1) {
+                            const params = tokens[index].info.trim().slice(fileName.length);
+                            const contents = [];
+                            while (tokens[++index].type !== `container_${fileName.toLowerCase()}_close`) {
+                                if (tokens[index].type !== 'inline') return;
+                                contents.push(...tokens[index].content.split('\n'));
+                            }
+                            return `<${fileName} params="${params}">
+                                <template #content>${JSON.stringify(contents)}</template>
+                            <template #default>`;
+                        } else {
+                            return `</template></${fileName}>`;
+                        }
                     },
                 });
             })
