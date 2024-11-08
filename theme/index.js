@@ -8,6 +8,8 @@ import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance';
 import { containerPlugin } from '@vuepress/plugin-container';
 import { getDirname, path } from '@vuepress/utils';
 import { gitPlugin } from '@vuepress/plugin-git';
+import { registerComponentsPlugin } from '@vuepress/plugin-register-components';
+import fs from 'fs';
 
 const defaultConfig = {
     /** 网站标题 */
@@ -18,6 +20,8 @@ const defaultConfig = {
     heads: [],
     /** 网站图标 */
     icon: 'assets/logo.png',
+    /** 自定义容器目录 */
+    componentsPath: 'mdComponents',
 
     /** 是否开启相关推荐 */
     isOpenBlurRecommend: true,
@@ -178,9 +182,6 @@ export default (pConfig = {}) => {
 
     // componentsPath 属性，目录下注册 md 文档中主键
     if (config.componentsPath) {
-        const { registerComponentsPlugin } = require('@vuepress/plugin-register-components');
-        const fs = require('fs');
-
         initOption.plugins.push(
             registerComponentsPlugin({
                 componentsDir: config.componentsPath,
@@ -188,11 +189,27 @@ export default (pConfig = {}) => {
         );
         initOption.plugins.push(
             ...fs.readdirSync(config.componentsPath).map((file) => {
-                const [fileName] = file.split('.');
+                const type = file.split('.')[0].toLowerCase();
                 return containerPlugin({
-                    type: fileName.toLowerCase(),
-                    before: (...info) => `<ClientOnly><${fileName} info="${info}">\n`,
-                    after: () => `</${fileName}></ClientOnly>\n`,
+                    type,
+                    // before: (...params) => `<ClientOnly><${fileName} params="${params}" inset="\`1`,
+                    // after: () => `\`"></${fileName}></ClientOnly>`,
+                    render: function (tokens, index) {
+                        // if (tokens[index].nesting === 1) {
+                        //     const params = tokens[index].info.trim().slice(type.length);
+                        //     const contents = [];
+                        //     while (tokens[++index].type !== `container_${type}_close`) {
+                        //         if (tokens[index].type !== 'inline') return;
+                        //         contents.push(...tokens[index].content.split('\n'));
+                        //     }
+                        //     return `<${type} params="${params}">
+                        //         <template #content>${JSON.stringify(contents)}</template>
+                        //     <template #default>`;
+                        // } else {
+                        //     return `</template></${type}>`;
+                        // }
+                        return JSON.stringify(tokens[index])
+                    },
                 });
             })
         );
