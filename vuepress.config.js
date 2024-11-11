@@ -1,6 +1,6 @@
-import cosyTheme from 'vuepress-theme-cosy';
+import theme from 'vuepress-theme-pudding';
 
-export default cosyTheme({
+export default theme({
     title: '李十七的个人博客',
     description: '基于vuepress的的个人博客。李十七的个人博客。个人博客。',
     shadowPassword: 'qeqe',
