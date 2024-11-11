@@ -1,6 +1,6 @@
-import cosyTheme from 'vuepress-theme-cosy';
+import puddingTheme from 'vuepress-theme-pudding';
 
-export default cosyTheme({
+export default puddingTheme({
     title: '李十七的个人博客',
     description: '基于vuepress的的个人博客。李十七的个人博客。个人博客。',
     shadowPassword: 'qeqe',
@@ -14,7 +14,7 @@ export default cosyTheme({
             { name: 'archive', inputPrompt: '文章归档，唯一' },
             { name: 'recommendations', inputPrompt: '相关推荐文章id，多个之间用逗号隔开' },
             { name: 'shadow', inputPrompt: '是否为隐藏文件[y/n]', defaultValue: 'n' },
-            { name: 'top', inputPrompt: '是否置顶，数字越大优先级越高', defaultValue: '0'  },
+            { name: 'top', inputPrompt: '是否置顶，数字越大优先级越高', defaultValue: '0' },
         ],
     },
     heads: [['link', { rel: 'stylesheet', href: 'styles/font.css' }]],
