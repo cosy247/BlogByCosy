@@ -191,20 +191,21 @@ export default (pConfig = {}) => {
             ...fs.readdirSync(config.componentsPath).map((file) => {
                 const [fileName] = file.split('.');
                 return containerPlugin({
-                    type: fileName.toLowerCase(),
-                    // before: (...params) => `<ClientOnly><${fileName} params="${params}" inset="\`1`,
-                    // after: () => `\`"></${fileName}></ClientOnly>`,
+                    type: fileName,
                     render: function (tokens, index) {
                         if (tokens[index].nesting === 1) {
                             const params = tokens[index].info.trim().slice(fileName.length);
-                            const contents = [];
-                            while (tokens[++index].type !== `container_${fileName.toLowerCase()}_close`) {
-                                if (tokens[index].type !== 'inline') return;
-                                contents.push(...tokens[index].content.split('\n'));
-                            }
-                            return `<${fileName} params="${params}">
-                                <template #content>${JSON.stringify(contents)}</template>
-                            <template #default>`;
+                            const [start, end] = tokens[index].map;
+                            const contents = tokens
+                                .slice(start, end)
+                                .filter((token) => token.type === 'inline')
+                                .reduce((contents, token) => {
+                                    contents.push(...token.content.split('\n'));
+                                    return contents;
+                                }, []);
+                            return `<${fileName} params="${params}" :contents="JSON.parse(decodeURI('${encodeURI(
+                                JSON.stringify(contents)
+                            )}'))"><template #default>`;
                         } else {
                             return `</template></${fileName}>`;
                         }
