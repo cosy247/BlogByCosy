@@ -15,3 +15,10 @@
 -   yarn 与 npm 的区别
 -   this 指向
 -   node exports
+-   inquirer.js 交互式命令行工具
+-   CSS 实现页面的整页滚动
+-   一些项目的说明文件 README.md CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md LICENSE.md SECURITY.md
+-   eslint
+-   vue.config.js
+-   typescript
+-	js 数组操作

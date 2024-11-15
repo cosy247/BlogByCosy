@@ -17,7 +17,7 @@ top: 0 # 是否置顶，数字越大优先级越高
 
 只要依靠 css 中的 `scroll-snap-type` 和 `scroll-snap-align` 属性。
 
-#### scroll-snap-type 
+#### scroll-snap-type
 
 设置了在有滚动容器的情形下吸附至吸附点的严格程度。
 
@@ -41,8 +41,6 @@ scroll-snap-type = none | [ x | y | block | inline | both ] [ mandatory | proxim
 ```css title="scroll-snap-type: y mandatory"
 
 ```
-
-
 
 ## 参考
 

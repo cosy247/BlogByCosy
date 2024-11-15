@@ -11,10 +11,10 @@ top: 0 # 是否zhi置顶，数字越大优先级越高
 
 # 壁纸集合 1
 
-:::Imgs  
+:::Imgs
+
 https://files.codelife.cc/wallhaven/full/gp/wallhaven-gpmjxe.png?x-oss-process=image/resize,limit_0,m_fill,w_2560,h_1440/quality,Q_95/format,webp  
 https://files.codelife.cc/wallhaven/full/zy/wallhaven-zy552w.jpg?x-oss-process=image/resize,limit_0,m_fill,w_2560,h_1440/quality,Q_95/format,webp  
-https://s.panlai.com/upload/2023/11/bizhihui_com_20231113002519169980631938863.jpg-arthumbs  
-:::
+https://s.panlai.com/upload/2023/11/bizhihui_com_20231113002519169980631938863.jpg-arthumbs
 
-## 参考
+:::
