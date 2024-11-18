@@ -1,7 +1,7 @@
 import theme from 'vuepress-theme-pudding';
 
 export default theme({
-    title: '李十七的个人博客',
+    title: '闲庭杂记',
     description: '基于vuepress的的个人博客。李十七的个人博客。个人博客。',
     shadowPassword: 'qeqe',
     template: {
@@ -47,17 +47,17 @@ export default theme({
                 isMultiple: true,
             },
         },
-        {
-            type: 'statistics',
-            name: '归档',
-            fontIcon: '&#xe69d;',
-            description: 'archive ∈ [1, N] · one;   one ∈ [0, 1] · archive',
-            statistics: {
-                pageName: 'archive',
-                frontName: 'archive',
-                isMultiple: false,
-            },
-        },
+        // {
+        //     type: 'statistics',
+        //     name: '归档',
+        //     fontIcon: '&#xe69d;',
+        //     description: 'archive ∈ [1, N] · one;   one ∈ [0, 1] · archive',
+        //     statistics: {
+        //         pageName: 'archive',
+        //         frontName: 'archive',
+        //         isMultiple: false,
+        //     },
+        // },
         {
             type: 'exhibit',
             name: '独立',
