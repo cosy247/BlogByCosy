@@ -11,7 +11,7 @@ top: 0 # 是否置顶，数字越大优先级越高
 
 # 三小只
 
-:::Imgs 喵喵  
+:::Imgs 
 assets/ThreeCats/96c22795e5829eeb448cb6b68614e80.jpg  
 assets/ThreeCats/a52f2f7c8bec62ab990870c92a3fadc.jpg  
 assets/ThreeCats/047a6de3f6d526dbc59953ad39819d7.jpg  

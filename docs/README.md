@@ -22,3 +22,4 @@
 -   vue.config.js
 -   typescript
 -	js 数组操作
+-   npm install -s -d 的区别
