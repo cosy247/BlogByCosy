@@ -2,6 +2,8 @@ import theme from 'vuepress-theme-pudding';
 
 export default theme({
     title: '闲庭杂记',
+    icon: 'assets/logo.icon',
+    logo: 'assets/logo.png',
     description: '基于vuepress的的个人博客。李十七的个人博客。个人博客。',
     shadowPassword: 'qeqe',
     template: {
@@ -65,30 +67,23 @@ export default theme({
             description: '独立于本网站的应用、网页、服务、插件等。',
             exhibit: [
                 {
-                    name: 'Sevg',
-                    url: 'https://cosy247.top/sevg',
-                    imgIcon: 'assets/README/Sevg.png',
-                },
-                {
                     name: 'DrinkWater',
                     url: 'https://github.com/cosy247/DrinkWater',
                     imgIcon: 'assets/README/DrinkWater.png',
+                    describe: '桌面小工具，用于定时提醒喝水。'
                 },
                 {
                     name: 'VsBackground',
                     url: 'https://marketplace.visualstudio.com/items?itemName=cosy247.vsBackground',
                     imgIcon: 'assets/README/VsBackground.png',
+                    describe: 'VsCode插件，给页面添加背景图片。'
                 },
                 {
                     name: 'PackOnePage',
                     url: 'alones/PackOnePage/index.html',
                     imgIcon: 'alones/PackOnePage/icon/icon.png',
-                },
-                {
-                    name: 'StepGuide',
-                    url: 'alones/StepGuide/index.html',
-                    imgIcon: 'alones/StepGuide/icon/icon.png',
-                },
+                    describe: '将html网页的js和css打包成一个html文件。'
+                }
             ],
         },
     ],
