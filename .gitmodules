@@ -1,9 +1,3 @@
-[submodule "docs/alones/PackOnePage"]
-	path = docs/alones/PackOnePage
-	url = https://github.com/cosy247/PackOnePage.git
-[submodule "docs/alones/StepGuide"]
-	path = docs/alones/StepGuide
-	url = https://github.com/cosy247/StepGuide.git
 [submodule "theme"]
 	path = theme
 	url = https://github.com/cosy247/VuepressThemePudding.git
