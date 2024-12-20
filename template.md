@@ -1,5 +1,5 @@
 ---
-id: { id } # 文章id
+id: { $id } # 文章id
 title: { title } # 文章标题
 description: { description } # 文章描述
 tags: { tags } # 文章标签

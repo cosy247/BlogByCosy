@@ -10,14 +10,22 @@ export default theme({
   template: {
     filePath: 'template.md',
     inputs: [
-      { name: 'id', defaultValue: '${timestamp}' },
-      { name: 'title', inputPrompt: '文章标题', defaultValue: '${filename}' },
-      { name: 'description', inputPrompt: '文章描述', defaultValue: '${title}' },
-      { name: 'tags', inputPrompt: '文章标签，多个之间用逗号隔开', defaultValue: '杂记' },
-      { name: 'archive', inputPrompt: '文章归档，唯一' },
-      { name: 'recommendations', inputPrompt: '相关推荐文章id，多个之间用逗号隔开' },
-      { name: 'shadow', inputPrompt: '是否为隐藏文件[y/n]', defaultValue: 'n' },
-      { name: 'top', inputPrompt: '是否置顶，数字越大优先级越高', defaultValue: '0' },
+      { type: 'input', name: 'title', message: '文章标题:', required: true, default: (d) => d.$filename },
+      { type: 'input', name: 'description', message: '文章描述:', default: (d) => d.title },
+      { type: 'checkbox', name: 'tags', message: '文章标签:', choices: ['杂记', '技术', '生活', '随笔'], default: ['杂记'] },
+      { type: 'list', name: 'archive', message: '文章归档:', choices: ['前端样式案例'] },
+      {
+        type: 'checkbox',
+        name: 'recommendations',
+        message: '相关推荐:',
+        choices: (d) =>
+          d.$pageList.map((p) => ({
+            name: p.frontmatter.title,
+            value: p.frontmatter.id,
+          })),
+      },
+      { type: 'confirm', name: 'shadow', message: '是否隐藏:', default: 'n' },
+      { type: 'number', name: 'top', message: '置顶等级:', default: 0 },
     ],
   },
   heads: [['link', { rel: 'stylesheet', href: 'styles/font.css' }]],
