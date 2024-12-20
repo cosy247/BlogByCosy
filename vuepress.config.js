@@ -12,8 +12,14 @@ export default theme({
     inputs: [
       { type: 'input', name: 'title', message: '文章标题:', required: true, default: (d) => d.$filename },
       { type: 'input', name: 'description', message: '文章描述:', default: (d) => d.title },
-      { type: 'checkbox', name: 'tags', message: '文章标签:', choices: ['杂记', '技术', '生活', '随笔'], default: ['杂记'] },
-      { type: 'list', name: 'archive', message: '文章归档:', choices: ['前端样式案例'] },
+      {
+        type: 'checkbox',
+        name: 'tags',
+        message: '文章标签:',
+        choices: [{ name: '杂记', checked: true }, '技术', '生活', '随笔'],
+        required: true,
+      },
+      { type: 'list', name: 'archive', message: '文章归档:', choices: ['', '前端样式案例', '前端样式案例2'] },
       {
         type: 'checkbox',
         name: 'recommendations',
@@ -24,7 +30,7 @@ export default theme({
             value: p.frontmatter.id,
           })),
       },
-      { type: 'confirm', name: 'shadow', message: '是否隐藏:', default: 'n' },
+      { type: 'confirm', name: 'shadow', message: '是否隐藏:', default: false },
       { type: 'number', name: 'top', message: '置顶等级:', default: 0 },
     ],
   },
@@ -60,17 +66,17 @@ export default theme({
         isMultiple: true,
       },
     },
-    // {
-    //     type: 'statistics',
-    //     name: '归档',
-    //     fontIcon: '&#xe69d;',
-    //     description: 'archive ∈ [1, N] · one;   one ∈ [0, 1] · archive',
-    //     statistics: {
-    //         pageName: 'archive',
-    //         frontName: 'archive',
-    //         isMultiple: false,
-    //     },
-    // },
+    {
+      type: 'statistics',
+      name: '归档',
+      fontIcon: '&#xe69d;',
+      description: 'archive ∈ [1, N] · one;   one ∈ [0, 1] · archive',
+      statistics: {
+        pageName: 'archive',
+        frontName: 'archive',
+        isMultiple: false,
+      },
+    },
     {
       type: 'exhibit',
       name: '独立',
