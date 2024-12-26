@@ -1,8 +1,9 @@
 import theme from 'vuepress-theme-pudding';
 
 export default theme({
-  title: '闲庭杂记',
-  icon: 'assets/logo.icon',
+  title: 'COSY247',
+  pageTitle: '<p class="c-page-title">C<img src="assets/logo.png"/>SY247</p>',
+  icon: 'assets/logo.ico',
   logo: 'assets/logo.png',
   description: '基于vuepress的的个人博客。李十七的个人博客。个人博客。',
   componentsPath: './components',
@@ -34,7 +35,7 @@ export default theme({
       { type: 'number', name: 'top', message: '置顶等级:', default: 0 },
     ],
   },
-  heads: [['link', { rel: 'stylesheet', href: 'styles/font.css' }]],
+  heads: [['link', { rel: 'stylesheet', href: 'styles/common.css' }]],
   mottos: [
     [
       '闻道有先后，术业有专攻。',
