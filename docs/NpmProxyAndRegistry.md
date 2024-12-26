@@ -13,35 +13,70 @@ top: 0 # 是否置顶，数字越大优先级越高
 
 ## 代理配置
 
-```shell
-# 设置代理
-npm config set proxy 127.0.0.1:7890         # http
-npm config set https-proxy 127.0.0.1:7890   # https
+- 设置 http 代理
 
-# 取消代理
+```shell title="hidden"
+npm config set proxy http://127.0.0.1:7890
+```
+
+- 设置 https 代理
+
+```shell title="hidden"
+npm config set https-proxy http://127.0.0.1:7890
+```
+
+- 取消 http 代理
+
+```shell title="hidden"
 npm config delete proxy
-npm config delete https-proxy
+```
 
-# 查看代理
-npm config get proxy
-npm config get https-proxy
+- 取消 https 代理
+
+```shell title="hidden"
+npm config delete https-proxy
+```
+
+- 查看 http 代理
+
+```shell title="hidden"
+npm get proxy
+```
+
+- 查看 https 代理
+
+```shell title="hidden"
+npm get https-proxy
 ```
 
 ## 镜像配置
 
-**设置镜像源**
+- 设置镜像源（官方）
 
-```shell
-# 设置镜像源
-npm config set registry https://registry.npmjs.org/       # 官方地址
-npm config set registry https://registry.npm.taobao.org   # 淘宝镜像
+```shell title="hidden"
+npm config set registry https://registry.npmjs.org/
+```
 
-# 取消镜像源
+- 设置镜像源（淘宝）
+
+```shell title="hidden"
+npm config set registry https://registry.npmmirror.com
+```
+
+- 取消镜像源（转为官方镜像源）
+
+```shell title="hidden"
 npm config delete registry
+```
 
-# 查看镜像源
-npm config get registry
+- 查看镜像源
 
-# 单次使用镜像源
+```shell title="hidden"
+npm get registry
+```
+
+- 单次使用镜像源
+
+```shell title="hidden"
 npm install --registry=https://registry.npm.taobao.org
 ```
