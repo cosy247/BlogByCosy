@@ -7,7 +7,7 @@ export default theme({
   logo: 'assets/logo.png',
   description: '基于vuepress的的个人博客。李十七的个人博客。个人博客。',
   componentsPath: './components',
-  shadowPassword: 'qeqe',
+  // shadowPassword: 'qeqe',
   template: {
     filePath: 'template.md',
     inputs: [
@@ -55,6 +55,22 @@ export default theme({
       url: 'http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=al1aX1tTXlxdWSobG0QJBQc',
     },
   ],
+  giscus: {
+    src: 'https://giscus.app/client.js',
+    repo: 'cosy247/BlogByCosy',
+    repoId: 'R_kgDOJI48fw',
+    category: 'Announcements',
+    categoryId: 'DIC_kwDOJI48f84Ceg84',
+    mapping: 'title',
+    strict: '0',
+    reactionsEnabled: '1',
+    emitMetadata: '0',
+    inputPosition: 'top',
+    theme: 'preferred_color_scheme',
+    lang: 'zh-CN',
+    crossorigin: 'anonymous',
+    async: true,
+  },
   menus: [
     {
       type: 'statistics',
@@ -103,6 +119,12 @@ export default theme({
           describe: '将html网页的js和css打包成一个html文件。',
         },
       ],
+    },
+    {
+      type: 'link',
+      name: '留言',
+      fontIcon: '&#xe744;',
+      link: './Comment.html',
     },
   ],
 });
