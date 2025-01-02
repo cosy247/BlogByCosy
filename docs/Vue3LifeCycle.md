@@ -1,8 +1,8 @@
 ---
 id: 24091011454891
-title: vue3生命周期
-description: vue3生命周期
-tags: vue
+title: Vue3 生命周期
+description: Vue3 生命周期
+tags: Vue
 archive:
 recommendations:
 shadow: false

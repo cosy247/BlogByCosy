@@ -1,10 +1,10 @@
 ---
 id: 1
 date: 2024/03/26
-title: window自定义开机自启动程序
-tags: window使用
+title: Window自定义开机自启动程序
+tags: Window使用
 recommendations:
-description: window自定义开机自启动程序
+description: Window自定义开机自启动程序
 ---
 
 # window 自定义开机自启动程序

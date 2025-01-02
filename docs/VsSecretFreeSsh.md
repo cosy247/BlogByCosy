@@ -1,10 +1,10 @@
 ---
 id: 240409103645
 date: 2024/04/09
-title: Vscode通过SSH免密连接远程Linux
-tags: Vscode Linux SSH
+title: Vscode 免密连接远程服务器
+tags: Vscode使用
 archive:
-description: Vscode通过SSH免密连接远程Linux
+description: Vscode 免密连接远程服务器
 ---
 
 # Vscode 免密连接远程 ssh

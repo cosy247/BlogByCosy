@@ -2,7 +2,7 @@
 id: 1731315591091 # 文章id
 title: 项目的一些说明文件 # 文章标题
 description: 项目的一些说明文件 README.md CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md LICENSE.md SECURITY.md # 文章描述
-tags: 杂记 # 文章标签
+tags: 随笔 # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
 shadow: n # 是否隐藏

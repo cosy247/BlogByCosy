@@ -2,8 +2,8 @@
 id: 3
 date: 2023/11/21
 title: CSS圆角borderRadius的内容溢出问题
-tags: css
-description: css属性中的圆角borderRadius和溢出overflow的之间可能存在的冲突情况
+tags: CSS
+description: CSS属性中的圆角borderRadius和溢出overflow的之间可能存在的冲突情况
 ---
 
 # CSS圆角borderRadius的内容溢出问题

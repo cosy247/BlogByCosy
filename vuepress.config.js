@@ -1,10 +1,12 @@
 import theme from 'vuepress-theme-pudding';
 
 export default theme({
+  dest: '_docs',
+
   title: 'COSY247',
-  pageTitle: '<p class="c-page-title">C<img src="assets/logo.png"/>SY247</p>',
-  icon: 'assets/logo.ico',
-  logo: 'assets/logo.png',
+  pageTitle: '<p class="c-page-title">C<img src="/assets/logo.png"/>SY247</p>',
+  icon: '/assets/logo.ico',
+  logo: '/assets/logo.png',
   description: '基于vuepress的的个人博客。李十七的个人博客。个人博客。',
   componentsPath: './components',
   // shadowPassword: 'qeqe',
@@ -17,10 +19,24 @@ export default theme({
         type: 'checkbox',
         name: 'tags',
         message: '文章标签:',
-        choices: [{ name: '杂记', checked: true }, '技术', '生活', '随笔'],
+        choices: [
+          { name: '随笔', checked: true },
+          'window使用',
+          'npm',
+          '图集',
+          '前端',
+          '后端',
+          'JS',
+          'CSS',
+          'HTML',
+          'Vue',
+          'React',
+          'Node',
+          'Python',
+        ],
         required: true,
       },
-      { type: 'list', name: 'archive', message: '文章归档:', choices: ['', '前端样式案例', '前端样式案例2'] },
+      { type: 'list', name: 'archive', message: '文章归档:', choices: ['', '前端小dome'] },
       {
         type: 'checkbox',
         name: 'recommendations',
@@ -114,8 +130,8 @@ export default theme({
         },
         {
           name: 'PackOnePage',
-          url: 'alones/PackOnePage/index.html',
-          imgIcon: 'alones/PackOnePage/icon/icon.png',
+          url: 'https://cosy247.top/alones/PackOnePage/index.html',
+          imgIcon: 'https://cosy247.top/alones/PackOnePage/icon/icon.png',
           describe: '将html网页的js和css打包成一个html文件。',
         },
       ],

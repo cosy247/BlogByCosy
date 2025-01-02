@@ -2,7 +2,7 @@
 id: 1730687008377 # 文章id
 title: CSS实现页面的整页滚动 # 文章标题
 description: CSS实现页面的整页滚动 # 文章描述
-tags: 杂记 # 文章标签
+tags: CSS # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
 shadow: false # 是否隐藏

@@ -1,8 +1,8 @@
 ---
 id: 1729751422783 # 文章id
-title: npm 代理与镜像配置 # 文章标题
-description: npm 代理与镜像配置 # 文章描述
-tags: npm # 文章标签
+title: NPM 代理与镜像配置 # 文章标题
+description: NPM 代理与镜像配置 # 文章描述
+tags: NPM # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
 shadow: false # 是否隐藏
@@ -78,5 +78,5 @@ npm get registry
 - 单次使用镜像源
 
 ```shell title="hidden"
-npm install --registry=https://registry.npm.taobao.org
+npm install --registry=https://registry.npmmirror.com
 ```

@@ -1,9 +1,9 @@
 ---
 id: 21
 date: 2024/02/01
-title: 格式化配置文件editorConfig属性说明
-tags: 配置文件
-description: Vscode格式化配置文件editorConfig属性说明
+title: 格式化配置文件 editorConfig 属性说明
+tags: Vscode使用
+description: Vscode 格式化配置文件 editorConfig 属性说明
 ---
 
 # 格式化配置文件 editorConfig 属性说明

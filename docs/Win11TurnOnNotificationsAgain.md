@@ -1,9 +1,9 @@
 ---
 id: 24
 date: 2024/03/26
-title: window重新打开已经关闭的应用通知
-tags: window使用
-description: window重新打开已经关闭的应用通知
+title: Window 重新打开已经关闭的应用通知
+tags: Window使用
+description: Window 重新打开已经关闭的应用通知
 ---
 
 # window 重新打开已经关闭的应用通知

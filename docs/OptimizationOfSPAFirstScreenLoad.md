@@ -1,8 +1,8 @@
 ---
 id: 24090418282446
 date: 2024/09/04
-title: SPA首屏加载优化
-description: SPA首屏加载优化
+title: SPA 首屏加载优化
+description: SPA 首屏加载优化
 tags: 前端
 archive:
 recommendations:

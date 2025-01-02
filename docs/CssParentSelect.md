@@ -1,11 +1,11 @@
 ---
 id: 6
 date: 2023/12/11
-title: css控制上级样式
+title: CSS控制上级样式
 tags: CSS
 archive:
 recommendations: 2404159043318
-description: css控制上级样式
+description: CSS控制上级样式
 ---
 
 # css 控制上级样式

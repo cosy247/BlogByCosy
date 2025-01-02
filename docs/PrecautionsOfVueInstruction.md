@@ -1,15 +1,15 @@
 ---
 id: 24091011392450
 date: 2024/09/10
-title: vue指令的注意事项
-description: vue指令的注意事项
-tags: vue
+title: Vue 指令的注意事项
+description: Vue 指令的注意事项
+tags: Vue
 archive:
 recommendations:
 shadow: false
 ---
 
-# vue 指令的注意事项
+# Vue 指令的注意事项
 
 ## v-if 和 v-show 的区别
 
