@@ -21,8 +21,9 @@ export default theme({
         message: '文章标签:',
         choices: [
           { name: '随笔', checked: true },
-          'window使用',
-          'npm',
+          'Window使用',
+          'Vscode使用',
+          'NPM',
           '图集',
           '前端',
           '后端',
