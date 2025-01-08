@@ -1,12 +1,13 @@
-import theme from 'vuepress-theme-pudding';
-
-export default theme({
+export default {
+  // 文档路径
+  docsDir: '/docs',
+  // 项目自动生成文件路径
+  tempDir: '/temp',
   dest: '_docs',
-
-  title: 'COSY247',
-  pageTitle: '<p class="c-page-title">C<img src="/assets/logo.png"/>SY247</p>',
-  icon: '/assets/logo.ico',
-  logo: '/assets/logo.png',
+  pageTitle: 'COSY247',
+  title: '<p class="c-page-title">C<img src="/assets/images/logo.ico"/>SY247</p>',
+  icon: '/docs/assets/logo.ico',
+  logo: '/docs/assets/logo.png',
   description: '基于vuepress的的个人博客。李十七的个人博客。个人博客。',
   componentsPath: './components',
   // shadowPassword: 'qeqe',
@@ -120,13 +121,13 @@ export default theme({
         {
           name: 'DrinkWater',
           url: 'https://github.com/cosy247/DrinkWater',
-          imgIcon: 'assets/README/DrinkWater.png',
+          imgIcon: '/assets/images/DrinkWater.png',
           describe: '桌面小工具，用于定时提醒喝水。',
         },
         {
           name: 'VsBackground',
           url: 'https://marketplace.visualstudio.com/items?itemName=cosy247.vsBackground',
-          imgIcon: 'assets/README/VsBackground.png',
+          imgIcon: '/assets/images/VsBackground.png',
           describe: 'VsCode插件，给页面添加背景图片。',
         },
         {
@@ -144,4 +145,4 @@ export default theme({
       link: './Comment.html',
     },
   ],
-});
+};
