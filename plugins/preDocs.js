@@ -55,9 +55,10 @@ function generatePageList() {
                 if (err) {
                   console.log(`❗premd: ${err}`);
                 } else {
-                  const pageConfig = content.toString().match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/)[0];
+                  // 截取文件开头的配置信息文本
+                  const pageConfig = content.toString().match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
                   if (pageConfig) {
-                    pageConfig
+                    pageConfig[0]
                       .replaceAll('\r', '')
                       .split('\n')
                       .filter((d) => d.trim())
@@ -81,8 +82,13 @@ function generatePageList() {
         );
       })
       .then((pageList) => {
-        // temp文件内容
-        const docsData = { pageList, statistics: {} };
+        // temp文件内
+        const docsData = {
+          pageList: pageList
+            .filter((p) => p.attrs.shadow !== 'true' && p.file !== 'README')
+            .sort((p1, p2) => new Date(p2.date).valueOf() - new Date(p1.date).valueOf()),
+          statistics: {},
+        };
         // 统计menu中的statistics
         statisticsAttrs.forEach((attrName) => (docsData.statistics[attrName] = {}));
         pageList.forEach((page) => {

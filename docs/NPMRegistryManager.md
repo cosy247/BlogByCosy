@@ -29,7 +29,7 @@ npm install -g nrm
 nrm ls
 ```
 
-![alt text](/assets/NPMRegistryManager/image-1.png)
+![alt text](./assets/NPMRegistryManager/image-1.png)
 
 - 切换到指定的源。
 
@@ -55,4 +55,4 @@ nrm del <registry>
 nrm test
 ```
 
-![alt text](/assets/NPMRegistryManager/image.png)
+![alt text](./assets/NPMRegistryManager/image.png)

@@ -1,16 +1,7 @@
----
-123
-2314
----
 ## 关于作者
 
 🎉🎉🎉 一名 99 年程序员，没事就记录记录技术生活咯。 🐱🐱🐱
 
-
-```js
-const a = 1
-for(let i = 0)
-```
 ## 未来可能讨论的话题
 
 - 让自己的组件库支持按需引入
@@ -20,6 +11,16 @@ for(let i = 0)
 - this 指向
 - node exports
 - CSS 实现页面的整页滚动
+- eslint
+- vue.config.js
+- typescript
+- js 数组操作
+- npm install -s -d 的区别
+- eslint
+- vue.config.js
+- typescript
+- js 数组操作
+- npm install -s -d 的区别
 - eslint
 - vue.config.js
 - typescript

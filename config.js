@@ -3,6 +3,10 @@ export default {
   docsDir: '/docs',
   // 项目自动生成文件路径
   tempDir: '/temp',
+  // 高亮代码支持的语言
+  codeLangs: ['javascript', 'vue', 'text', 'shell'],
+  // 高亮代码支持的语言别名
+  codeLangAlias: { js: 'javascript' },
   dest: '_docs',
   pageTitle: 'COSY247',
   title: '<p class="c-page-title">C<img src="/assets/images/logo.ico"/>SY247</p>',
