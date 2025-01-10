@@ -19,11 +19,17 @@ window.__copyCode__ = (ele) => {
   }, 1000);
 };
 
+let currentFileName = '';
+let depthId = 0;
+const markTocMap = {};
+
 marked.use({
   renderer: {
     heading({ tokens, depth }) {
+      const id = `mdDepth${depthId++}`;
+      markTocMap[currentFileName].push({ id, name: tokens[0].text, depth });
       const text = this.parser.parseInline(tokens);
-      return `<h${depth}><a name="${text}" href="#${text}">${text}</a></h${depth}>`;
+      return `<h${depth} id="${id}">${text}<a name="${text}" href="#${text}"></a></h${depth}>`;
     },
     code({ text, lang }) {
       const [language, ...paramString] = lang.split(' ');
@@ -63,4 +69,9 @@ marked.use({
   },
 });
 
-export default (text) => marked(text);
+export { markTocMap };
+export default (text, fileName) => {
+  currentFileName = fileName;
+  markTocMap[fileName] = [];
+  return marked(text);
+};

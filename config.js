@@ -7,57 +7,11 @@ export default {
   codeLangs: ['javascript', 'vue', 'text', 'shell'],
   // 高亮代码支持的语言别名
   codeLangAlias: { js: 'javascript' },
-  dest: '_docs',
-  pageTitle: 'COSY247',
+  // 页面显示标题，浏览器 tab 标题在 index.html 中设置
   title: '<p class="c-page-title">C<img src="/assets/images/logo.ico"/>SY247</p>',
-  icon: '/docs/assets/logo.ico',
-  logo: '/docs/assets/logo.png',
-  description: '基于vuepress的的个人博客。李十七的个人博客。个人博客。',
-  componentsPath: './components',
-  // shadowPassword: 'qeqe',
-  template: {
-    filePath: 'template.md',
-    inputs: [
-      { type: 'input', name: 'title', message: '文章标题:', required: true, default: (d) => d.$filename },
-      { type: 'input', name: 'description', message: '文章描述:', default: (d) => d.title },
-      {
-        type: 'checkbox',
-        name: 'tags',
-        message: '文章标签:',
-        choices: [
-          { name: '随笔', checked: true },
-          'Window使用',
-          'Vscode使用',
-          'NPM',
-          '图集',
-          '前端',
-          '后端',
-          'JS',
-          'CSS',
-          'HTML',
-          'Vue',
-          'React',
-          'Node',
-          'Python',
-        ],
-        required: true,
-      },
-      { type: 'list', name: 'archive', message: '文章归档:', choices: ['', '前端小dome'] },
-      {
-        type: 'checkbox',
-        name: 'recommendations',
-        message: '相关推荐:',
-        choices: (d) =>
-          d.$pageList.map((p) => ({
-            name: p.frontmatter.title,
-            value: p.frontmatter.id,
-          })),
-      },
-      { type: 'confirm', name: 'shadow', message: '是否隐藏:', default: false },
-      { type: 'number', name: 'top', message: '置顶等级:', default: 0 },
-    ],
-  },
-  heads: [['link', { rel: 'stylesheet', href: 'styles/common.css' }]],
+  // 是否开启相似推荐，0表示不开启，大于0将为补充至推荐文章数
+  similarRecommendNumber: 5,
+  // 首页座右铭
   mottos: [
     [
       '闻道有先后，术业有专攻。',
@@ -65,6 +19,7 @@ export default {
     ],
     ['耐心是人生的关键。', 'Patience is the key in life.'],
   ],
+  // 首页连接
   links: [
     {
       fontIcon: '&#xe673;',
@@ -77,6 +32,7 @@ export default {
       url: 'http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=al1aX1tTXlxdWSobG0QJBQc',
     },
   ],
+  // 评论配置
   giscus: {
     src: 'https://giscus.app/client.js',
     repo: 'cosy247/BlogByCosy',
@@ -93,6 +49,7 @@ export default {
     crossorigin: 'anonymous',
     async: true,
   },
+  // 页面顶部的菜单设置
   menus: [
     {
       type: 'statistics',
@@ -100,8 +57,11 @@ export default {
       fontIcon: '&#xe617;',
       description: 'tag ∈ [1, N] · one;   one ∈ [0, 5] · tag',
       statistics: {
+        /** 页面显示名称 */
         pageName: 'tag',
+        /** 文章统计名称 */
         frontName: 'tags',
+        /** 是否为多选属性 */
         isMultiple: true,
       },
     },
@@ -146,7 +106,50 @@ export default {
       type: 'link',
       name: '留言',
       fontIcon: '&#xe744;',
-      link: './Comment.html',
+      link: '/docs/Comment',
     },
   ],
+  // 脚本生成文章的模板设置
+  template: {
+    filePath: 'template.md',
+    inputs: [
+      { type: 'input', name: 'title', message: '文章标题:', required: true, default: (d) => d.$filename },
+      { type: 'input', name: 'description', message: '文章描述:', default: (d) => d.title },
+      {
+        type: 'checkbox',
+        name: 'tags',
+        message: '文章标签:',
+        choices: [
+          { name: '随笔', checked: true },
+          'Window使用',
+          'Vscode使用',
+          'NPM',
+          '图集',
+          '前端',
+          '后端',
+          'JS',
+          'CSS',
+          'HTML',
+          'Vue',
+          'React',
+          'Node',
+          'Python',
+        ],
+        required: true,
+      },
+      { type: 'list', name: 'archive', message: '文章归档:', choices: ['', '前端小dome'] },
+      {
+        type: 'checkbox',
+        name: 'recommendations',
+        message: '相关推荐:',
+        choices: (d) =>
+          d.$pageList.map((p) => ({
+            name: p.frontmatter.title,
+            value: p.frontmatter.id,
+          })),
+      },
+      { type: 'confirm', name: 'shadow', message: '是否隐藏:', default: false },
+      { type: 'number', name: 'top', message: '置顶等级:', default: 0 },
+    ],
+  },
 };

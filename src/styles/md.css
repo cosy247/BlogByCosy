@@ -15,20 +15,26 @@
 .mdContent > * {
   flex-shrink: 0;
 }
+.mdContent > h1,
+.mdContent > h2,
+.mdContent > h3,
+.mdContent > h4 {
+  color: #0366d6;
+}
 
-.mdContent > h1 a::before {
+.mdContent > h1::before {
   content: '🐲';
 }
 
-.mdContent > h2 a::before {
+.mdContent > h2::before {
   content: '🦄';
 }
 
-.mdContent > h3 a::before {
+.mdContent > h3::before {
   content: '🐳';
 }
 
-.mdContent > h4 a::before {
+.mdContent > h4::before {
   content: '🦋';
 }
 

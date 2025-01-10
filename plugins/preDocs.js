@@ -5,15 +5,36 @@ import path from 'path';
 import config from '../config';
 import { exec } from 'child_process';
 
-// 统计的属性
+/** 统计的属性名称 */
 const statisticsAttrs = config.menus
   .filter((menu) => menu.type === 'statistics' && menu.statistics?.isMultiple)
   .map((d) => d.statistics.frontName);
 
-// 统计的多选属性
+/** 统计的多选属性名称 */
 const multipleAttrs = config.menus
   .filter((menu) => menu.type === 'statistics' && menu.statistics?.isMultiple)
   .map((d) => d.statistics.frontName);
+
+/**
+ * @description: 获取两个字符串的相似度
+ * @param {string} str1
+ * @param {string} str2
+ * @returns {number}
+ */
+function getSimilarity(str1, str2) {
+  let sameNum = 0;
+  //寻找相同字符
+  for (let i = 0; i < str1.length; i++) {
+    for (let j = 0; j < str2.length; j++) {
+      if (str1[i] === str2[j]) {
+        sameNum++;
+        break;
+      }
+    }
+  }
+  let length = str1.length > str2.length ? str1.length : str2.length;
+  return (sameNum / length) * 100 || 0;
+}
 
 function generatePageList() {
   const docsPath = path.join(__dirname, '../', config.docsDir);
@@ -82,13 +103,62 @@ function generatePageList() {
         );
       })
       .then((pageList) => {
-        // temp文件内
+        /**temp文件内容 */
         const docsData = {
+          /** 文章列表，去除隐藏文件和README，以时间排序 */
           pageList: pageList
             .filter((p) => p.attrs.shadow !== 'true' && p.file !== 'README')
             .sort((p1, p2) => new Date(p2.date).valueOf() - new Date(p1.date).valueOf()),
+          /** 数据属性的集合 */
           statistics: {},
         };
+
+        /** 用户配置的相关文章推荐数 */
+        const similarRecommendNumber = Number(config.similarRecommendNumber);
+        /**
+         * 判断用户是否开启自动推荐功能
+         */
+        if (similarRecommendNumber > 0) {
+          /**在菜单中的 statistics 属性名，将作为相似判断 */
+          const stNames = config.menus.filter((m) => m.type === 'statistics').map((m) => m.statistics.frontName);
+          // 为每个文章寻找相似文章
+          docsData.pageList.forEach((page) => {
+            /** 生成相似判断的字符串 */
+            const simiName = `${page.attrs.title}${statisticsAttrs.map((n) => page.attrs[n])}`;
+            /** 用户自己为文章添加的相关推荐 */
+            const recommendations = (page.attrs.recommendations || '').split(' ').filter((d) => d);
+            /** 获取与全部文章的相似度 */
+            const similaritys = docsData.pageList.map((page2) => {
+              /** 相似度，id为目标文章id，value为相似度 */
+              const similarity = { id: page2.attrs.id, value: 0 };
+              /**
+               * 1. 用户推荐，相似度为101
+               * 2. 相同文章相似度为 -1，方便排序后剔除
+               * 3. 其他情况比较文章标题和统计属性的组合字符串相似度
+               */
+              if (recommendations.includes(page2.attrs.id)) {
+                similarity.value = 101;
+              } else if (page.attrs.id === page2.attrs.id) {
+                similarity.value = -1;
+              } else {
+                const simiName2 = `${page2.attrs.title}${statisticsAttrs.map((n) => page2.attrs[n])}`;
+                similarity.value = getSimilarity(simiName, simiName2);
+              }
+              return similarity;
+            });
+            // 对相似度解析排序
+            similaritys.sort((s1, s2) => s2.value - s1.value);
+            // 去除相同文章
+            similaritys.pop();
+            // 获取用户推荐并且存在的文章数量
+            const realRecommendNumer = similaritys.filter((d) => d.value === 101).length;
+            // 覆盖文章的相似推荐属性，如果用户真实推荐的数量大于设置数，则使用真实推荐的
+            page.attrs.recommendations = similaritys
+              .slice(0, Math.max(similarRecommendNumber, realRecommendNumer))
+              .map((d) => d.id);
+          });
+        }
+
         // 统计menu中的statistics
         statisticsAttrs.forEach((attrName) => (docsData.statistics[attrName] = {}));
         pageList.forEach((page) => {
@@ -112,6 +182,7 @@ function generatePageList() {
             }
           });
         });
+
         // 写入temp文件
         const targetDir = path.join(__dirname, '../', config.tempDir);
         if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir);
@@ -130,6 +201,8 @@ export default function (cc) {
   return {
     name: 'vite:premd',
     enforce: 'pre',
+    
+    // 文章更新时的钩子
     handleHotUpdate(ctx) {
       if (!ctx.file.startsWith(docsDir)) return;
       generatePageList();

@@ -11,16 +11,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "highlight.js": "^11.11.1",
+    "@giscus/vue": "^3.1.1",
     "marked": "^15.0.6",
-    "marked-highlight": "^2.2.1",
     "vue": "^3.5.13",
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
     "@shikijs/colorized-brackets": "^1.26.1",
     "@vitejs/plugin-vue": "^5.2.1",
-    "sass-embedded": "^1.83.1",
     "shiki": "^1.26.1",
     "vite": "^6.0.1",
     "vite-plugin-vue-devtools": "^7.6.5"

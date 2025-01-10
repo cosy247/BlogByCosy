@@ -7,12 +7,12 @@
       </a>
     </div>
   </div> -->
-  <!-- <div class="blog-infos" v-else>
-    <a :href="item.url" class="blog-info" v-for="item in staticFrontmatter">
+  <div class="blog-infos">
+    <a :href="item.url" class="blog-info" v-for="item in statisAttrs">
       <span class="blog-info-text">{{ item.value }}</span>
-      <Icon class="blog-info-icon" :icon="staticFrontmatterIconMap[item.name]" />
+      <Icon class="blog-info-icon" :icon="staticIconMap[item.name]" />
     </a>
-    <div v-if="staticFrontmatter.length" class="blog-info-br"></div>
+    <div v-if="statisAttrs.length" class="blog-info-br"></div>
     <div class="blog-info" @click="gotoRecom" v-if="recommendations.length">
       <span class="blog-info-text">相关推荐</span>
       <span class="blog-info-icon">&#xe60d;</span>
@@ -25,8 +25,19 @@
       <span class="blog-info-text">顶部</span>
       <span class="blog-info-icon">&#xe62b;</span>
     </div>
-  </div> -->
-  <MdView class="blog-mdView" :fileName="docsFile"/>
+  </div>
+  <div class="blog-toc">
+    <div
+      class="blog-toc-item"
+      v-for="item in toc"
+      :class="`blog-toc-depth${item.depth} ${item.id === currentTocId ? 'blog-toc-active' : ''}`"
+      @click="goToDepth(item.id)">
+      <p>{{ item.name }}</p>
+    </div>
+  </div>
+  <div ref="mdView">
+    <MdView class="blog-mdView" :fileName="docsFile" @load="setToc" />
+  </div>
   <!-- <div class="navigate">
     <a class="navigate-left" v-if="archiveNavigate.left" :href="archiveNavigate.left.path">
       {{ archiveNavigate.left.pageTitle }}
@@ -36,128 +47,130 @@
       {{ archiveNavigate.right.pageTitle }}
     </a>
   </div> -->
-  <!-- <template v-if="recommendations.length">
-    <p class="recom-title">✨相关推荐✨</p>
-    <div class="recoms" ref="recom" v-if="recommendations.length">
-      <a :href="item.path" class="recom" v-for="(item, index) in recommendations" :key="index">
-        ✨ {{ item.frontmatter.title }}
-      </a>
+  <template v-if="recommendations.length">
+    <div class="content-cubicle"></div>
+    <p class="recom-title" ref="recom">✨相关推荐✨</p>
+    <div class="recoms">
+      <a :href="item.url" class="recom" v-for="(item, index) in recommendations" :key="index">✨ {{ item.attrs.title }}</a>
     </div>
-  </template> -->
-  <!-- <template v-if="config.giscus.repo && config.giscus.repoId">
-    <p class="recom-title">🧐评论🧐</p>
-    <div class="blog-comment" ref="comment">
+  </template>
+  <template v-if="config.giscus.repo && config.giscus.repoId">
+    <div class="content-cubicle"></div>
+    <p class="recom-title" ref="comment">🧐评论🧐</p>
+    <div class="blog-comment">
       <div class="blog-comment-main">
         <Giscus v-bind="config.giscus" />
       </div>
     </div>
-  </template> -->
+  </template>
   <div class="bottom"></div>
-  <!-- <div class="blog-toc">
-    <Toc ref="toc" />
-  </div> -->
 </template>
 
 <script setup>
-// import { archiveMap, pageConfig, pageDatas } from '../utils/blogMate';
-// import { usePageData, useRoute, useRouter } from '@vuepress/client';
 import MdView from '../components/MdView.vue';
 import Icon from '../components/Icon.vue';
-// import Giscus from '@giscus/vue';
 import { ref, computed } from 'vue';
 import config from '../../config';
 import { useRoute } from 'vue-router';
+import { pageList } from '../../temp/docsData.json';
+import { getPageMateById } from '../utils/getPage';
+import Giscus from '@giscus/vue';
+import { markTocMap } from '../utils/renderMark';
 
 const route = useRoute();
-const docsFile = computed(() => route.params.file)
 
-// const archiveList = archiveMap[pageData.frontmatter.archive] || [];
-// const comment = ref(null);
-// const recom = ref(null);
-// const router = useRouter();
-// const path = decodeURI(useRoute().path.slice(1));
-// const toc = ref(null);
-// const giscusAttrs = pageConfig.giscus;
+// 当前文章名
+const docsFile = computed(() => route.params.file);
 
-// const archiveNavigate = computed(() => {
-//   const index = archiveList.findIndex((ar) => ar.path === path);
-//   return {
-//     left: index > 0 ? archiveList[index - 1] : null,
-//     right: index < archiveList.length - 1 ? archiveList[index + 1] : null,
-//   };
-// });
+/** 目录 */
+const toc = ref([]);
+function setToc() {
+  toc.value = markTocMap[docsFile.value];
+}
 
-// const staticFrontmatterIconMap = computed(() => {
-//   return pageConfig.menus
-//     .filter((item) => item.type === 'statistics')
-//     .reduce((staticFrontmatterIconMap, item) => {
-//       staticFrontmatterIconMap[item.statistics.frontName] = {
-//         fontIcon: item.fontIcon,
-//         imgIcon: item.imgIcon,
-//       };
-//       return staticFrontmatterIconMap;
-//     }, {});
-// });
+// 当前文章的设置的属性
+const pageMates = pageList.find((p) => p.file === route.params.file);
 
-const staticFrontmatter = computed(() => {
-  return pageConfig.countMateNames.reduce((staticFrontmatter, name) => {
-    if (!pageData.frontmatter[name]) return staticFrontmatter;
-    if (pageConfig.isArrMateNames.includes(name)) {
-      pageData.frontmatter[name].split(' ').forEach((n) => {
-        staticFrontmatter.push({
-          name: name,
-          value: n,
-          url: `/?${name}=${n}`,
+// 当前文章的统计属性
+const statisAttrs = ref([]);
+const staticIconMap = ref({});
+const staticMenus = config.menus.filter((m) => m.type === 'statistics');
+if (pageMates) {
+  staticMenus.forEach((s) => {
+    const name = s.statistics.frontName;
+    const pName = s.statistics.pageName;
+    staticIconMap.value[name] = s;
+    if (Array.isArray(pageMates.attrs[name])) {
+      pageMates.attrs[name].forEach((value) => {
+        statisAttrs.value.push({
+          name,
+          value,
+          url: `/${pName}/${value}`,
         });
       });
-    } else {
-      staticFrontmatter.push({
-        name: name,
-        value: pageData.frontmatter[name],
-        url: `/?${name}=${pageData.frontmatter[name]}`,
+    } else if (pageMates.attrs[name]) {
+      statisAttrs.value.push({
+        name,
+        value: pageMates.attrs[name],
+        url: `/${pName}/${pageMates.attrs[name]}`,
       });
     }
-    return staticFrontmatter;
-  }, []);
-});
-
-// const recommendations = computed(() => {
-//   const recommendations = pageDatas.find((i) => i.frontmatter.id === pageData.frontmatter.id);
-//   if (recommendations?.frontmatter?.recommendations?.length) {
-//     return recommendations.frontmatter.recommendations
-//       .map((id) => pageDatas.find((i) => i.frontmatter.id === +id))
-//       .filter((i) => i);
-//   }
-//   return [];
-// });
-
-function gotoComment() {
-  if (typeof window == 'undefined') return;
-  window.document.documentElement.scrollTop = comment.value.offsetTop - 200;
+  });
 }
+
+// 推荐的文章
+const recommendations = pageMates
+  ? pageMates.attrs.recommendations
+      .map((d) => getPageMateById(d))
+      .map((d) => ({
+        url: `/docs/${d.file}`,
+        ...d,
+      }))
+  : [];
+
+// 点击目录定位到目标标题
+const mdView = ref(null);
+function goToDepth(id) {
+  const target = mdView.value.querySelector(`#${id}`);
+  currentTocId.value = target.id;
+  if (!target) return;
+  window.scrollTo({ top: target.offsetTop - 10, behavior: 'smooth' });
+}
+
+// 目录当前显示节点
+const currentTocId = ref('');
+let mdHeads = null;
+let tocTimeout = null;
+window.addEventListener('scroll', () => {
+  if (!mdHeads) {
+    mdHeads = [...mdView.value.querySelectorAll(`.mdContent > h1, .mdContent > h2`)];
+  }
+  tocTimeout && clearTimeout(tocTimeout);
+  tocTimeout = setTimeout(() => {
+    const target = mdHeads.filter((m) => m.getBoundingClientRect().top < 200).pop();
+    if (!target) return;
+    currentTocId.value = target.id;
+  }, 100);
+});
 
 function gotoTop() {
   if (typeof window == 'undefined') return;
   window.document.documentElement.scrollTop = 0;
 }
 
+const recom = ref(null);
 function gotoRecom() {
-  if (typeof window == 'undefined') return;
-  window.document.documentElement.scrollTop = recom.value.offsetTop - 200;
+  window.document.documentElement.scrollTop = recom.value.offsetTop - 100;
 }
 
-// toc滚动跟随
-window.addEventListener('scroll', () => {
-  // if (currentHash.value === location.hash) return;
-  // currentHash.value = location.hash;
-  // const activeToc = toc.value.querySelector('.route-link.vuepress-toc-link.active');
-  // if (!activeToc) return;
-  // toc.value.scrollTop = activeToc.offsetTop - toc.value.clientHeight / 2;
-});
+const comment = ref(null);
+function gotoComment() {
+  window.document.documentElement.scrollTop = comment.value.offsetTop - 100;
+}
 </script>
 
 <style scoped>
-.archiveList {
+/* .archiveList {
   position: fixed;
   top: 50%;
   right: calc(50% + 420px);
@@ -187,7 +200,7 @@ window.addEventListener('scroll', () => {
 }
 .archive-item-name.active {
   color: var(--color-theme);
-}
+} */
 .blog-infos {
   position: fixed;
   top: 50%;
@@ -270,7 +283,7 @@ window.addEventListener('scroll', () => {
   width: 95%;
   max-width: var(--blog-width);
 }
-.navigate {
+/* .navigate {
   margin: auto;
   width: 95%;
   max-width: var(--blog-width);
@@ -295,8 +308,8 @@ window.addEventListener('scroll', () => {
 }
 .navigate-right {
   text-align: right;
-}
-.navigate-left::before {
+} */
+/* .navigate-left::before {
   content: '上一篇';
   color: #555;
   display: block;
@@ -318,11 +331,13 @@ window.addEventListener('scroll', () => {
 .navigate-left:hover,
 .navigate-right:hover {
   border-color: var(--color-theme);
+} */
+.content-cubicle {
+  height: 100px;
 }
 .recom-title {
   font-size: var(--size3);
   text-align: center;
-  margin-top: 100px;
 }
 .recoms {
   display: flex;
@@ -341,6 +356,7 @@ window.addEventListener('scroll', () => {
   border-radius: 10px;
   font-size: var(--size1);
   font-weight: 900;
+  cursor: pointer;
 }
 .recom:hover {
   border: 1px solid #1979df;
@@ -370,7 +386,7 @@ window.addEventListener('scroll', () => {
   top: 50%;
   padding-right: 10px;
   left: calc(50% + 420px);
-  width: fit-content;
+  width: calc(50% - 420px);
   max-width: calc(50% - 420px);
   max-height: 50%;
   overflow-y: auto;
@@ -380,11 +396,56 @@ window.addEventListener('scroll', () => {
   transition: 0.5s;
   white-space: nowrap;
 }
-
+.blog-toc-item {
+  display: none;
+  line-height: 1em;
+  cursor: pointer;
+  color: transparent;
+  width: 80%;
+  transition: 0.3s;
+}
+.blog-toc-item > p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.blog-toc-item.blog-toc-active {
+  color: #333;
+  font-weight: 900;
+}
+.blog-toc-item.blog-toc-active::before {
+  background: #0366d6;
+}
+.blog-toc:hover .blog-toc-item {
+  color: #3338;
+}
+.blog-toc-item.blog-toc-item:hover {
+  color: #333;
+}
+.blog-toc-item + .blog-toc-item {
+  margin-top: 8px;
+}
+.blog-toc-item::before {
+  content: '';
+  width: 1em;
+  height: 0.3em;
+  background: #c2c3c188;
+  display: inline-block;
+  border-radius: 1em;
+  flex-shrink: 0;
+}
+.blog-toc-depth2,
+.blog-toc-depth3 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.blog-toc-depth3::before {
+  width: 1.5em;
+}
 .blog-toc::-webkit-scrollbar {
   background: #0000;
 }
-
 .blog-toc::-webkit-scrollbar-thumb {
   background: #0000;
 }

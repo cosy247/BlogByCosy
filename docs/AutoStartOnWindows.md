@@ -17,7 +17,7 @@ description: Window自定义开机自启动程序
 
 为程序设置自启动其实非常简单。首先，需要打开以下文件夹路径：
 
-```js title="123"
+```txt title="hidden"
 C:\Users\用户名\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
 ```
 
