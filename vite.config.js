@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import preDocs from './plugins/preDocs';
+import config from './config';
 
 export default defineConfig({
   plugins: [vue(), preDocs()],
@@ -13,4 +14,7 @@ export default defineConfig({
   server: {
     port: 2470,
   },
+  build: {
+    outDir: config.outDir,
+  }
 });

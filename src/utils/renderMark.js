@@ -4,10 +4,14 @@ import { transformerColorizedBrackets } from '@shikijs/colorized-brackets';
 import config from '../../config';
 
 const theme = 'one-dark-pro';
-
-const highlighter = await createHighlighter({
+let highlighter = null;
+const createHighlighterCallBacks = [];
+createHighlighter({
   themes: [theme],
   langs: [...config.codeLangs, 'text'],
+}).then((highlighter0) => {
+  highlighter = highlighter0;
+  createHighlighterCallBacks.forEach((call) => call());
 });
 
 window.__copyCode__ = (ele) => {
@@ -69,9 +73,21 @@ marked.use({
   },
 });
 
-export { markTocMap };
-export default (text, fileName) => {
+function renderMark(text, fileName) {
   currentFileName = fileName;
   markTocMap[fileName] = [];
   return marked(text);
-};
+}
+
+export { markTocMap };
+export default function (text, fileName) {
+  return new Promise((resolve) => {
+    if (highlighter !== null) {
+      resolve(renderMark(text, fileName));
+    } else {
+      createHighlighterCallBacks.push(() => {
+        resolve(renderMark(text, fileName));
+      });
+    }
+  });
+}

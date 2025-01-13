@@ -14,9 +14,9 @@ const emits = defineEmits(['load'])
 const markdown = ref('');
 const { fileName } = defineProps(['fileName']);
 if (pageContent[`/docs/${fileName}.md`]) {
-  pageContent[`/docs/${fileName}.md`]().then((content) => {
+  pageContent[`/docs/${fileName}.md`]().then(async (content) => {
     const regex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n/;
-    markdown.value = renderMark(content.replace(regex, ''), fileName);
+    markdown.value = await renderMark(content.replace(regex, ''), fileName);
     emits('load');
   });
 }

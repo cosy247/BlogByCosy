@@ -73,6 +73,7 @@ function setToc() {
 
 // 当前文章的设置的属性
 const pageMates = pageList.find((p) => p.file === route.params.file);
+document.title = pageMates.attrs.title;
 
 // 当前文章的统计属性
 const statisAttrs = ref([]);
