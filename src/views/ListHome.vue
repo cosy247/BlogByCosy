@@ -51,6 +51,7 @@ const isStaticPage = ref(false);
 watch(
   () => [route.params.name, route.params.value],
   ([name, value]) => {
+    
     isStaticPage.value = name && value;
     if (isStaticPage.value && statistics[name]) {
       allPageList.value = pageList.filter((page) => {

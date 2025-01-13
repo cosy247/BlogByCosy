@@ -1,5 +1,3 @@
-// const path = require('path');
-// const fs = require('fs');
 import fs from 'fs';
 import path from 'path';
 import config from '../config';
@@ -37,7 +35,7 @@ function getSimilarity(str1, str2) {
 }
 
 function generatePageList() {
-  const docsPath = path.join(__dirname, '../', config.docsDir);
+  const docsPath = path.join(__dirname, '../docs');
   fs.readdir(docsPath, (err, files) => {
     if (err) return console.log(`❗premd: ${err}`);
     Promise.all(
@@ -197,7 +195,7 @@ function generatePageList() {
 generatePageList();
 
 export default function (cc) {
-  const docsDir = path.join(__dirname, '../', config.docsDir);
+  const docsDir = path.join(__dirname, '../docs');
   return {
     name: 'vite:premd',
     enforce: 'pre',

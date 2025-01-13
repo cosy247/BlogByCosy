@@ -152,12 +152,12 @@
   line-height: 1em;
 } */
 
-/* .mdContent > blockquote > blockquote:only-child {
+.mdContent > blockquote > blockquote:only-child {
   padding: 1em;
   background: rgb(227, 181, 181);
   border-left: 0.5em solid rgb(199, 39, 39);
   margin: -10px -20px -10px -24px;
-} */
+}
 
 .mdContent p.hint-container-title {
   margin-bottom: 0px;

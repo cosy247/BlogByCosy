@@ -1,12 +1,4 @@
 <template>
-  <!-- <div class="archiveList" v-if="archiveList.length">
-    <div class="archive-item" v-for="archive in archiveList">
-      <p class="archive-item-title" v-if="archive.newTitle">{{ archive.archiveTitle }}</p>
-      <a class="archive-item-name" :class="{ active: path === archive.path }" :href="archive.path">
-        {{ archive.pageTitle }}
-      </a>
-    </div>
-  </div> -->
   <div class="blog-infos">
     <a :href="item.url" class="blog-info" v-for="item in statisAttrs">
       <span class="blog-info-text">{{ item.value }}</span>
@@ -38,15 +30,6 @@
   <div ref="mdView">
     <MdView class="blog-mdView" :fileName="docsFile" @load="setToc" />
   </div>
-  <!-- <div class="navigate">
-    <a class="navigate-left" v-if="archiveNavigate.left" :href="archiveNavigate.left.path">
-      {{ archiveNavigate.left.pageTitle }}
-    </a>
-    <div></div>
-    <a class="navigate-right" v-if="archiveNavigate.right" :href="archiveNavigate.right.path">
-      {{ archiveNavigate.right.pageTitle }}
-    </a>
-  </div> -->
   <template v-if="recommendations.length">
     <div class="content-cubicle"></div>
     <p class="recom-title" ref="recom">✨相关推荐✨</p>
@@ -98,21 +81,20 @@ const staticMenus = config.menus.filter((m) => m.type === 'statistics');
 if (pageMates) {
   staticMenus.forEach((s) => {
     const name = s.statistics.frontName;
-    const pName = s.statistics.pageName;
     staticIconMap.value[name] = s;
     if (Array.isArray(pageMates.attrs[name])) {
       pageMates.attrs[name].forEach((value) => {
         statisAttrs.value.push({
           name,
           value,
-          url: `/${pName}/${value}`,
+          url: `/${name}/${value}`,
         });
       });
     } else if (pageMates.attrs[name]) {
       statisAttrs.value.push({
         name,
         value: pageMates.attrs[name],
-        url: `/${pName}/${pageMates.attrs[name]}`,
+        url: `/${name}/${pageMates.attrs[name]}`,
       });
     }
   });
@@ -143,7 +125,7 @@ let mdHeads = null;
 let tocTimeout = null;
 window.addEventListener('scroll', () => {
   if (!mdHeads) {
-    mdHeads = [...mdView.value.querySelectorAll(`.mdContent > h1, .mdContent > h2`)];
+    mdHeads = [...mdView.value.querySelectorAll(`.mdContent > h2, .mdContent > h3`)];
   }
   tocTimeout && clearTimeout(tocTimeout);
   tocTimeout = setTimeout(() => {
@@ -154,7 +136,6 @@ window.addEventListener('scroll', () => {
 });
 
 function gotoTop() {
-  if (typeof window == 'undefined') return;
   window.document.documentElement.scrollTop = 0;
 }
 
@@ -170,37 +151,6 @@ function gotoComment() {
 </script>
 
 <style scoped>
-/* .archiveList {
-  position: fixed;
-  top: 50%;
-  right: calc(50% + 420px);
-  overflow: auto;
-  transform: translate(0, -50%);
-  height: 80%;
-  margin-top: 5vh;
-  border-right: 1px solid #ccc;
-  padding: 10px 0;
-  padding-right: 40px;
-}
-.archive-item + .archive-item {
-  margin-top: 30px;
-}
-.archive-item-title {
-  font-size: var(--size2);
-  font-weight: 900;
-  margin-bottom: 10px;
-}
-.archive-item-name {
-  font-size: var(--size1);
-  color: #444;
-}
-.archive-item-name:hover {
-  font-size: var(--size1);
-  color: var(--color-theme);
-}
-.archive-item-name.active {
-  color: var(--color-theme);
-} */
 .blog-infos {
   position: fixed;
   top: 50%;
@@ -279,59 +229,10 @@ function gotoComment() {
   cursor: pointer;
 }
 .blog-mdView {
-  margin: auto;
+  margin: 50px auto 0;
   width: 95%;
   max-width: var(--blog-width);
 }
-/* .navigate {
-  margin: auto;
-  width: 95%;
-  max-width: var(--blog-width);
-  display: flex;
-  justify-content: space-between;
-}
-.navigate-left,
-.navigate-right {
-  width: 48%;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: var(--size1);
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  color: var(--color-theme);
-  margin-top: 50px;
-  font-weight: 900;
-  transition: 0.2s;
-}
-.navigate-left {
-  text-align: left;
-}
-.navigate-right {
-  text-align: right;
-} */
-/* .navigate-left::before {
-  content: '上一篇';
-  color: #555;
-  display: block;
-  transform: scale(0.9);
-  transform-origin: top left;
-  font-weight: 500;
-  margin-bottom: 2px;
-}
-.navigate-right::before {
-  content: '下一篇';
-  color: #555;
-  display: block;
-  text-align: right;
-  transform: scale(0.9);
-  transform-origin: top right;
-  font-weight: 500;
-  margin-bottom: 2px;
-}
-.navigate-left:hover,
-.navigate-right:hover {
-  border-color: var(--color-theme);
-} */
 .content-cubicle {
   height: 100px;
 }
@@ -369,9 +270,10 @@ function gotoComment() {
 .blog-comment {
   position: relative;
   top: 200px;
-  /* background: linear-gradient(#fff0, #fff 50px); */
+  background: linear-gradient(#fff0, #fff 50px);
   z-index: 1;
   pointer-events: none;
+  min-height: 80vh;
 }
 .blog-comment-main {
   position: relative;
@@ -398,7 +300,7 @@ function gotoComment() {
 }
 .blog-toc-item {
   display: none;
-  line-height: 1em;
+  line-height: 1.3em;
   cursor: pointer;
   color: transparent;
   width: 80%;
@@ -423,7 +325,7 @@ function gotoComment() {
   color: #333;
 }
 .blog-toc-item + .blog-toc-item {
-  margin-top: 8px;
+  margin-top: 5px;
 }
 .blog-toc-item::before {
   content: '';

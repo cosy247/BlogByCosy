@@ -1,6 +1,4 @@
 export default {
-  // 文档路径
-  docsDir: '/docs',
   // 项目自动生成文件路径
   tempDir: '/temp',
   // 高亮代码支持的语言
@@ -39,7 +37,7 @@ export default {
     repoId: 'R_kgDOJI48fw',
     category: 'Announcements',
     categoryId: 'DIC_kwDOJI48f84Ceg84',
-    mapping: 'title',
+    mapping: 'url',
     strict: '0',
     reactionsEnabled: '1',
     emitMetadata: '0',
@@ -47,7 +45,7 @@ export default {
     theme: 'preferred_color_scheme',
     lang: 'zh-CN',
     crossorigin: 'anonymous',
-    async: true,
+    // async: true,
   },
   // 页面顶部的菜单设置
   menus: [

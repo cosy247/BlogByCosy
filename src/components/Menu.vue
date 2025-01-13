@@ -91,25 +91,26 @@
           <a
             v-for="(item, index) in searchList"
             class="search-result-item"
-            @click="goSearchLine(item.path)"
+            @click="goSearchLine(item)"
             :class="{ 'search-result-item-active': index === currentSearchLineIndex }"
             @mouseover="currentSearchLineIndex = index">
             <p class="search-result-item-title">
               <span
-                v-for="(key, i) in item.frontmatter.title"
+                v-for="(key, i) in item.attrs.title"
                 :class="{ 'search-result-key': item.countIndexs && item.countIndexs.includes(i) }">
                 {{ key }}
               </span>
             </p>
             <div class="search-result-item-infos">
-              <p class="search-result-item-info" v-show="item.frontmatter.date">&#xe6ad;{{ item.frontmatter.date }}</p>
+              <p class="search-result-item-info" v-show="item.date">
+                &#xe6ad; {{ new Date(item.date).toLocaleDateString() }}
+              </p>
             </div>
           </a>
         </div>
       </div>
     </div>
   </div>
-
   <div class="readme-box" v-show="isShowReadMe" @click.self="closeReadMeContent">
     <div class="readme-container">
       <div class="readme-close" @click="closeReadMeContent">&#xe632;</div>
@@ -124,6 +125,7 @@ import docsData from '../../temp/docsData';
 import config from '../../config';
 import Icon from './Icon.vue';
 import { ref, nextTick } from 'vue';
+import { pageList } from '../../temp/docsData.json';
 import { RouterLink } from 'vue-router';
 
 const isShowSearch = ref(false);
@@ -158,14 +160,11 @@ function search() {
   if (searchTextTrim === '') {
     searchList.value = [];
   } else {
-    // if (md5(searchTextTrim) === pageConfig.shadowPassword) {
-    //   searchList.value = shadows;
-    // } else {
-    searchList.value = pageDatas
+    searchList.value = pageList
       .map((item) => {
         let count = 0;
         const countIndexs = [];
-        const lowerCasetitle = item.frontmatter.title.toLowerCase();
+        const lowerCasetitle = item.attrs.title.toLowerCase();
         for (let index = 0; index < lowerCasetitle.length; index++) {
           if (lowerCasetitle[index] !== searchTextTrim[count]) continue;
           count++;
@@ -198,17 +197,8 @@ function searchPreventDefault(event) {
   }
 }
 
-function goSearchLine(path) {
-  if (typeof window == 'undefined') return;
-  if (!path) {
-    const currentLine = searchList.value[currentSearchLineIndex.value];
-    if (!currentLine || !currentLine.path) return;
-    path = currentLine.path;
-  }
-  // if (md5(searchText.value) === pageConfig.value.shadowPassword) {
-  //   sessionStorage.setItem('shadow', 'shadow' + searchText.value);
-  // }
-  window.location.href = path;
+function goSearchLine(item) {
+  window.location.href = `/docs/${item.file}`;
 }
 
 window.addEventListener('keydown', ({ code, key, keyCode, which }) => {
