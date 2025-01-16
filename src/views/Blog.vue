@@ -117,23 +117,23 @@ function goToDepth(id) {
   const target = mdView.value.querySelector(`#${id}`);
   currentTocId.value = target.id;
   if (!target) return;
-  window.scrollTo({ top: target.offsetTop - 10, behavior: 'smooth' });
+  window.scrollTo({ top: target.offsetTop + 40, behavior: 'smooth' });
 }
 
 // 目录当前显示节点
 const currentTocId = ref('');
-let mdHeads = null;
+let mdHeads = [];
 let tocTimeout = null;
 window.addEventListener('scroll', () => {
-  if (!mdHeads) {
+  if (!mdHeads.length) {
     mdHeads = [...mdView.value.querySelectorAll(`.mdContent > h2, .mdContent > h3`)];
   }
   tocTimeout && clearTimeout(tocTimeout);
   tocTimeout = setTimeout(() => {
-    const target = mdHeads.filter((m) => m.getBoundingClientRect().top < 200).pop();
+    const target = mdHeads.filter((m) => m.getBoundingClientRect().top < 200).pop() || mdHeads[0];
     if (!target) return;
     currentTocId.value = target.id;
-  }, 100);
+  }, 200);
 });
 
 function gotoTop() {

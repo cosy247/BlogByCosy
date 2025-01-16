@@ -4,6 +4,7 @@
   "description": "A VuePress project",
   "license": "MIT",
   "type": "module",
+  "bin": "./bin/newDocs.js",
   "scripts": {
     "new": "cosy-new",
     "dev": "vite --host",

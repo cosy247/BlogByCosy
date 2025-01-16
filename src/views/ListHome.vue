@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="list">
-    <RouterLink :to="`/docs/${item.file}`" class="list-item" v-for="item in currentPageList">
+    <a :href="`/docs/${item.file}`" class="list-item" v-for="item in currentPageList">
       <p class="list-item-title">{{ item.attrs.title }}</p>
       <div class="list-item-infos">
         <p class="list-item-info">
@@ -31,7 +31,7 @@
           {{ new Date(item.date).toLocaleDateString() }}
         </p>
       </div>
-    </RouterLink>
+    </a>
     <div class="list-over">🐲 时间线到头了 🦄</div>
   </div>
 </template>

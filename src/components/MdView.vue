@@ -6,7 +6,6 @@
 import '../styles/md.css';
 import { ref } from 'vue';
 import pageContent from '../utils/pageContent';
-import 'highlight.js/styles/atom-one-dark.css';
 import renderMark from '../utils/renderMark.js';
 
 const emits = defineEmits(['load'])
