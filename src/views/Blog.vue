@@ -69,11 +69,14 @@ const docsFile = computed(() => route.params.file);
 const toc = ref([]);
 function setToc() {
   toc.value = markTocMap[docsFile.value];
+  currentTocId.value = toc.value[1]?.id;
 }
 
 // 当前文章的设置的属性
 const pageMates = pageList.find((p) => p.file === route.params.file);
-document.title = pageMates.attrs.title;
+if (pageMates) {
+  document.title = pageMates.attrs.title;
+}
 
 // 当前文章的统计属性
 const statisAttrs = ref([]);
