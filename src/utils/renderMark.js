@@ -75,7 +75,7 @@ marked.use({
 
 function renderMark(text, fileName) {
   currentFileName = fileName;
-  markTocMap[fileName] = [];
+  if (!markTocMap[fileName]) markTocMap[fileName] = [];
   return marked(text);
 }
 

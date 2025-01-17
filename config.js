@@ -11,6 +11,8 @@ export default {
   title: '<p class="c-page-title">C<img src="/assets/images/logo.ico"/>SY247</p>',
   // 是否开启相似推荐，0表示不开启，大于0将为补充至推荐文章数
   similarRecommendNumber: 5,
+  // 全局组件目录
+  componentDir: '/components',
   // 首页座右铭
   mottos: [
     [

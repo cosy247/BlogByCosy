@@ -5,26 +5,12 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Imgs',
-  props: ['params', 'contents'],
-  components: {},
-  data: () => ({}),
-  computed: {
-    title() {
-      return this.params;
-    },
-    imgs() {
-      return this.contents.split('\n').filter((item) => item);
-    },
-  },
-  watch: {},
-  methods: {},
-  created() {},
-  mounted() {},
-  destroy() {},
-};
+<script setup>
+import { ref } from 'vue';
+
+const props = defineProps(['data', 'params']);
+const title = props.params.title;
+const imgs = ref(props.data.split('\n').filter((item) => item.trim()));
 </script>
 <style scoped>
 .imgs-title {
@@ -34,11 +20,13 @@ export default {
 }
 .imgs-main {
   column-count: 3;
+  column-gap: 10px;
 }
 .imgs-item {
   display: block;
   border-radius: 5px;
   box-shadow: 0 0 10px #8888;
-  margin-bottom: 15px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 </style>
