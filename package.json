@@ -4,15 +4,15 @@
   "description": "A VuePress project",
   "license": "MIT",
   "type": "module",
-  "bin": "./bin/newDocs.js",
   "scripts": {
-    "new": "cosy-new",
+    "new": "node ./bin/newDocs.js",
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@giscus/vue": "^3.1.1",
+    "inquirer": "^12.3.2",
     "marked": "^15.0.6",
     "vue": "^3.5.13",
     "vue-router": "^4.4.5"

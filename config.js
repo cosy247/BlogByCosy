@@ -146,8 +146,8 @@ export default {
         message: '相关推荐:',
         choices: (d) =>
           d.$pageList.map((p) => ({
-            name: p.frontmatter.title,
-            value: p.frontmatter.id,
+            name: p.attrs.title,
+            value: p.attrs.id,
           })),
       },
       { type: 'confirm', name: 'shadow', message: '是否隐藏:', default: false },

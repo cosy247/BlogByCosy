@@ -60,11 +60,12 @@ function generatePageList() {
               // 获取文章创建时间
               exec(`git log -- ${file}`, (err, d) => {
                 if (!err) {
-                  page.date = d
-                    .toString()
-                    .split('\n')
-                    .findLast((d) => d.startsWith('Date:   '))
-                    .slice(8);
+                  page.date =
+                    d
+                      .toString()
+                      .split('\n')
+                      .findLast((d) => d.startsWith('Date:   '))
+                      ?.slice(8) || Date.now();
                 }
                 if (flag) resolve(page);
                 else flag = true;
@@ -199,7 +200,7 @@ export default function (cc) {
   return {
     name: 'vite:premd',
     enforce: 'pre',
-    
+
     // 文章更新时的钩子
     handleHotUpdate(ctx) {
       if (!ctx.file.startsWith(docsDir)) return;

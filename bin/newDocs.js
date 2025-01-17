@@ -1,12 +1,13 @@
-#!/usr/bin/env node
-
 import { createRequire } from 'module';
 import fs from 'fs';
-import vuepressConfig from '../../vuepress.config.js';
+import config from '../config.js';
 import inquirer from 'inquirer';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
-const blogMate = require(`../../${vuepressConfig.temp}/blogMate.json`);
+const docsData = require(`${__dirname}/../${config.tempDir}/docsData.json`);
 
 const stdio = require('readline').createInterface({
   input: process.stdin,
@@ -50,16 +51,16 @@ function getDefaultValue(attrs, defaultValue) {
   const attrs = {
     $id: Date.now(),
     $filename: await getInput('🐲 请输入文件名 : '),
-    $pageList: blogMate.pageList,
+    $pageList: docsData.pageList,
   };
 
   // 输入文件名
   while (true) {
     if (!attrs.$filename) {
       attrs.$filename = await getInput('❗ 请输入文件名: ');
-    } else if (vuepressConfig.draft && (await isFileExisted(`${vuepressConfig.public}/@${attrs.$filename}.md`))) {
+    } else if (config.draft && (await isFileExisted(`${__dirname}/../docs/@${attrs.$filename}.md`))) {
       attrs.$filename = await getInput(`❗ 已存在草稿文件: @${attrs.$filename}.md, 请重新输入文件名: `);
-    } else if (await isFileExisted(`${vuepressConfig.public}/${attrs.$filename}.md`)) {
+    } else if (await isFileExisted(`${__dirname}/../docs/${attrs.$filename}.md`)) {
       attrs.$filename = await getInput(`❗ 已存在文件: ${attrs.$filename}.md, 请重新输入文件名: `);
     } else {
       break;
@@ -83,14 +84,16 @@ function getDefaultValue(attrs, defaultValue) {
   Object.entries(attrs).forEach(([key, value]) => {
     templateContent = templateContent.replaceAll(`{ ${key} }`, value);
   });
-  if (vuepressConfig.draft) {
-    fs.writeFileSync(`${vuepressConfig.public}/@${attrs.$filename}.md`, templateContent);
-    console.log(`🐲生成草稿文件成功: ${vuepressConfig.public}/@${attrs.$filename}.md`);
+  if (config.draft) {
+    const filePath = path.join(__dirname, '../docs', `@${attrs.$filename}.md`);
+    fs.writeFileSync(filePath, templateContent);
+    console.log(`🐲生成草稿文件成功: ${filePath}`);
   } else {
-    fs.writeFileSync(`${vuepressConfig.public}/${attrs.$filename}.md`, templateContent);
-    console.log(`🐲生成文章文件成功: ${vuepressConfig.public}/${attrs.$filename}.md`);
+    const filePath = path.join(__dirname, '../docs', `${attrs.$filename}.md`);
+    fs.writeFileSync(filePath, templateContent);
+    console.log(`🐲生成文章文件成功: ${filePath}`);
   }
 
   // 关闭
   stdio.close();
-})(vuepressConfig.template);
+})(config.template);
