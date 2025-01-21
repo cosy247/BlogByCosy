@@ -1,12 +1,10 @@
 import fs from 'fs';
 import path from 'path';
-import config from '../config';
+import config from '../../config';
 import { exec } from 'child_process';
 
 /** 统计的属性名称 */
-const statisticsAttrs = config.menus
-  .filter((menu) => menu.type === 'statistics' && menu.statistics?.isMultiple)
-  .map((d) => d.statistics.frontName);
+const statisticsAttrs = config.menus.filter((menu) => menu.type === 'statistics').map((d) => d.statistics.frontName);
 
 /** 统计的多选属性名称 */
 const multipleAttrs = config.menus
@@ -35,12 +33,12 @@ function getSimilarity(str1, str2) {
 }
 
 function generatePageList() {
-  const docsPath = path.join(__dirname, '../docs');
+  const docsPath = path.join(__dirname, '../../docs');
   fs.readdir(docsPath, (err, files) => {
     if (err) return console.log(`❗premd: ${err}`);
     Promise.all(
       files
-        .filter((file) => file.endsWith('.md'))
+        .filter((file) => file.endsWith('.md') && file[0] != '@')
         .map((file) => {
           return new Promise((resolve) => {
             fs.stat(`${docsPath}/${file}`, (err, data) => {
@@ -118,8 +116,6 @@ function generatePageList() {
          * 判断用户是否开启自动推荐功能
          */
         if (similarRecommendNumber > 0) {
-          /**在菜单中的 statistics 属性名，将作为相似判断 */
-          const stNames = config.menus.filter((m) => m.type === 'statistics').map((m) => m.statistics.frontName);
           // 为每个文章寻找相似文章
           docsData.pageList.forEach((page) => {
             /** 生成相似判断的字符串 */
@@ -160,6 +156,7 @@ function generatePageList() {
 
         // 统计menu中的statistics
         statisticsAttrs.forEach((attrName) => (docsData.statistics[attrName] = {}));
+
         pageList.forEach((page) => {
           statisticsAttrs.forEach((attrName) => {
             const pageAttr = page.attrs[attrName];
@@ -183,11 +180,12 @@ function generatePageList() {
         });
 
         // 写入temp文件
-        const targetDir = path.join(__dirname, '../', config.tempDir);
+        const targetDir = path.join(__dirname, '../../', config.tempDir);
         if (!fs.existsSync(targetDir)) fs.mkdirSync(targetDir);
         const targetFile = path.join(targetDir, 'docsData.json');
         fs.writeFile(targetFile, JSON.stringify(docsData), (err) => {
           if (err) console.log(`❗premd: ${err}`);
+          console.log('🤖temp/docsData文件写入成功');
         });
       });
   });

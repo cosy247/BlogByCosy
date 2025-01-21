@@ -1,13 +1,13 @@
 import { createRequire } from 'module';
 import fs from 'fs';
-import config from '../config.js';
+import config from '../../config.js';
 import inquirer from 'inquirer';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
-const docsData = require(`${__dirname}/../${config.tempDir}/docsData.json`);
+const docsData = require(path.join(__dirname, '../../', config.tempDir, 'docsData.json'));
 
 const stdio = require('readline').createInterface({
   input: process.stdin,
@@ -85,11 +85,11 @@ function getDefaultValue(attrs, defaultValue) {
     templateContent = templateContent.replaceAll(`{ ${key} }`, value);
   });
   if (config.draft) {
-    const filePath = path.join(__dirname, '../docs', `@${attrs.$filename}.md`);
+    const filePath = path.join(__dirname, '../../docs', `@${attrs.$filename}.md`);
     fs.writeFileSync(filePath, templateContent);
     console.log(`🐲生成草稿文件成功: ${filePath}`);
   } else {
-    const filePath = path.join(__dirname, '../docs', `${attrs.$filename}.md`);
+    const filePath = path.join(__dirname, '../../docs', `${attrs.$filename}.md`);
     fs.writeFileSync(filePath, templateContent);
     console.log(`🐲生成文章文件成功: ${filePath}`);
   }

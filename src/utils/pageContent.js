@@ -1,6 +1,6 @@
-const files = import.meta.glob('/docs/**/*.md' , {
-	query: '?raw',
-	import: 'default',
-})
+const files = import.meta.glob('/docs/**/*.md', {
+  query: '?raw',
+  import: 'default',
+});
 
-export default files
+export default files;

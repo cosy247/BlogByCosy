@@ -8,8 +8,8 @@
 <script setup>
 import { ref } from 'vue';
 
-const props = defineProps(['data', 'params']);
-const title = props.params.title;
+const props = defineProps(['title', 'data']);
+const title = props.title;
 const imgs = ref(props.data.split('\n').filter((item) => item.trim()));
 </script>
 <style scoped>

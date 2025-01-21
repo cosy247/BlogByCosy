@@ -43,6 +43,8 @@ import { ref, computed, nextTick } from 'vue';
 import config from '../../config';
 import { RouterLink, useRoute } from 'vue-router';
 import { watch } from 'vue';
+console.log(pageList);
+
 
 // 过滤文章列表
 const allPageList = ref([]);
@@ -51,7 +53,6 @@ const isStaticPage = ref(false);
 watch(
   () => [route.params.name, route.params.value],
   ([name, value]) => {
-    
     isStaticPage.value = name && value;
     if (isStaticPage.value && statistics[name]) {
       allPageList.value = pageList.filter((page) => {

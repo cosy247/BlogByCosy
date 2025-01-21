@@ -1,7 +1,7 @@
 <template>
   <div>
     <template v-for="(item, index) in renderContents">
-      <component v-if="index % 2" :is="components[item.componentName]" :params="item.params" :data="item.data" />
+      <component v-if="index % 2" :is="components[item.componentName]" v-bind="item.params" :data="item.data" />
       <div v-else class="mdContent" v-html="item"></div>
     </template>
   </div>
@@ -12,7 +12,7 @@ import '../styles/md.css';
 import { defineAsyncComponent, ref, shallowRef } from 'vue';
 import pageContent from '../utils/pageContent';
 import renderMark from '../utils/renderMark.js';
-import config from '../../config.js';
+import mdComponents from '../utils/getMdComponent.js';
 
 const emits = defineEmits(['load']);
 const { fileName } = defineProps(['fileName']);
@@ -42,7 +42,7 @@ if (pageContent[`/docs/${fileName}.md`]) {
             }
           });
         }
-        components.value[componentName] = defineAsyncComponent(() => import(`${config.componentDir}/${componentName}.vue`));
+        components.value[componentName] = defineAsyncComponent(mdComponents[componentName]);
         renderContents.value.push({ componentName, params, data });
       } else {
         renderContents.value.push(await renderMark(text, fileName));
