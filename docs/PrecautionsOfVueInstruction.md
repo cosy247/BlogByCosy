@@ -59,13 +59,13 @@ shadow: false
 </template>
 
 <script>
-  export default {
-    computed: {
-      activeUsers() {
-        return this.users.filter((user) => user.isActive);
-      },
+export default {
+  computed: {
+    activeUsers() {
+      return this.users.filter((user) => user.isActive);
     },
-  };
+  },
+};
 </script>
 ```
 

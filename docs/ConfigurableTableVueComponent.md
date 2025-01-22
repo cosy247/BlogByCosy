@@ -6,7 +6,7 @@ tags: Vue
 description: 可配置的表格Vue组件
 ---
 
-# 可配置的表格Vue组件
+# 可配置的表格 Vue 组件
 
 ## 目的
 
@@ -18,35 +18,42 @@ description: 可配置的表格Vue组件
 
 ```html
 <template>
-    <div class="root-table">
-        <div class="table-content">
-            <table class="table-content-table" border="0" cellspacing="0">
-                <tr>
-                    <th v-for="thColumn in ths">{{ thColumn.name }}</th>
-                </tr>
-                <tr v-for="tdRow in tds">
-                    <td v-for="tdColumn in tdRow">{{ tdColumn }}</td>
-                </tr>
-            </table>
-        </div>
+  <div class="root-table">
+    <div class="table-content">
+      <table class="table-content-table" border="0" cellspacing="0">
+        <tr>
+          <th v-for="thColumn in ths">{{ thColumn.name }}</th>
+        </tr>
+        <tr v-for="tdRow in tds">
+          <td v-for="tdColumn in tdRow">{{ tdColumn }}</td>
+        </tr>
+      </table>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        data: () => ({
-            ths: [{ name: '输入框' }, { name: '下拉框' }, { name: '单选框' }, { name: '日历' }, { name: '开关' }, { name: '附件' }],
-            tds: [
-                ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
-                ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
-                ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
-                ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
-                ['XX', '321321', false, '2023/6/2', true, '.doc', ''],
-                ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
-                ['XX', '321321', false, '2023/6/2', true, '.doc', ''],
-            ],
-        }),
-    };
+  export default {
+    data: () => ({
+      ths: [
+        { name: '输入框' },
+        { name: '下拉框' },
+        { name: '单选框' },
+        { name: '日历' },
+        { name: '开关' },
+        { name: '附件' },
+      ],
+      tds: [
+        ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
+        ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
+        ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
+        ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
+        ['XX', '321321', false, '2023/6/2', true, '.doc', ''],
+        ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
+        ['XX', '321321', false, '2023/6/2', true, '.doc', ''],
+      ],
+    }),
+  };
 </script>
 ```
 
@@ -62,8 +69,8 @@ description: 可配置的表格Vue组件
 
 ```html
 <td v-for="tdColumn in tdRow" :class="getItemClassName(tdColumn)">
-    <el-input v-if="tdColumn.type == 'input'" v-model="tdColumn.value" />
-    <span v-else>{{ tdColumn.value }}</span>
+  <el-input v-if="tdColumn.type == 'input'" v-model="tdColumn.value" />
+  <span v-else>{{ tdColumn.value }}</span>
 </td>
 ```
 
@@ -130,15 +137,15 @@ data: () => ({
 
 ```html
 <tr v-for="(tdRow, rowIndex) in tdData">
-    <td v-for="tdColumn in tdRow" :class="getItemClassName(tdColumn)">
-        <div v-if="tdColumn.type == 'option'">
-            <span v-if="tdColumn.option.includes('|edit')" @click="editRow(tdRow, rowIndex)">编辑</span>
-            <span v-if="tdColumn.option.includes('|delete')" @click="deleteRow(tdRow, rowIndex)">删除</span>
-            <span v-if="tdColumn.option.includes('|save')" @click="saveRow(tdRow, rowIndex)">保存</span>
-            <span v-if="tdColumn.option.includes('|cancel')" @click="cancelRow(tdRow, rowIndex)">取消</span>
-        </div>
-        <!-- ... -->
-    </td>
+  <td v-for="tdColumn in tdRow" :class="getItemClassName(tdColumn)">
+    <div v-if="tdColumn.type == 'option'">
+      <span v-if="tdColumn.option.includes('|edit')" @click="editRow(tdRow, rowIndex)">编辑</span>
+      <span v-if="tdColumn.option.includes('|delete')" @click="deleteRow(tdRow, rowIndex)">删除</span>
+      <span v-if="tdColumn.option.includes('|save')" @click="saveRow(tdRow, rowIndex)">保存</span>
+      <span v-if="tdColumn.option.includes('|cancel')" @click="cancelRow(tdRow, rowIndex)">取消</span>
+    </div>
+    <!-- ... -->
+  </td>
 </tr>
 ```
 
@@ -154,10 +161,10 @@ data: () => ({
 
 ```html
 <div v-if="tdColumn.type == 'option'">
-    <span v-if="tdColumn.option.includes('|edit')" @click="editRow(tdRow, rowIndex)">编辑</span>
-    <span v-if="tdColumn.option.includes('|delete')" @click="deleteRow(tdRow, rowIndex)">删除</span>
-    <span v-if="tdColumn.option.includes('|save')" @click="saveRow(tdRow, rowIndex)">保存</span>
-    <span v-if="tdColumn.option.includes('|cancel')" @click="cancelRow(tdRow, rowIndex)">取消</span>
+  <span v-if="tdColumn.option.includes('|edit')" @click="editRow(tdRow, rowIndex)">编辑</span>
+  <span v-if="tdColumn.option.includes('|delete')" @click="deleteRow(tdRow, rowIndex)">删除</span>
+  <span v-if="tdColumn.option.includes('|save')" @click="saveRow(tdRow, rowIndex)">保存</span>
+  <span v-if="tdColumn.option.includes('|cancel')" @click="cancelRow(tdRow, rowIndex)">取消</span>
 </div>
 ```
 
@@ -262,37 +269,37 @@ methods: {
 
 ```html
 <td v-for="tdColumn in tdRow" :class="getItemClassName(tdColumn)">
-    <!-- ... -->
-    <el-cascader v-else-if="tdColumn.type == 'select'" :options="tdColumn.typeData" v-model="tdColumn.value" />
-    <!-- ... -->
+  <!-- ... -->
+  <el-cascader v-else-if="tdColumn.type == 'select'" :options="tdColumn.typeData" v-model="tdColumn.value" />
+  <!-- ... -->
 </td>
 ```
 
 ```js
 data: () => ({
-    tableData: {
-        ths: [
+  tableData: {
+    ths: [
+      {
+        name: '下拉框',
+        edit: {
+          type: 'select',
+          typeData: [
             {
-                name: '下拉框',
-                edit: {
-                    type: 'select',
-                    typeData: [
-                        {
-                            value: 22,
-                            tag: 222,
-                            children: [
-                                { value: 22, tag: 222 },
-                                { value: 33, tag: 333 },
-                            ],
-                        },
-                        { value: 33, tag: 333 },
-                    ],
-                },
+              value: 22,
+              tag: 222,
+              children: [
+                { value: 22, tag: 222 },
+                { value: 33, tag: 333 },
+              ],
             },
-            // ...
-        ],
-    },
-    // ...
+            { value: 33, tag: 333 },
+          ],
+        },
+      },
+      // ...
+    ],
+  },
+  // ...
 });
 ```
 
@@ -356,12 +363,12 @@ methods: {
 
 ```js
 data: () => ({
-    tableData: {
-        ths: [
-            { name: '日历', edit: { type: 'date', dateType: 'date' } },
-            // ...
-        ],
-    },
+  tableData: {
+    ths: [
+      { name: '日历', edit: { type: 'date', dateType: 'date' } },
+      // ...
+    ],
+  },
 });
 ```
 
@@ -379,22 +386,22 @@ data: () => ({
 
 ```html
 <td v-for="tdColumn in tdRow" :class="getItemClassName(tdColumn)">
-    <!-- ... -->
-    <el-checkbox v-else-if="tdColumn.type == 'checkbox'" v-model="tdColumn.value" :disabled="tdColumn.disabled" />
-    <el-switch v-else-if="tdColumn.type == 'switch'" v-model="tdColumn.value" :disabled="tdColumn.disabled" />
-    <!-- ... -->
+  <!-- ... -->
+  <el-checkbox v-else-if="tdColumn.type == 'checkbox'" v-model="tdColumn.value" :disabled="tdColumn.disabled" />
+  <el-switch v-else-if="tdColumn.type == 'switch'" v-model="tdColumn.value" :disabled="tdColumn.disabled" />
+  <!-- ... -->
 </td>
 ```
 
 ```js
 data: () => ({
-    tableData: {
-        ths: [
-            // ...
-            { name: '单选框', type: 'checkbox', disabled: true, edit: { disabled: false } },
-            { name: '开关', type: 'switch', disabled: true, edit: { disabled: false } },
-        ],
-    },
+  tableData: {
+    ths: [
+      // ...
+      { name: '单选框', type: 'checkbox', disabled: true, edit: { disabled: false } },
+      { name: '开关', type: 'switch', disabled: true, edit: { disabled: false } },
+    ],
+  },
 });
 ```
 
@@ -412,10 +419,10 @@ data: () => ({
 
 ```html
 <div class="root-table">
-    <!-- ... -->
-    <div v-if="config.addible && !isAdding" class="table-add">
-        <p @click="addRow">新增</p>
-    </div>
+  <!-- ... -->
+  <div v-if="config.addible && !isAdding" class="table-add">
+    <p @click="addRow">新增</p>
+  </div>
 </div>
 ```
 
@@ -484,17 +491,17 @@ methods: {
 
 ```js
 function isEmptyValue(value) {
-    if (Object.prototype.toString.call(value) == '[object Array]') {
-        return value.length !== 0;
-    } else if (Object.prototype.toString.call(value) == '[object Object]') {
-        return Object.keys(value).length !== 0;
-    } else if (Object.prototype.toString.call(value) == '[object String]') {
-        return value.length !== 0;
-    } else if (value === true || value === false) {
-        return true;
-    } else {
-        return false;
-    }
+  if (Object.prototype.toString.call(value) == '[object Array]') {
+    return value.length !== 0;
+  } else if (Object.prototype.toString.call(value) == '[object Object]') {
+    return Object.keys(value).length !== 0;
+  } else if (Object.prototype.toString.call(value) == '[object String]') {
+    return value.length !== 0;
+  } else if (value === true || value === false) {
+    return true;
+  } else {
+    return false;
+  }
 }
 ```
 
@@ -573,11 +580,11 @@ methods: {
 
 ```js
 data: () => ({
+  // ...
+  tds: [
+    [{ value: true, type: 'switch' }, '321321', true, '2024/6/2', true, '.doc', ''],
     // ...
-    tds: [
-        [{ value: true, type: 'switch' }, '321321', true, '2024/6/2', true, '.doc', ''],
-        // ...
-    ],
+  ],
 });
 ```
 
@@ -640,30 +647,30 @@ beforeMount() {
 ```html
 <!--TableDome.vue -->
 <template>
-    <div class="tableDome-root">
-        <table :data="tableData" :config="tableConfig" />
-    </div>
+  <div class="tableDome-root">
+    <table :data="tableData" :config="tableConfig" />
+  </div>
 </template>
 
 <script>
-    // import 引入Table组件;
+  // import 引入Table组件;
 
-    export default {
-        components: { Table },
-        data: () => ({
-            tableData: {
-                ths: [
-                    // ...
-                ],
-                tds: [
-                    // ...
-                ],
-            },
-            tableConfig: {
-                // ...
-            },
-        }),
-    };
+  export default {
+    components: { Table },
+    data: () => ({
+      tableData: {
+        ths: [
+          // ...
+        ],
+        tds: [
+          // ...
+        ],
+      },
+      tableConfig: {
+        // ...
+      },
+    }),
+  };
 </script>
 ```
 
@@ -754,9 +761,16 @@ methods: {
 
 ```html
 <td v-for="tdColumn in tdRow" :class="getItemClassName(tdColumn)">
-    // ...
-    <el-input v-else-if="tdColumn.type == 'input'" v-model="tdColumn.value" :disabled="tdColumn.disabled" @blur="runEvent('blur', tdColumn, rowIndex)" @focus="runEvent('focus', tdColumn, rowIndex)" @input="runEvent('input', tdColumn, rowIndex)" @change="runEvent('change', tdColumn, rowIndex)" />
-    // ...
+  // ...
+  <el-input
+    v-else-if="tdColumn.type == 'input'"
+    v-model="tdColumn.value"
+    :disabled="tdColumn.disabled"
+    @blur="runEvent('blur', tdColumn, rowIndex)"
+    @focus="runEvent('focus', tdColumn, rowIndex)"
+    @input="runEvent('input', tdColumn, rowIndex)"
+    @change="runEvent('change', tdColumn, rowIndex)" />
+  // ...
 </td>
 ```
 
@@ -905,422 +919,452 @@ config = {
 ```html
 <!-- Table.vue -->
 <template>
-    <div class="root-table">
-        <div class="table-content">
-            <table class="table-content-table" border="0" cellspacing="0">
-                <tr>
-                    <th v-for="thColumn in thData">{{ thColumn.name }}</th>
-                </tr>
-                <tr v-for="(tdRow, rowIndex) in tdData">
-                    <td v-for="tdColumn in tdRow" :class="getItemClassName(tdColumn)">
-                        <div v-if="tdColumn.type == 'option'">
-                            <span v-if="tdColumn.option.includes('|edit')" @click="editRow(tdRow, rowIndex)">编辑</span>
-                            <span v-if="tdColumn.option.includes('|delete')" @click="deleteRow(tdRow, rowIndex)">删除</span>
-                            <span v-if="tdColumn.option.includes('|save')" @click="saveRow(tdRow, rowIndex)">保存</span>
-                            <span v-if="tdColumn.option.includes('|cancel')" @click="cancelRow(tdRow, rowIndex)">取消</span>
-                        </div>
-                        <el-input v-else-if="tdColumn.type == 'input'" v-model="tdColumn.value" :disabled="tdColumn.disabled" @blur="runEvent('blur', tdColumn, rowIndex)" @focus="runEvent('focus', tdColumn, rowIndex)" @input="runEvent('input', tdColumn, rowIndex)" @change="runEvent('change', tdColumn, rowIndex)" />
-                        <el-date-picker v-else-if="tdColumn.type == 'date'" v-model="tdColumn.value" :type="tdColumn.dateType" format="yyyy/M/d" :disabled="tdColumn.disabled" @blur="runEvent('blur', tdColumn, rowIndex)" @focus="runEvent('focus', tdColumn, rowIndex)" @change="runEvent('change', tdColumn, rowIndex)" />
-                        <el-cascader v-else-if="tdColumn.type == 'select'" :options="tdColumn.typeData" v-model="tdColumn.value" :disabled="tdColumn.disabled" @blur="runEvent('blur', tdColumn, rowIndex)" @focus="runEvent('focus', tdColumn, rowIndex)" @change="runEvent('change', tdColumn, rowIndex)" />
-                        <el-checkbox v-else-if="tdColumn.type == 'checkbox'" v-model="tdColumn.value" :disabled="tdColumn.disabled" @change="runEvent('change', tdColumn, rowIndex)" />
-                        <el-switch v-else-if="tdColumn.type == 'switch'" v-model="tdColumn.value" :disabled="tdColumn.disabled" @change="runEvent('change', tdColumn, rowIndex)" />
-                        <span v-else class="text">{{ getShowText(tdColumn) }}</span>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div v-if="config.addible && !isAdding" class="table-add">
-            <p @click="addRow">新增</p>
-        </div>
+  <div class="root-table">
+    <div class="table-content">
+      <table class="table-content-table" border="0" cellspacing="0">
+        <tr>
+          <th v-for="thColumn in thData">{{ thColumn.name }}</th>
+        </tr>
+        <tr v-for="(tdRow, rowIndex) in tdData">
+          <td v-for="tdColumn in tdRow" :class="getItemClassName(tdColumn)">
+            <div v-if="tdColumn.type == 'option'">
+              <span v-if="tdColumn.option.includes('|edit')" @click="editRow(tdRow, rowIndex)">编辑</span>
+              <span v-if="tdColumn.option.includes('|delete')" @click="deleteRow(tdRow, rowIndex)">删除</span>
+              <span v-if="tdColumn.option.includes('|save')" @click="saveRow(tdRow, rowIndex)">保存</span>
+              <span v-if="tdColumn.option.includes('|cancel')" @click="cancelRow(tdRow, rowIndex)">取消</span>
+            </div>
+            <el-input
+              v-else-if="tdColumn.type == 'input'"
+              v-model="tdColumn.value"
+              :disabled="tdColumn.disabled"
+              @blur="runEvent('blur', tdColumn, rowIndex)"
+              @focus="runEvent('focus', tdColumn, rowIndex)"
+              @input="runEvent('input', tdColumn, rowIndex)"
+              @change="runEvent('change', tdColumn, rowIndex)" />
+            <el-date-picker
+              v-else-if="tdColumn.type == 'date'"
+              v-model="tdColumn.value"
+              :type="tdColumn.dateType"
+              format="yyyy/M/d"
+              :disabled="tdColumn.disabled"
+              @blur="runEvent('blur', tdColumn, rowIndex)"
+              @focus="runEvent('focus', tdColumn, rowIndex)"
+              @change="runEvent('change', tdColumn, rowIndex)" />
+            <el-cascader
+              v-else-if="tdColumn.type == 'select'"
+              :options="tdColumn.typeData"
+              v-model="tdColumn.value"
+              :disabled="tdColumn.disabled"
+              @blur="runEvent('blur', tdColumn, rowIndex)"
+              @focus="runEvent('focus', tdColumn, rowIndex)"
+              @change="runEvent('change', tdColumn, rowIndex)" />
+            <el-checkbox
+              v-else-if="tdColumn.type == 'checkbox'"
+              v-model="tdColumn.value"
+              :disabled="tdColumn.disabled"
+              @change="runEvent('change', tdColumn, rowIndex)" />
+            <el-switch
+              v-else-if="tdColumn.type == 'switch'"
+              v-model="tdColumn.value"
+              :disabled="tdColumn.disabled"
+              @change="runEvent('change', tdColumn, rowIndex)" />
+            <span v-else class="text">{{ getShowText(tdColumn) }}</span>
+          </td>
+        </tr>
+      </table>
     </div>
+    <div v-if="config.addible && !isAdding" class="table-add">
+      <p @click="addRow">新增</p>
+    </div>
+  </div>
 </template>
 
 <script>
-    import { deepClone } from '@/common/utils/public';
-    import functionTotal from '@/special/out';
+  import { deepClone } from '@/common/utils/public';
+  import functionTotal from '@/special/out';
 
-    function isEmptyValue(value) {
-        if (Object.prototype.toString.call(value) == '[object Array]') {
-            return value.length !== 0;
-        } else if (Object.prototype.toString.call(value) == '[object Object]') {
-            return Object.keys(value).length !== 0;
-        } else if (Object.prototype.toString.call(value) == '[object String]') {
-            return value.length !== 0;
-        } else if (value === true || value === false) {
-            return true;
-        } else {
-            return false;
-        }
+  function isEmptyValue(value) {
+    if (Object.prototype.toString.call(value) == '[object Array]') {
+      return value.length !== 0;
+    } else if (Object.prototype.toString.call(value) == '[object Object]') {
+      return Object.keys(value).length !== 0;
+    } else if (Object.prototype.toString.call(value) == '[object String]') {
+      return value.length !== 0;
+    } else if (value === true || value === false) {
+      return true;
+    } else {
+      return false;
     }
+  }
 
-    export default {
-        props: {
-            data: Object,
-            config: Object,
-            updateTime: Number,
+  export default {
+    props: {
+      data: Object,
+      config: Object,
+      updateTime: Number,
+    },
+    data: () => ({
+      isEditing: false,
+      isAdding: false,
+      thData: [],
+      tdData: [],
+      tdInitData: [],
+    }),
+    beforeMount() {},
+    computed: {
+      tdValues() {
+        return this.tdData.map((row) => row.map(({ value }, index) => ({ name: this.thData[index].name, value })));
+      },
+    },
+    watch: {
+      updateTime: {
+        handler() {
+          this.thData = this.data.ths.map((item) => (typeof item == 'object' ? item : { name: item }));
+          this.tdData = this.data.tds.map((tdRow, rowIndex) =>
+            tdRow.map((item, index) => ({
+              type: 'text',
+              ...this.thData[index],
+              ...(typeof item == 'object' ? item : { value: item }),
+            }))
+          );
+          if (typeof this.config?.setItemConfig == 'function') {
+            this.tdData.forEach((tdRow, rowIndex) =>
+              tdRow.forEach((itemConfig) => {
+                this.config.setItemConfig(itemConfig, tdRow, rowIndex);
+              })
+            );
+          }
+          this.tdInitData = deepClone(this.tdData);
+          if (this.tdData[0]) {
+            this.addRowData = deepClone(this.tdData[0]).map((item) => {
+              item.value = '';
+              return item;
+            });
+          }
         },
-        data: () => ({
-            isEditing: false,
-            isAdding: false,
-            thData: [],
-            tdData: [],
-            tdInitData: [],
-        }),
-        beforeMount() {},
-        computed: {
-            tdValues() {
-                return this.tdData.map((row) => row.map(({ value }, index) => ({ name: this.thData[index].name, value })));
-            },
-        },
-        watch: {
-            updateTime: {
-                handler() {
-                    this.thData = this.data.ths.map((item) => (typeof item == 'object' ? item : { name: item }));
-                    this.tdData = this.data.tds.map((tdRow, rowIndex) =>
-                        tdRow.map((item, index) => ({
-                            type: 'text',
-                            ...this.thData[index],
-                            ...(typeof item == 'object' ? item : { value: item }),
-                        }))
-                    );
-                    if (typeof this.config?.setItemConfig == 'function') {
-                        this.tdData.forEach((tdRow, rowIndex) =>
-                            tdRow.forEach((itemConfig) => {
-                                this.config.setItemConfig(itemConfig, tdRow, rowIndex);
-                            })
-                        );
-                    }
-                    this.tdInitData = deepClone(this.tdData);
-                    if (this.tdData[0]) {
-                        this.addRowData = deepClone(this.tdData[0]).map((item) => {
-                            item.value = '';
-                            return item;
-                        });
-                    }
-                },
-                immediate: true,
-            },
-        },
-        methods: {
-            getShowText({ showType, value }) {
-                if (Object.prototype.toString.call(value) == '[object Array]') {
-                    if (showType == 'array-end') {
-                        return this.getShowText({ value: value.at(-1) });
-                    } else {
-                        return value.map((item) => this.getShowText({ value: item })).join('-');
-                    }
-                } else if (Object.prototype.toString.call(value) == '[object Date]') {
-                    return value.toLocaleDateString();
-                } else {
-                    return value;
-                }
-            },
-            getItemClassName(column) {
-                return {
-                    [column.type]: true,
-                    require: column.require,
-                    search: column.type == 'text' && String(column.value).includes(this.config.search),
-                };
-            },
-            getEvents(tdColumn) {
-                console.log(tdColumn);
-            },
-            runEvent(eventName, tdColumn, rowIndex) {
-                if (tdColumn.events) {
-                    if (typeof tdColumn.events[eventName] == 'function') {
-                        tdColumn.events[eventName](tdColumn, rowIndex, this);
-                    } else if (typeof tdColumn.events[eventName] == 'string') {
-                        functionTotal[tdColumn.events[eventName]] && functionTotal[tdColumn.events[eventName]](tdColumn, rowIndex, this);
-                    }
-                }
-            },
-            editRow(rowData, rowIndex) {
-                if (this.isEditing) {
-                    this.$message.warning('请先完成当前编辑');
-                    return;
-                }
-                this.isEditing = true;
-                this.$set(
-                    this.tdData,
-                    rowIndex,
-                    rowData.map((item, index) => {
-                        return {
-                            ...item,
-                            ...item.edit,
-                        };
-                    })
-                );
-            },
-            deleteRow(rowData, rowIndex) {
-                this.tdData.splice(rowIndex, 1);
-                this.tdInitData.splice(rowIndex, 1);
-            },
-            saveRow(rowData, rowIndex) {
-                this.isEditing = false;
-                const checkRequire = rowData.some((item) => {
-                    return item.require && !isEmptyValue(item.value);
-                });
-                if (checkRequire) {
-                    this.$message.warning('请填写必要字段');
-                    return;
-                }
-                if (this.isAdding && rowIndex == this.tdData.length - 1) {
-                    this.isAdding = false;
-                }
-                this.tdInitData[rowIndex].forEach((item, index) => {
-                    item.value = rowData[index].value;
-                });
-                // 判断是否有保存回调函数，返回为true时继续执行
-                if (typeof this.config?.onSave == 'function') {
-                    if (!this.config.onSave(rowData, rowIndex, this.tdValues, this)) {
-                        return;
-                    }
-                }
-                this.$set(this.tdData, rowIndex, deepClone(this.tdInitData[rowIndex]));
-            },
-            cancelRow(rowData, rowIndex) {
-                this.isEditing = false;
-                if (this.isAdding) {
-                    this.tdData.pop();
-                    this.tdInitData.pop();
-                    this.isAdding = false;
-                } else {
-                    this.$set(this.tdData, rowIndex, deepClone(this.tdInitData[rowIndex]));
-                }
-            },
-            addRow() {
-                if (this.isEditing) {
-                    this.$message.warning('请先完成当前编辑');
-                    return;
-                }
-                this.isAdding = true;
-                this.tdData.push(deepClone(this.addRowData));
-                this.tdInitData.push(deepClone(this.addRowData));
-                const index = this.tdData.length - 1;
-                this.editRow(this.tdData[index], index);
-            },
-        },
-    };
+        immediate: true,
+      },
+    },
+    methods: {
+      getShowText({ showType, value }) {
+        if (Object.prototype.toString.call(value) == '[object Array]') {
+          if (showType == 'array-end') {
+            return this.getShowText({ value: value.at(-1) });
+          } else {
+            return value.map((item) => this.getShowText({ value: item })).join('-');
+          }
+        } else if (Object.prototype.toString.call(value) == '[object Date]') {
+          return value.toLocaleDateString();
+        } else {
+          return value;
+        }
+      },
+      getItemClassName(column) {
+        return {
+          [column.type]: true,
+          require: column.require,
+          search: column.type == 'text' && String(column.value).includes(this.config.search),
+        };
+      },
+      getEvents(tdColumn) {
+        console.log(tdColumn);
+      },
+      runEvent(eventName, tdColumn, rowIndex) {
+        if (tdColumn.events) {
+          if (typeof tdColumn.events[eventName] == 'function') {
+            tdColumn.events[eventName](tdColumn, rowIndex, this);
+          } else if (typeof tdColumn.events[eventName] == 'string') {
+            functionTotal[tdColumn.events[eventName]] && functionTotal[tdColumn.events[eventName]](tdColumn, rowIndex, this);
+          }
+        }
+      },
+      editRow(rowData, rowIndex) {
+        if (this.isEditing) {
+          this.$message.warning('请先完成当前编辑');
+          return;
+        }
+        this.isEditing = true;
+        this.$set(
+          this.tdData,
+          rowIndex,
+          rowData.map((item, index) => {
+            return {
+              ...item,
+              ...item.edit,
+            };
+          })
+        );
+      },
+      deleteRow(rowData, rowIndex) {
+        this.tdData.splice(rowIndex, 1);
+        this.tdInitData.splice(rowIndex, 1);
+      },
+      saveRow(rowData, rowIndex) {
+        this.isEditing = false;
+        const checkRequire = rowData.some((item) => {
+          return item.require && !isEmptyValue(item.value);
+        });
+        if (checkRequire) {
+          this.$message.warning('请填写必要字段');
+          return;
+        }
+        if (this.isAdding && rowIndex == this.tdData.length - 1) {
+          this.isAdding = false;
+        }
+        this.tdInitData[rowIndex].forEach((item, index) => {
+          item.value = rowData[index].value;
+        });
+        // 判断是否有保存回调函数，返回为true时继续执行
+        if (typeof this.config?.onSave == 'function') {
+          if (!this.config.onSave(rowData, rowIndex, this.tdValues, this)) {
+            return;
+          }
+        }
+        this.$set(this.tdData, rowIndex, deepClone(this.tdInitData[rowIndex]));
+      },
+      cancelRow(rowData, rowIndex) {
+        this.isEditing = false;
+        if (this.isAdding) {
+          this.tdData.pop();
+          this.tdInitData.pop();
+          this.isAdding = false;
+        } else {
+          this.$set(this.tdData, rowIndex, deepClone(this.tdInitData[rowIndex]));
+        }
+      },
+      addRow() {
+        if (this.isEditing) {
+          this.$message.warning('请先完成当前编辑');
+          return;
+        }
+        this.isAdding = true;
+        this.tdData.push(deepClone(this.addRowData));
+        this.tdInitData.push(deepClone(this.addRowData));
+        const index = this.tdData.length - 1;
+        this.editRow(this.tdData[index], index);
+      },
+    },
+  };
 </script>
 
 <style scoped>
-    .root-table {
-        position: relative;
-        width: 100%;
-        border: 1px solid #3333;
-    }
-    .table-content {
-        width: 100%;
-        overflow: auto;
-    }
-    .table-content-table {
-        width: 100%;
-        font-size: 16px;
-        border: #0a9;
-    }
-    .table-content-table th {
-        height: 50px;
-        width: 0%;
-        color: #6cb2ff;
-        text-align: left;
-        text-decoration: underline;
-        background: #eff7ff;
-        border-right: 1px solid #3333;
-        border-bottom: 1px solid #3333;
-        white-space: nowrap;
-        padding: 0 1em;
-    }
-    .table-content-table td {
-        height: 50px;
-        padding: 0;
-        background: white;
-        border-right: 1px solid #3333;
-        border-bottom: 1px solid #3333;
-        white-space: nowrap;
-    }
-    .table-content-table td.search {
-        background: #f9fada;
-    }
-    .table-content-table td.require {
-        background: #fffbe6;
-    }
-    .table-content-table .stickyLeft {
-        position: sticky;
-        left: 0;
-        z-index: 99;
-    }
-    .table-add {
-        width: 100%;
-        height: 50px;
-        line-height: 50px;
-        background: white;
-    }
-    .table-add p {
-        margin: 0 auto;
-        width: fit-content;
-        cursor: pointer;
-        color: #6cb2ff;
-        border-top: 1px solid #3333;
-    }
-    /* type == option */
-    .table-content-table th.option {
-        text-align: center;
-    }
-    .table-content-table td.option > * {
-        display: flex;
-        justify-content: center;
-        color: #6cb2ff;
-    }
-    :deep(.table-content-table td.option > * > span) {
-        margin: 0 5px;
-        white-space: nowrap;
-        cursor: pointer;
-    }
-    /* type == link */
-    .table-content-table td.link > * {
-        color: #6cb2ff;
-        cursor: pointer;
-    }
-    /* type == input */
-    .table-content-table td.input > * {
-        width: 100%;
-        height: 100%;
-        background: transparent;
-    }
-    /deep/ .table-content-table td.input > * .el-input__inner {
-        width: 100%;
-        height: 100%;
-        border: 1px #6cb2ff solid;
-        box-sizing: border-box;
-        background: transparent;
-        border-radius: 0;
-    }
-    /* type == select */
-    /deep/ .table-content-table td.select .el-input__inner {
-        width: 100%;
-        height: 50px;
-        line-height: 50px;
-        padding: 0;
-        border-radius: 0px;
-        border: 1px #6cb2ff solid;
-        box-sizing: border-box;
-        background: transparent;
-    }
-    /* type == date */
-    /deep/ .table-content-table td.date .el-input__inner {
-        /* width: ; */
-        height: 50px;
-        padding: 0;
-        text-indent: 1.5em;
-        border-radius: 0px;
-        border: 1px #6cb2ff solid;
-        box-sizing: border-box;
-        background: transparent;
-    }
-    /deep/ .table-content-table td.date .el-input__prefix {
-        left: 0;
-    }
-    /* type == text */
-    .table-content-table td.text {
-        text-indent: 1em;
-    }
+  .root-table {
+    position: relative;
+    width: 100%;
+    border: 1px solid #3333;
+  }
+  .table-content {
+    width: 100%;
+    overflow: auto;
+  }
+  .table-content-table {
+    width: 100%;
+    font-size: 16px;
+    border: #0a9;
+  }
+  .table-content-table th {
+    height: 50px;
+    width: 0%;
+    color: #6cb2ff;
+    text-align: left;
+    text-decoration: underline;
+    background: #eff7ff;
+    border-right: 1px solid #3333;
+    border-bottom: 1px solid #3333;
+    white-space: nowrap;
+    padding: 0 1em;
+  }
+  .table-content-table td {
+    height: 50px;
+    padding: 0;
+    background: white;
+    border-right: 1px solid #3333;
+    border-bottom: 1px solid #3333;
+    white-space: nowrap;
+  }
+  .table-content-table td.search {
+    background: #f9fada;
+  }
+  .table-content-table td.require {
+    background: #fffbe6;
+  }
+  .table-content-table .stickyLeft {
+    position: sticky;
+    left: 0;
+    z-index: 99;
+  }
+  .table-add {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: white;
+  }
+  .table-add p {
+    margin: 0 auto;
+    width: fit-content;
+    cursor: pointer;
+    color: #6cb2ff;
+    border-top: 1px solid #3333;
+  }
+  /* type == option */
+  .table-content-table th.option {
+    text-align: center;
+  }
+  .table-content-table td.option > * {
+    display: flex;
+    justify-content: center;
+    color: #6cb2ff;
+  }
+  :deep(.table-content-table td.option > * > span) {
+    margin: 0 5px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  /* type == link */
+  .table-content-table td.link > * {
+    color: #6cb2ff;
+    cursor: pointer;
+  }
+  /* type == input */
+  .table-content-table td.input > * {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+  /deep/ .table-content-table td.input > * .el-input__inner {
+    width: 100%;
+    height: 100%;
+    border: 1px #6cb2ff solid;
+    box-sizing: border-box;
+    background: transparent;
+    border-radius: 0;
+  }
+  /* type == select */
+  /deep/ .table-content-table td.select .el-input__inner {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    padding: 0;
+    border-radius: 0px;
+    border: 1px #6cb2ff solid;
+    box-sizing: border-box;
+    background: transparent;
+  }
+  /* type == date */
+  /deep/ .table-content-table td.date .el-input__inner {
+    /* width: ; */
+    height: 50px;
+    padding: 0;
+    text-indent: 1.5em;
+    border-radius: 0px;
+    border: 1px #6cb2ff solid;
+    box-sizing: border-box;
+    background: transparent;
+  }
+  /deep/ .table-content-table td.date .el-input__prefix {
+    left: 0;
+  }
+  /* type == text */
+  .table-content-table td.text {
+    text-indent: 1em;
+  }
 </style>
 ```
 
 ```html
 <!-- TableDome.vue -->
 <template>
-    <div class="tableDome-root">
-        <table :data="tableData" :config="tableConfig" :updateTime="updateTime" />
-    </div>
+  <div class="tableDome-root">
+    <table :data="tableData" :config="tableConfig" :updateTime="updateTime" />
+  </div>
 </template>
 
 <script>
-    import Table from '@/components/Table.vue';
+  import Table from '@/components/Table.vue';
 
-    export default {
-        components: { Table },
-        data: () => ({
-            updateTime: Date.now(),
-            tableData: {
-                ths: [
-                    {
-                        name: '输入框',
-                        edit: { type: 'input', require: true },
-                        events: {
-                            change(...ddd) {
-                                console.log(ddd, '输入框');
-                            },
-                        },
-                    },
-                    {
-                        name: '下拉框',
-                        showType: 'array-all',
-                        edit: {
-                            type: 'select',
-                            typeData: [
-                                {
-                                    value: 22,
-                                    tag: 222,
-                                    children: [
-                                        { value: 22, tag: 222 },
-                                        { value: 33, tag: 333 },
-                                    ],
-                                },
-                                { value: 33, tag: 333 },
-                            ],
-                        },
-                        events: {
-                            change(...ddd) {
-                                console.log(ddd, '下拉框');
-                            },
-                        },
-                    },
-                    { name: '单选框', type: 'checkbox', disabled: true, edit: { disabled: false } },
-                    { name: '日历', edit: { type: 'date' } },
-                    { name: '开关', type: 'switch', disabled: true, edit: { disabled: false } },
-                    { name: '附件' },
-                    { name: '操作', type: 'option', option: '|edit|delete', edit: { option: '|save|cancel' } },
-                ],
-                tds: [
-                    ['XX', '321321', true, '2024/6/2', true, '.doc', ''],
-                    ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
-                    ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
-                    ['XX', '321321', true, '2024/6/2', true, '.doc', ''],
-                    ['XX', '321321', false, '2023/6/2', true, '.doc', ''],
-                    ['XX', '321321', true, { value: '2023/6/2', disabled: false }, true, '.doc', ''],
-                    ['XX', '321321', false, '2023/6/2', true, '.doc', ''],
-                ],
+  export default {
+    components: { Table },
+    data: () => ({
+      updateTime: Date.now(),
+      tableData: {
+        ths: [
+          {
+            name: '输入框',
+            edit: { type: 'input', require: true },
+            events: {
+              change(...ddd) {
+                console.log(ddd, '输入框');
+              },
             },
-            tableConfig: {
-                addible: true,
-                search: 'ABC',
-                onSave(rowData, rowIndex, tdValues, vm) {
-                    console.log(rowData, rowIndex, tdValues, vm);
-                    if (rowIndex != 0) {
-                        vm.$message.warning('只可以对第一行数据进行保存');
-                        return false;
-                    }
-                    return true;
+          },
+          {
+            name: '下拉框',
+            showType: 'array-all',
+            edit: {
+              type: 'select',
+              typeData: [
+                {
+                  value: 22,
+                  tag: 222,
+                  children: [
+                    { value: 22, tag: 222 },
+                    { value: 33, tag: 333 },
+                  ],
                 },
-                getItemConfig(itemConfig, tdRow, rowIndex) {
-                    if (new Date(tdRow[3].value) > Date.now()) {
-                        itemConfig.disabled = true;
-                        itemConfig.edit = {
-                            ...itemConfig.edit,
-                            disabled: true,
-                        };
-                    }
-                },
+                { value: 33, tag: 333 },
+              ],
             },
-        }),
-    };
+            events: {
+              change(...ddd) {
+                console.log(ddd, '下拉框');
+              },
+            },
+          },
+          { name: '单选框', type: 'checkbox', disabled: true, edit: { disabled: false } },
+          { name: '日历', edit: { type: 'date' } },
+          { name: '开关', type: 'switch', disabled: true, edit: { disabled: false } },
+          { name: '附件' },
+          { name: '操作', type: 'option', option: '|edit|delete', edit: { option: '|save|cancel' } },
+        ],
+        tds: [
+          ['XX', '321321', true, '2024/6/2', true, '.doc', ''],
+          ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
+          ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
+          ['XX', '321321', true, '2024/6/2', true, '.doc', ''],
+          ['XX', '321321', false, '2023/6/2', true, '.doc', ''],
+          ['XX', '321321', true, { value: '2023/6/2', disabled: false }, true, '.doc', ''],
+          ['XX', '321321', false, '2023/6/2', true, '.doc', ''],
+        ],
+      },
+      tableConfig: {
+        addible: true,
+        search: 'ABC',
+        onSave(rowData, rowIndex, tdValues, vm) {
+          console.log(rowData, rowIndex, tdValues, vm);
+          if (rowIndex != 0) {
+            vm.$message.warning('只可以对第一行数据进行保存');
+            return false;
+          }
+          return true;
+        },
+        getItemConfig(itemConfig, tdRow, rowIndex) {
+          if (new Date(tdRow[3].value) > Date.now()) {
+            itemConfig.disabled = true;
+            itemConfig.edit = {
+              ...itemConfig.edit,
+              disabled: true,
+            };
+          }
+        },
+      },
+    }),
+  };
 </script>
 
 <style>
-    .tableDome-root {
-        width: 700px;
-        margin: 200px auto;
-    }
+  .tableDome-root {
+    width: 700px;
+    margin: 200px auto;
+  }
 </style>
 ```
