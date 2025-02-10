@@ -29,7 +29,8 @@ if (pageContent[`/docs/${fileName}.md`]) {
         text = text.trim();
         const [first, ...datas] = text.split('\n');
         const data = datas.join('\n');
-        const [componentName, ...paramStrings] = first.split(' ');
+        const [componentName0, ...paramStrings] = first.split(' ');
+        const componentName = componentName0.trim();
         const paramMatch = paramStrings.join(' ').match(/(\w+)\s*=\s*('[^']*'|"[^"]*"|[^\s]*)/g);
         const params = {};
         if (paramMatch) {

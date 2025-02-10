@@ -27,6 +27,10 @@ let currentFileName = '';
 let depthId = 0;
 const markTocMap = {};
 
+function renderHightlightCode(text, lang) {
+  return highlighter.codeToHtml(text, { theme, lang, transformers: [transformerColorizedBrackets()] });
+}
+
 marked.use({
   renderer: {
     heading({ tokens, depth }) {
@@ -55,18 +59,7 @@ marked.use({
         <div class="code-block-lang">${params.title || langAlias}</div>
         <div class="code-block-copy" onclick="__copyCode__(this)"></div>
         <div class="code-block-content">
-        ${highlighter.codeToHtml(text, {
-          theme,
-          lang: renderLang,
-          transformers: [transformerColorizedBrackets()],
-          // decorations: [
-          //   {
-          //     start: { line: 1, character: 0 },
-          //     end: { line: 1, character: 11 },
-          //     properties: { class: 'highlighted-word' },
-          //   },
-          // ],
-        })}
+        ${renderHightlightCode(text, renderLang)}
         </div>
       </div>`;
     },
@@ -79,7 +72,7 @@ function renderMark(text, fileName) {
   return marked(text);
 }
 
-export { markTocMap };
+export { markTocMap, renderHightlightCode };
 export default function (text, fileName) {
   return new Promise((resolve) => {
     if (highlighter !== null) {

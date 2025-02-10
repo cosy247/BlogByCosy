@@ -67,17 +67,17 @@ export default {
         isMultiple: true,
       },
     },
-    {
-      type: 'statistics',
-      name: '归档',
-      fontIcon: '&#xe69d;',
-      description: 'archive ∈ [1, N] · one;   one ∈ [0, 1] · archive',
-      statistics: {
-        pageName: 'archive',
-        frontName: 'archive',
-        isMultiple: false,
-      },
-    },
+    // {
+    //   type: 'statistics',
+    //   name: '归档',
+    //   fontIcon: '&#xe69d;',
+    //   description: 'archive ∈ [1, N] · one;   one ∈ [0, 1] · archive',
+    //   statistics: {
+    //     pageName: 'archive',
+    //     frontName: 'archive',
+    //     isMultiple: false,
+    //   },
+    // },
     {
       type: 'exhibit',
       name: '独立',
