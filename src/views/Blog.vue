@@ -117,10 +117,15 @@ const recommendations = pageMates
 // 点击目录定位到目标标题
 const mdView = ref(null);
 function goToDepth(id) {
-  const target = mdView.value.querySelector(`#${id}`);
+  let target = mdView.value.querySelector(`#${id}`);
   currentTocId.value = target.id;
   if (!target) return;
-  window.scrollTo({ top: target.offsetTop + 40, behavior: 'smooth' });
+  let top = -435;
+  while (target) {
+    top += target.offsetTop;
+    target = target.parentElement;
+  }
+  window.scrollTo({ top, behavior: 'smooth' });
 }
 
 // 目录当前显示节点
