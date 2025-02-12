@@ -111,6 +111,22 @@ css {
 
 :::
 
+:::Dome title=格子衬衫
+
+<div class="background"></div>
+
+<style>
+  .background {
+    height: 100px;
+    width: 100%;
+    filter: con;
+    background: linear-gradient(0deg, #9a78 50%, #0000 50%) 0px 0px/30px 30px,
+                linear-gradient(90deg, #9a78 50%, #0000 50%) 15px 15px/30px 30px;
+  }
+</style>
+
+:::
+
 :::Dome title=你好
 
 <div class="background"></div>
@@ -120,10 +136,10 @@ css {
     height: 100px;
     width: 100%;
     filter: con;
-    background: linear-gradient(#000 0, #a328 0) 10% 10%/40% 20% no-repeat,
-                linear-gradient(#000 0, #2e28 0) 90% 10%/30% 30% no-repeat,
+    background: linear-gradient(#0008 20%, #a328 0) 10% 10%/40% 20% no-repeat,
+                linear-gradient(#0008 20%, #2e28 0) 90% 10%/30% 30% no-repeat,
                 linear-gradient(#000 0, #22e8 0) 50% 50%/10% 70% no-repeat,
-                linear-gradient(#000 0, #2e28 0) 50% 100%/20% 10% no-repeat;
+                radial-gradient(#000 0, #2e28 0) 50% 100%/20% 10% no-repeat;
   }
 </style>
 
