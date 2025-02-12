@@ -2,7 +2,7 @@
 id: 1738920126938 # 文章id
 title: 使用 xlsx.js 轻松处理 Excel 数据 # 文章标题
 description: 使用 xlsx.js 轻松处理 Excel 数据 # 文章描述
-tags: JS # 文章标签
+tags: JS 前端 # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
 shadow: false # 是否隐藏

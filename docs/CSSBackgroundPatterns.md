@@ -2,7 +2,7 @@
 id: 1739258073953 # 文章id
 title: CSS 背景实现条纹，栅格，圆点等背景 # 文章标题
 description: CSS 背景实现条纹，栅格，圆点等背景 # 文章描述
-tags: CSS # 文章标签
+tags: CSS 前端 # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
 shadow: false # 是否隐藏

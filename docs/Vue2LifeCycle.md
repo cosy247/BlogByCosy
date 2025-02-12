@@ -3,7 +3,7 @@ id: 24091011454890
 date: 2024/09/10
 title: Vue2 生命周期
 description: Vue2 生命周期
-tags: Vue
+tags: Vue 前端
 archive:
 recommendations:
 shadow: false

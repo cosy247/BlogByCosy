@@ -2,7 +2,7 @@
 id: 2404159043318
 date: 2024/04/15
 title: CSS选择器优先级
-tags: CSS
+tags: CSS 前端
 archive:
 recommendations:
 description: CSS选择器优先级

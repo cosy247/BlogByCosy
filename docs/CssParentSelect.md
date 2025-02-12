@@ -2,7 +2,7 @@
 id: 6
 date: 2023/12/11
 title: CSS控制上级样式
-tags: CSS
+tags: CSS 前端
 archive:
 recommendations: 2404159043318
 description: CSS控制上级样式

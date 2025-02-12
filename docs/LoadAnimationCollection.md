@@ -2,7 +2,7 @@
 id: 1738983236754 # 文章id
 title: CSS 旋转加载动画 # 文章标题
 description: CSS 旋转加载动画 # 文章描述
-tags: CSS # 文章标签
+tags: CSS 前端 # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
 shadow: false # 是否隐藏
@@ -320,6 +320,3 @@ top: 0 # 是否zhi置顶，数字越大优先级越高
 </style>
 
 :::
-
-
-## 参考

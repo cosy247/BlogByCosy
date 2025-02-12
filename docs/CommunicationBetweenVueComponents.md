@@ -2,7 +2,7 @@
 id: 1726980130312 # 文章id
 title: Vue组件间通信 # 文章标题
 description: Vue组件间通信 # 文章描述
-tags: Vue # 文章标签
+tags: Vue 前端 # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
 shadow: false # 是否隐藏
