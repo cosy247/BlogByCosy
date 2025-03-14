@@ -13,3 +13,6 @@
 - npm install -s -d 的区别
 - js 数组操作
 - vscode 插件 webview
+- vscode 侧边栏文件编辑插件
+- vscode 侧边栏文件编辑插件
+- vscode 侧边栏 bongo 插件
