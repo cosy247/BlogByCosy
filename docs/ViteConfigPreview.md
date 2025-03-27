@@ -93,7 +93,7 @@ export default defineConfig({
 
 `server.host` 用于控制开发服务器的主机名。默认情况下绑定到 `localhost`，这意味着它只能在本地机器上访问。通过设置 `server.host` 可以允许从其他设备访问开发服务器，或者绑定到特定的 IP 地址。
 
-### 设置为 true
+#### 设置为 true
 
 让开发服务器绑定到所有网络接口，常常为了在同一局域网的其他设备能够访问。
 
@@ -107,7 +107,7 @@ export default defineConfig({
 
 ![alt text](assets/ViteConfigPreview/image.png)
 
-### 特定的 IP 地址
+#### 特定的 IP 地址
 
 如果你的开发环境有特定的网络配置，需要绑定到某个特定的 IP 地址，可以将 server.host 设置为该 IP 地址。
 

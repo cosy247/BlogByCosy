@@ -46,11 +46,11 @@ URL 可以分为两种，一种为 base64 拼接上类型的 DataURL 地址，�
 
 ```javascript
 function blobToArrayBuffer(blob) {
-    return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.readAsArrayBuffer(blob);
-    });
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.readAsArrayBuffer(blob);
+  });
 }
 ```
 
@@ -60,7 +60,7 @@ function blobToArrayBuffer(blob) {
 
 ```javascript
 function blobToFile(blob, fileName, type = '', lastModified = Date.now()) {
-    return new File(blob, fileName, { type, lastModified });
+  return new File(blob, fileName, { type, lastModified });
 }
 ```
 
@@ -68,11 +68,11 @@ function blobToFile(blob, fileName, type = '', lastModified = Date.now()) {
 
 ```javascript
 function blobToDataURL(blob) {
-    return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result);
-        reader.readAsDataURL(blob);
-    });
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(blob);
+  });
 }
 ```
 
@@ -82,17 +82,17 @@ function blobToDataURL(blob) {
 
 ```javascript
 function blobToBase64(blob) {
-    return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result.split(',')[1]);
-        reader.readAsDataURL(blob);
-    });
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result.split(',')[1]);
+    reader.readAsDataURL(blob);
+  });
 }
 // 使用 blobToDataURL
 function blobToBase64(blob) {
-    return new Promise((resolve) => {
-        blobToDataURL(blob).then((dataURL) => resolve(dataURL.split(',')[1]));
-    });
+  return new Promise((resolve) => {
+    blobToDataURL(blob).then((dataURL) => resolve(dataURL.split(',')[1]));
+  });
 }
 ```
 
@@ -100,7 +100,7 @@ function blobToBase64(blob) {
 
 ```javascript
 function blobToObjectURL(blob) {
-    return URL.createObjectURL(blob);
+  return URL.createObjectURL(blob);
 }
 ```
 
@@ -116,32 +116,32 @@ base64 只需要把 DataURL 的类型去掉即可
 
 ```javascript
 function fileToBlob(file) {
-    return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(new Blob([reader.result], { type: file.type }));
-        reader.readAsArrayBuffer(file);
-    });
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(new Blob([reader.result], { type: file.type }));
+    reader.readAsArrayBuffer(file);
+  });
 }
 function fileToArrayBuffer(file) {
-    return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.readAsArrayBuffer(file);
-    });
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.readAsArrayBuffer(file);
+  });
 }
 function fileToDataURL(file) {
-    return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.readAsDataURL(file);
-    });
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.readAsDataURL(file);
+  });
 }
 function fileToBase64(file) {
-    return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result.split(',')[1]);
-        reader.readAsDataURL(file);
-    });
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.readAsDataURL(file);
+  });
 }
 ```
 
@@ -149,7 +149,7 @@ function fileToBase64(file) {
 
 ```javascript
 function blobToObjectURL(blob) {
-    return URL.createObjectURL(blob);
+  return URL.createObjectURL(blob);
 }
 ```
 
@@ -163,10 +163,10 @@ ArrayBuffer 是没有指定类型的二进制缓存，所以在一些转换时�
 
 ```javascript
 function arrayBufferToBlob(arrayBuffer, type) {
-    return new Blob(arrayBuffer, { type });
+  return new Blob(arrayBuffer, { type });
 }
 function arrayBufferToFile(arrayBuffer, fileName, type = '', lastModified = Date.now()) {
-    return new File(arrayBuffer, fileName, { type, lastModified });
+  return new File(arrayBuffer, fileName, { type, lastModified });
 }
 ```
 
@@ -176,7 +176,7 @@ function arrayBufferToFile(arrayBuffer, fileName, type = '', lastModified = Date
 
 ```javascript
 function arrayBufferToBase64(arrayBuffer) {
-    return btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer)));
+  return btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer)));
 }
 ```
 
@@ -187,14 +187,14 @@ function arrayBufferToBase64(arrayBuffer) {
 
 ```javascript
 function arrayBufferToDataURL(arrayBuffer, type) {
-    return `data:${type};base64,${btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer)))}`;
+  return `data:${type};base64,${btoa(String.fromCharCode.apply(null, new Uint8Array(arrayBuffer)))}`;
 }
 function arrayBufferToDataURL(arrayBuffer, type) {
-    return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result);
-        reader.readAsDataURL(new Blob(arrayBuffer, { type }));
-    });
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(new Blob(arrayBuffer, { type }));
+  });
 }
 ```
 
@@ -204,7 +204,7 @@ function arrayBufferToDataURL(arrayBuffer, type) {
 
 ```javascript
 function arrayBufferToObjectURL(arrayBuffer, type) {
-    return URL.createObjectURL(new Blob(arrayBuffer, { type }));
+  return URL.createObjectURL(new Blob(arrayBuffer, { type }));
 }
 ```
 
@@ -214,7 +214,7 @@ function arrayBufferToObjectURL(arrayBuffer, type) {
 
 ```javascript
 function stringToArrayBuffer(text) {
-    return new TextEncoder().encode(text).buffer;
+  return new TextEncoder().encode(text).buffer;
 }
 ```
 
@@ -226,7 +226,7 @@ function stringToArrayBuffer(text) {
 
 ```javascript
 function stringToArrayBuffer(dataURL) {
-    return dataURL.split(',')[1];
+  return dataURL.split(',')[1];
 }
 ```
 
@@ -236,14 +236,14 @@ function stringToArrayBuffer(dataURL) {
 
 ```javascript
 function dataURLToArrayBuffer(dataURL) {
-    const base64 = dataURL.split(',')[1];
-    const binaryString = atob(base64);
-    const arrayBuffer = new ArrayBuffer(binaryString.length);
-    const uint8Array = new Uint8Array(arrayBuffer);
-    for (let i = 0; i < binaryString.length; i++) {
-        uint8Array[i] = binaryString.charCodeAt(i);
-    }
-    return arrayBuffer;
+  const base64 = dataURL.split(',')[1];
+  const binaryString = atob(base64);
+  const arrayBuffer = new ArrayBuffer(binaryString.length);
+  const uint8Array = new Uint8Array(arrayBuffer);
+  for (let i = 0; i < binaryString.length; i++) {
+    uint8Array[i] = binaryString.charCodeAt(i);
+  }
+  return arrayBuffer;
 }
 ```
 
@@ -255,20 +255,20 @@ function dataURLToArrayBuffer(dataURL) {
 
 ```javascript
 function base64ToUnit8Array(base64) {
-    const binaryString = atob(base64);
-    const uint8Array = new Uint8Array(binaryString.length);
-    for (let i = 0; i < binaryString.length; i++) {
-        uint8Array[i] = binaryString.charCodeAt(i);
-    }
-    return uint8Array;
+  const binaryString = atob(base64);
+  const uint8Array = new Uint8Array(binaryString.length);
+  for (let i = 0; i < binaryString.length; i++) {
+    uint8Array[i] = binaryString.charCodeAt(i);
+  }
+  return uint8Array;
 }
 function dataURLToBlob(dataURL) {
-    const [type, base64] = dataURL.split(',');
-    return new Blob([base64ToUnit8Array(base64)], { type });
+  const [type, base64] = dataURL.split(',');
+  return new Blob([base64ToUnit8Array(base64)], { type });
 }
 function dataURLToFile(dataURL, fileName) {
-    const [type, base64] = dataURL.split(',');
-    return new File([base64ToUnit8Array(base64)], fileName, { type });
+  const [type, base64] = dataURL.split(',');
+  return new File([base64ToUnit8Array(base64)], fileName, { type });
 }
 ```
 
@@ -278,18 +278,18 @@ function dataURLToFile(dataURL, fileName) {
 
 ```javascript
 function dataURLToObjectURL(dataURL) {
-    const [type, base64] = dataURL.split(',');
-    const binaryString = atob(base64);
-    const uint8Array = new Uint8Array(binaryString.length);
-    for (let i = 0; i < binaryString.length; i++) {
-        uint8Array[i] = binaryString.charCodeAt(i);
-    }
-    return URL.createObjectURL(new Blob([uint8Array], { type }));
+  const [type, base64] = dataURL.split(',');
+  const binaryString = atob(base64);
+  const uint8Array = new Uint8Array(binaryString.length);
+  for (let i = 0; i < binaryString.length; i++) {
+    uint8Array[i] = binaryString.charCodeAt(i);
+  }
+  return URL.createObjectURL(new Blob([uint8Array], { type }));
 }
 // 使用 dataURLToBlob
 function dataURLToObjectURL(dataURL) {
-    const type = dataURL.split(',')[0];
-    return URL.createObjectURL(dataURLToBlob(dataURL), { type });
+  const type = dataURL.split(',')[0];
+  return URL.createObjectURL(dataURLToBlob(dataURL), { type });
 }
 ```
 
@@ -302,23 +302,23 @@ function dataURLToObjectURL(dataURL) {
 ```javascript
 // function objectURLToBlob(objectURL, fileType) {
 function objectURLToFile(objectURL, fileName, fileType) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', objectURL, true);
-    xhr.responseType = 'blob';
-    return new Promise((resolve, reject) => {
-        xhr.onload = () => {
-            if (xhr.status === 200) {
-                const blob = xhr.response;
-                // resolve(blob);
-                const file = new File([blob], fileName, { type: fileType });
-                resolve(file);
-            } else {
-                reject(new Error('Failed to load the resource'));
-            }
-        };
-        xhr.onerror = () => reject(new Error('Network error'));
-        xhr.send();
-    });
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', objectURL, true);
+  xhr.responseType = 'blob';
+  return new Promise((resolve, reject) => {
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        const blob = xhr.response;
+        // resolve(blob);
+        const file = new File([blob], fileName, { type: fileType });
+        resolve(file);
+      } else {
+        reject(new Error('Failed to load the resource'));
+      }
+    };
+    xhr.onerror = () => reject(new Error('Network error'));
+    xhr.send();
+  });
 }
 ```
 
