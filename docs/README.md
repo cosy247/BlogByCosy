@@ -16,3 +16,5 @@
 - vscode 侧边栏文件编辑插件
 - vscode 侧边栏文件编辑插件
 - vscode 侧边栏 bongo 插件
+- Array.sort((a, b) => a.name.localeCompare(b.name, 'zh-CN'))
+- Object.fromEntries
