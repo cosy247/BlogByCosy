@@ -7,12 +7,12 @@
         <span class="cover-count">【{{ allPageList.length }}】</span>
       </p>
       <template v-else>
-      <div class="cover-title">
-        <div class="cover-logo" v-html="config.title"></div>
-        <span class="cover-count">【{{ allPageList.length }}】</span>
-      </div>
-      <p class="cover-dictum">{{ mottos[0] }}</p>
-      <p class="cover-dictum-2" v-for="motto in mottos.slice(1)">{{ motto }}</p>
+        <div class="cover-title">
+          <div class="cover-logo" v-html="config.title"></div>
+          <span class="cover-count">【{{ allPageList.length }}】</span>
+        </div>
+        <p class="cover-dictum">{{ mottos[0] }}</p>
+        <p class="cover-dictum-2" v-for="motto in mottos.slice(1)">{{ motto }}</p>
       </template>
       <div class="cover-links">
         <a v-for="item in config.links" class="cover-link" :href="item.url" target="_blank">
@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="list">
-    <a :href="`/docs/${item.file}`" class="list-item" v-for="item in currentPageList">
+    <a :href="`/docs/${item.file}`" class="list-item" v-for="item in allPageList">
       <p class="list-item-title">{{ item.attrs.title }}</p>
       <div class="list-item-infos">
         <p class="list-item-info">
@@ -43,8 +43,6 @@ import { ref, computed, nextTick } from 'vue';
 import config from '../../config';
 import { RouterLink, useRoute } from 'vue-router';
 import { watch } from 'vue';
-console.log(pageList);
-
 
 // 过滤文章列表
 const allPageList = ref([]);
@@ -84,18 +82,18 @@ window.addEventListener('scroll', () => {
 });
 
 // 当前需要显示的文章列表
-const pageSize = 10;
-const pageIndex = ref(1);
-const isAddingPageList = ref(false);
-const currentPageList = computed(() => allPageList.value.slice(0, pageSize * pageIndex.value));
-window.addEventListener('scroll', () => {
-  const { clientHeight, scrollTop, scrollHeight } = document.documentElement;
-  if (isAddingPageList.value || currentPageList.length === allPageList.value.length) return;
-  if (scrollHeight - clientHeight - scrollTop > 400) return;
-  isAddingPageList.value = true;
-  nextTick(() => (isAddingPageList.value = false));
-  pageIndex.value++;
-});
+// const pageSize = 10;
+// const pageIndex = ref(1);
+// const isAddingPageList = ref(false);
+// const currentPageList = computed(() => allPageList.value.slice(0, pageSize * pageIndex.value));
+// window.addEventListener('scroll', () => {
+//   const { clientHeight, scrollTop, scrollHeight } = document.documentElement;
+//   if (isAddingPageList.value || currentPageList.length === allPageList.value.length) return;
+//   if (scrollHeight - clientHeight - scrollTop > 400) return;
+//   isAddingPageList.value = true;
+//   nextTick(() => (isAddingPageList.value = false));
+//   pageIndex.value++;
+// });
 
 // const pageFilterType = computed(() => {
 //   return pageConfig.countMateNames.find((name) => route.query[name]) || '';
