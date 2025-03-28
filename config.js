@@ -33,6 +33,11 @@ export default {
       name: '邮箱',
       url: 'http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=al1aX1tTXlxdWSobG0QJBQc',
     },
+    {
+      fontIcon: '&#xe79d;',
+      name: 'npm',
+      url: 'https://www.npmjs.com/~cosy247',
+    },
   ],
   // 评论配置
   giscus: {
@@ -100,6 +105,12 @@ export default {
           name: 'PackOnePage',
           url: 'https://cosy247.top/alones/PackOnePage/index.html',
           imgIcon: 'https://cosy247.top/alones/PackOnePage/icon/icon.png',
+          describe: '将html网页的js和css打包成一个html文件。',
+        },
+        {
+          name: 'MarkdownInSider',
+          url: 'https://marketplace.visualstudio.com/items?itemName=cosy247.markdown-in-sider',
+          imgIcon: '/assets/images/MarkdownInSider.png',
           describe: '将html网页的js和css打包成一个html文件。',
         },
       ],
