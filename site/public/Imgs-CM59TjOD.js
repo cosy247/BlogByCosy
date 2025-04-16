@@ -1,2 +1,0 @@
-import{_,r as u,o as t,a as s,u as o,t as c,m as d,b as p,F as i,f as g}from"./index-coRuu0-r.js";const f={key:0,class:"imgs-title"},h={class:"imgs-main"},v=["src"],b={__name:"Imgs",props:["title","data"],setup(l){const e=l,a=e.title,r=u(e.data.split(`
-`).filter(n=>n.trim()));return(n,k)=>(t(),s(i,null,[o(a)?(t(),s("p",f,c(o(a))+" - "+c(r.value.length),1)):d("",!0),p("div",h,[(t(!0),s(i,null,g(r.value,m=>(t(),s("img",{class:"imgs-item",src:m},null,8,v))),256))])],64))}},B=_(b,[["__scopeId","data-v-ac6bd0b9"]]);export{B as default};
