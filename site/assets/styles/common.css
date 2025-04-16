@@ -1,0 +1,35 @@
+/* 在线链接服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
+@font-face {
+  font-family: 'iconfont'; /* Project id 4731437 */
+  src: url('//at.alicdn.com/t/c/font_4731437_ffovtu311z.woff2?t=1735544892381') format('woff2'),
+    url('//at.alicdn.com/t/c/font_4731437_ffovtu311z.woff?t=1735544892381') format('woff'),
+    url('//at.alicdn.com/t/c/font_4731437_ffovtu311z.ttf?t=1735544892381') format('truetype');
+}
+/* 在线链接服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
+@font-face {
+  font-family: 'iconfont'; /* Project id 4731437 */
+  src: url('//at.alicdn.com/t/c/font_4731437_syr2dpdx638.woff2?t=1743076658200') format('woff2'),
+    url('//at.alicdn.com/t/c/font_4731437_syr2dpdx638.woff?t=1743076658200') format('woff'),
+    url('//at.alicdn.com/t/c/font_4731437_syr2dpdx638.ttf?t=1743076658200') format('truetype');
+}
+
+.c-page-title {
+  display: flex;
+  align-items: center;
+  font-weight: 900;
+  color: transparent;
+  background: linear-gradient(90deg, #f00 0%, #00f 100%);
+  background-clip: text;
+}
+.c-page-title img {
+  height: 1em;
+}
+.cover-title {
+  font-weight: 900;
+  color: transparent;
+  background: linear-gradient(90deg, #f00 0%, #00f 100%);
+  background-clip: text;
+}
+.cover-count {
+  color: #00f;
+}
