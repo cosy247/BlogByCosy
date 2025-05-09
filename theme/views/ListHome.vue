@@ -43,6 +43,7 @@ import { ref, computed, nextTick } from 'vue';
 import config from '../../config';
 import { RouterLink, useRoute } from 'vue-router';
 import { watch } from 'vue';
+import { useData } from 'vitepress';
 
 // 过滤文章列表
 const allPageList = ref([]);

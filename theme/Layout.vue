@@ -1,13 +1,17 @@
 <template>
   <PageOuter />
-  <RouterView />
+  <!-- <RouterView /> -->
+  <MdView />
 </template>
 
 <script setup>
 import './styles/common.css';
 import PageOuter from './components/PageOuter.vue';
-import { RouterView } from 'vue-router';
+import MdView from './components/MdView.vue';
+import { useRouter } from 'vitepress';
 
+const route = useRouter();
+console.log(route.route.data);
 </script>
 
 <style scoped>

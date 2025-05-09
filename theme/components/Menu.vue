@@ -40,12 +40,12 @@
                 </div>
                 <!-- statistics -->
                 <div class="menu-content-list" v-if="menu.type === 'statistics'">
-                  <a
+                  <!-- <a
                     v-for="(item, key) in docsData.statistics[menu.statistics.frontName]"
                     class="menu-content-item"
                     :href="`/${menu.statistics.frontName}/${key}`">
                     {{ key }}({{ item }})
-                  </a>
+                  </a> -->
                 </div>
                 <!-- exhibit -->
                 <div class="menu-exhibit-list" v-else-if="menu.type === 'exhibit'">
@@ -102,9 +102,7 @@
               </span>
             </p>
             <div class="search-result-item-infos">
-              <p class="search-result-item-info" v-show="item.date">
-                &#xe6ad; {{ new Date(item.date).toLocaleDateString() }}
-              </p>
+              <p class="search-result-item-info" v-show="item.date">&#xe6ad; {{ new Date(item.date).toLocaleDateString() }}</p>
             </div>
           </a>
         </div>
@@ -121,11 +119,11 @@
 
 <script setup>
 import MdView from './MdView.vue';
-import docsData from '../../temp/docsData';
+// import docsData from '../../temp/docsData';
 import config from '../../config';
 import Icon from './Icon.vue';
 import { ref, nextTick } from 'vue';
-import { pageList } from '../../temp/docsData.json';
+// import { pageList } from '../../temp/docsData.json';
 import { RouterLink } from 'vue-router';
 
 const isShowSearch = ref(false);

@@ -2,12 +2,12 @@
   <div class="PageOuter">
     <div class="copyright">cosy247</div>
   </div>
-  <Menu />
+  <!-- <Menu /> -->
 </template>
 
 <script setup>
 // import { pageConfig } from '../utils/blogMate';
-import Menu from './Menu.vue';
+// import Menu from './Menu.vue';
 
 // if (pageConfig.outline === false && typeof window !== 'undefined') {
 //   const style = window.document.createElement('style');
