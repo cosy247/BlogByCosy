@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-infos">
+  <!-- <div class="blog-infos">
     <a :href="item.url" class="blog-info" v-for="item in statisAttrs">
       <span class="blog-info-text">{{ item.value }}</span>
       <Icon class="blog-info-icon" :icon="staticIconMap[item.name]" />
@@ -17,8 +17,8 @@
       <span class="blog-info-text">顶部</span>
       <span class="blog-info-icon">&#xe62b;</span>
     </div>
-  </div>
-  <div class="blog-toc">
+  </div> -->
+  <!-- <div class="blog-toc">
     <div
       class="blog-toc-item"
       v-for="item in toc"
@@ -26,137 +26,127 @@
       @click="goToDepth(item.id)">
       <p>{{ item.name }}</p>
     </div>
-  </div>
-  <div ref="mdView">
-    <MdView class="blog-mdView" :fileName="docsFile" @load="setToc" />
-  </div>
-  <template v-if="recommendations.length">
+  </div> -->
+  <!-- <div ref="mdView"> -->
+  <MdView class="blog-mdView" :fileName="docsFile" @load="setToc" />
+  <!-- </div> -->
+  <!-- <template v-if="recommendations.length">
     <div class="content-cubicle"></div>
     <p class="recom-title" ref="recom">✨相关推荐✨</p>
     <div class="recoms">
       <a :href="item.url" class="recom" v-for="(item, index) in recommendations" :key="index">✨ {{ item.attrs.title }}</a>
     </div>
-  </template>
-  <template v-if="config.giscus.repo && config.giscus.repoId">
-    <div class="content-cubicle"></div>
-    <p class="recom-title" ref="comment">🧐评论🧐</p>
-    <div class="blog-comment">
-      <div class="blog-comment-main">
-        <Giscus v-bind="config.giscus" />
-      </div>
-    </div>
-  </template>
-  <div class="bottom"></div>
+  </template> -->
 </template>
 
 <script setup>
 import MdView from '../components/MdView.vue';
-import Icon from '../components/Icon.vue';
-import { ref, computed } from 'vue';
-import config from '../../config';
-import { useRoute } from 'vue-router';
-import { pageList } from '../../temp/docsData.json';
-import { getPageMateById } from '../utils/getPage';
-import Giscus from '@giscus/vue';
-import { markTocMap } from '../utils/renderMark';
+// import Icon from '../components/Icon.vue';
+// import { ref, computed } from 'vue';
+// import config from '../../config';
+// import { useRoute } from 'vue-router';
+// import { pageList } from '../../temp/docsData.json';
+// import { getPageMateById } from '../utils/getPage';
+// import Giscus from '@giscus/vue';
+// import { markTocMap } from '../utils/renderMark';
 
-const route = useRoute();
+// const route = useRoute();
 
 // 当前文章名
-const docsFile = computed(() => route.params.file);
+// const docsFile = computed(() => route.params.file);
 
 /** 目录 */
-const toc = ref([]);
-function setToc() {
-  toc.value = markTocMap[docsFile.value];
-  currentTocId.value = toc.value[1]?.id;
-}
+// const toc = ref([]);
+// function setToc() {
+// toc.value = markTocMap[docsFile.value];
+// currentTocId.value = toc.value[1]?.id;
+// }
 
 // 当前文章的设置的属性
-const pageMates = pageList.find((p) => p.file === route.params.file);
-if (pageMates) {
-  document.title = pageMates.attrs.title;
-}
+// const pageMates = pageList.find((p) => p.file === route.params.file);
+// if (pageMates) {
+//   document.title = pageMates.attrs.title;
+// }
 
 // 当前文章的统计属性
-const statisAttrs = ref([]);
-const staticIconMap = ref({});
-const staticMenus = config.menus.filter((m) => m.type === 'statistics');
-if (pageMates) {
-  staticMenus.forEach((s) => {
-    const name = s.statistics.frontName;
-    staticIconMap.value[name] = s;
-    if (Array.isArray(pageMates.attrs[name])) {
-      pageMates.attrs[name].forEach((value) => {
-        statisAttrs.value.push({
-          name,
-          value,
-          url: `/${name}/${value}`,
-        });
-      });
-    } else if (pageMates.attrs[name]) {
-      statisAttrs.value.push({
-        name,
-        value: pageMates.attrs[name],
-        url: `/${name}/${pageMates.attrs[name]}`,
-      });
-    }
-  });
-}
+// const statisAttrs = ref([]);
+// const staticIconMap = ref({});
+// const staticMenus = config.menus.filter((m) => m.type === 'statistics');
+// if (pageMates) {
+//   staticMenus.forEach((s) => {
+//     const name = s.statistics.frontName;
+//     staticIconMap.value[name] = s;
+//     if (Array.isArray(pageMates.attrs[name])) {
+//       pageMates.attrs[name].forEach((value) => {
+//         statisAttrs.value.push({
+//           name,
+//           value,
+//           url: `/${name}/${value}`,
+//         });
+//       });
+//     } else if (pageMates.attrs[name]) {
+//       statisAttrs.value.push({
+//         name,
+//         value: pageMates.attrs[name],
+//         url: `/${name}/${pageMates.attrs[name]}`,
+//       });
+//     }
+//   });
+// }
 
 // 推荐的文章
-const recommendations = pageMates
-  ? pageMates.attrs.recommendations
-      .map((d) => getPageMateById(d))
-      .map((d) => ({
-        url: `/docs/${d.file}`,
-        ...d,
-      }))
-  : [];
+// const recommendations = pageMates
+//   ? pageMates.attrs.recommendations
+//       .map((d) => getPageMateById(d))
+//       .map((d) => ({
+//         url: `/docs/${d.file}`,
+//         ...d,
+//       }))
+//   : [];
 
 // 点击目录定位到目标标题
-const mdView = ref(null);
-function goToDepth(id) {
-  let target = mdView.value.querySelector(`#${id}`);
-  currentTocId.value = target.id;
-  if (!target) return;
-  let top = -435;
-  while (target) {
-    top += target.offsetTop;
-    target = target.parentElement;
-  }
-  window.scrollTo({ top, behavior: 'smooth' });
-}
+// const mdView = ref(null);
+// function goToDepth(id) {
+//   let target = mdView.value.querySelector(`#${id}`);
+//   currentTocId.value = target.id;
+//   if (!target) return;
+//   let top = -435;
+//   while (target) {
+//     top += target.offsetTop;
+//     target = target.parentElement;
+//   }
+//   window.scrollTo({ top, behavior: 'smooth' });
+// }
 
 // 目录当前显示节点
-const currentTocId = ref('');
-let mdHeads = [];
-let tocTimeout = null;
-window.addEventListener('scroll', () => {
-  if (!mdHeads.length) {
-    mdHeads = [...mdView.value.querySelectorAll(`.mdContent > h2, .mdContent > h3`)];
-  }
-  tocTimeout && clearTimeout(tocTimeout);
-  tocTimeout = setTimeout(() => {
-    const target = mdHeads.filter((m) => m.getBoundingClientRect().top < 200).pop() || mdHeads[0];
-    if (!target) return;
-    currentTocId.value = target.id;
-  }, 200);
-});
+// const currentTocId = ref('');
+// let mdHeads = [];
+// let tocTimeout = null;
+// window.addEventListener('scroll', () => {
+//   if (!mdHeads.length) {
+//     mdHeads = [...mdView.value.querySelectorAll(`.mdContent > h2, .mdContent > h3`)];
+//   }
+//   tocTimeout && clearTimeout(tocTimeout);
+//   tocTimeout = setTimeout(() => {
+//     const target = mdHeads.filter((m) => m.getBoundingClientRect().top < 200).pop() || mdHeads[0];
+//     if (!target) return;
+//     currentTocId.value = target.id;
+//   }, 200);
+// });
 
-function gotoTop() {
-  window.document.documentElement.scrollTop = 0;
-}
+// function gotoTop() {
+//   window.document.documentElement.scrollTop = 0;
+// }
 
-const recom = ref(null);
-function gotoRecom() {
-  window.document.documentElement.scrollTop = recom.value.offsetTop - 100;
-}
+// const recom = ref(null);
+// function gotoRecom() {
+//   window.document.documentElement.scrollTop = recom.value.offsetTop - 100;
+// }
 
-const comment = ref(null);
-function gotoComment() {
-  window.document.documentElement.scrollTop = comment.value.offsetTop - 100;
-}
+// const comment = ref(null);
+// function gotoComment() {
+//   window.document.documentElement.scrollTop = comment.value.offsetTop - 100;
+// }
 </script>
 
 <style scoped>

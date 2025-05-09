@@ -1,15 +1,15 @@
 <template>
   <div class="cover">
     <div class="cover-content" :style="{ paddingTop: 37 * firstPageProportion + '%' }">
-      <p class="cover-title" v-if="isStaticPage">
-        {{ route.params.name }}
-        <span class="cover-title-value">.{{ route.params.value }}</span>
-        <span class="cover-count">【{{ allPageList.length }}】</span>
+      <p class="cover-title" v-if="filter">
+        {{ filter.type }}
+        <span class="cover-title-value">.{{ filter.value }}</span>
+        <span class="cover-count">【{{ filterPosts.length }}】</span>
       </p>
       <template v-else>
         <div class="cover-title">
           <div class="cover-logo" v-html="config.title"></div>
-          <span class="cover-count">【{{ allPageList.length }}】</span>
+          <span class="cover-count">【{{ filterPosts.length }}】</span>
         </div>
         <p class="cover-dictum">{{ mottos[0] }}</p>
         <p class="cover-dictum-2" v-for="motto in mottos.slice(1)">{{ motto }}</p>
@@ -23,12 +23,12 @@
     </div>
   </div>
   <div class="list">
-    <a :href="`/docs/${item.file}`" class="list-item" v-for="item in allPageList">
-      <p class="list-item-title">{{ item.attrs.title }}</p>
+    <a :href="item.url" class="list-item" v-for="item in filterPosts">
+      <p class="list-item-title">{{ item.frontmatter.title }}</p>
       <div class="list-item-infos">
         <p class="list-item-info">
           &#xe6ad;
-          {{ new Date(item.date).toLocaleDateString() }}
+          {{ item.frontmatter.date }}
         </p>
       </div>
     </a>
@@ -37,38 +37,74 @@
 </template>
 
 <script setup>
-import { pageList, statistics } from '../../temp/docsData.json';
 import Icon from '../components/Icon.vue';
 import { ref, computed, nextTick } from 'vue';
 import config from '../../config';
-import { RouterLink, useRoute } from 'vue-router';
 import { watch } from 'vue';
-import { useData } from 'vitepress';
+import { data as postsData } from '../data/posts.data';
+
+console.log(postsData);
+
+const filter = computed(() => {
+  const params = new URL(window.location.href).searchParams;
+  const classifys = config.menus.filter((m) => m.type === 'classify');
+  for (const classify of classifys) {
+    const classifyName = classify.classify.name;
+    if (params.get(classifyName)) {
+      return { type: classifyName, value: params.get(classifyName), multiple: classify.classify.multiple };
+    }
+  }
+});
+
+const filterPosts = computed(() => {
+  if (!filter.value) return postsData;
+  console.log(filter.value.multiple);
+
+  if (filter.value.multiple) {
+    return postsData.filter((p) => {
+      console.log(p, filter.value.type);
+      return p.frontmatter[filter.value.type]?.includes(filter.value.value);
+    });
+  } else {
+    return postsData.filter((p) => (p.frontmatter[filter.value.type] = filter.value.value));
+  }
+});
+
+// 示例：修改URL并添加参数
+// function addTagParameter(tagValue) {
+//   const url = new URL(window.location.href);
+//   url.searchParams.set('tag', tagValue);
+//   history.pushState({}, '', url.href);
+//   console.log('URL updated to:', url.href);
+// }
+
+// // 调用函数，添加参数
+// addTagParameter('123');
 
 // 过滤文章列表
-const allPageList = ref([]);
-const route = useRoute();
-const isStaticPage = ref(false);
-watch(
-  () => [route.params.name, route.params.value],
-  ([name, value]) => {
-    isStaticPage.value = name && value;
-    if (isStaticPage.value && statistics[name]) {
-      allPageList.value = pageList.filter((page) => {
-        if (Array.isArray(page.attrs[name])) {
-          return page.attrs[name].some((val) => {
-            return val.toLowerCase() === value.toLowerCase();
-          });
-        } else {
-          return page.attrs[name]?.toLowerCase() === value.toLowerCase();
-        }
-      });
-    } else {
-      allPageList.value = pageList;
-    }
-  },
-  { immediate: true }
-);
+// const allPageList = ref([]);
+// const route = useRoute();
+// const isStaticPage = ref(false);
+// watch(
+//   () => [route.params.name, route.params.value],
+//   ([name, value]) => {
+//     isStaticPage.value = name && value;
+//     if (isStaticPage.value && statistics[name]) {
+//       allPageList.value = pageList.filter((page) => {
+//         if (Array.isArray(page.attrs[name])) {
+//           return page.attrs[name].some((val) => {
+//             return val.toLowerCase() === value.toLowerCase();
+//           });
+//         } else {
+//           return page.attrs[name]?.toLowerCase() === value.toLowerCase();
+//         }
+//       });
+//     } else {
+//       allPageList.value = pageList;
+//     }
+//   },
+//   { immediate: true }
+// );
 
 // 座右铭
 const mottos = config.mottos[(Math.random() * config.mottos.length) >> 0];

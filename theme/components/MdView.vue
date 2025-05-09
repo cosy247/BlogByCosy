@@ -5,12 +5,12 @@
       <div v-else class="mdContent" v-html="item"></div>
     </template>
   </div> -->
-  <Content />
+  <Content class="mdContent" />
 </template>
 
 <script setup>
 import { Content } from 'vitepress';
-// import '../styles/md.css';
+import '../styles/md.css';
 // import { defineAsyncComponent, ref, shallowRef } from 'vue';
 // import pageContent from '../utils/pageContent';
 // import renderMark from '../utils/renderMark.js';

@@ -1,17 +1,26 @@
 <template>
   <PageOuter />
-  <!-- <RouterView /> -->
-  <MdView />
+  <asyncComponent v-if="asyncComponent" />
 </template>
 
 <script setup>
 import './styles/common.css';
 import PageOuter from './components/PageOuter.vue';
-import MdView from './components/MdView.vue';
-import { useRouter } from 'vitepress';
+import { useRoute } from 'vitepress';
+import { computed, defineAsyncComponent } from 'vue';
 
-const route = useRouter();
-console.log(route.route.data);
+const route = useRoute();
+const asyncComponent = computed(() => {
+  let componentName = 'Blog';
+  if (!route.component) {
+    componentName = 'NotFound';
+  } else if (route.path === '/') {
+    componentName = 'ListHome';
+  }
+  return defineAsyncComponent({
+    loader: () => import(`./views/${componentName}.vue`),
+  });
+});
 </script>
 
 <style scoped>
