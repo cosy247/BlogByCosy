@@ -5,3 +5,4 @@ _docs
 temp
 dist
 BlogByCosy
+.vitepress/cache

@@ -13,6 +13,9 @@ export default {
   similarRecommendNumber: 5,
   // 全局组件目录
   componentDir: '/components',
+
+  heads: [],
+
   // 首页座右铭
   mottos: [
     [
@@ -39,48 +42,29 @@ export default {
       url: 'https://www.npmjs.com/~cosy247',
     },
   ],
-  // 评论配置
-  giscus: {
-    src: 'https://giscus.app/client.js',
-    repo: 'cosy247/BlogByCosy',
-    repoId: 'R_kgDOJI48fw',
-    category: 'Announcements',
-    categoryId: 'DIC_kwDOJI48f84Ceg84',
-    mapping: 'url',
-    strict: '0',
-    reactionsEnabled: '1',
-    emitMetadata: '0',
-    inputPosition: 'top',
-    theme: 'preferred_color_scheme',
-    lang: 'zh-CN',
-    crossorigin: 'anonymous',
-    // async: true,
-  },
   // 页面顶部的菜单设置
   menus: [
     {
-      type: 'statistics',
+      type: 'classify',
       name: '标签',
       fontIcon: '&#xe617;',
       description: 'tag ∈ [1, N] · one;   one ∈ [0, 5] · tag',
-      statistics: {
-        /** 页面显示名称 */
-        pageName: 'tag',
-        /** 文章统计名称 */
-        frontName: 'tags',
+      classify: {
+        /** 统计名称 */
+        name: 'tag',
         /** 是否为多选属性 */
-        isMultiple: true,
+        multiple: true,
       },
     },
     // {
-    //   type: 'statistics',
+    //   type: 'classify',
     //   name: '归档',
     //   fontIcon: '&#xe69d;',
     //   description: 'archive ∈ [1, N] · one;   one ∈ [0, 1] · archive',
-    //   statistics: {
+    //   classify: {
     //     pageName: 'archive',
     //     frontName: 'archive',
-    //     isMultiple: false,
+    //     multiple: false,
     //   },
     // },
     {
