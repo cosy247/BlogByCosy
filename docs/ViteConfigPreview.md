@@ -3,7 +3,7 @@ id: 1743063234403 # 文章id
 date: 2025/03/27 17:36
 title: Vite 配置一览 # 文章标题
 description: Vite 配置一览 # 文章描述
-tags: 前端 Vite # 文章标签
+tag: 前端 Vite # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
 shadow: false # 是否隐藏

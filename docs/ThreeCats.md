@@ -3,7 +3,7 @@ id: 1728717175995 # 文章id
 date: 2024/10/12 16:15
 title: 三小只 # 文章标题
 description: 养的三只猫猫：布丁，雪糕，多多 # 文章描述
-tags: 图集 # 文章标签
+tag: 图集 # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
 shadow: false # 是否隐藏

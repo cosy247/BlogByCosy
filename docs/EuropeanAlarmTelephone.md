@@ -3,7 +3,7 @@ id: 2408152534182
 date: 2024/08/26 23:00
 title: 欧洲各个国家的报警电话
 description: 欧洲各个国家的报警电话
-tags: 随笔
+tag: 随笔
 archive:
 recommendations:
 shadow: false

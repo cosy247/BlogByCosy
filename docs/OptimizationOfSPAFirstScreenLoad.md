@@ -3,7 +3,7 @@ id: 24090418282446
 date: 2024/09/10 11:19
 title: SPA 首屏加载优化
 description: SPA 首屏加载优化
-tags: 前端
+tag: 前端
 archive:
 recommendations:
 shadow: false

@@ -2,7 +2,7 @@
 id: 240409103645
 date: 2024/04/09 14:48
 title: Vscode 免密连接远程服务器
-tags: Vscode使用
+tag: Vscode使用
 archive:
 description: Vscode 免密连接远程服务器
 ---

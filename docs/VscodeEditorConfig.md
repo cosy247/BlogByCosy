@@ -2,7 +2,7 @@
 id: 21
 date: 2023/12/04 10:26
 title: 格式化配置文件 editorConfig 属性说明
-tags: Vscode使用
+tag: Vscode使用
 description: Vscode 格式化配置文件 editorConfig 属性说明
 ---
 

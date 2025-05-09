@@ -3,7 +3,7 @@ id: 1744076519411 # 文章id
 date: 2025/04/16 16:04
 title: Js 控制 Input 只可以输入数字、字母或正则匹配 # 文章标题
 description: Js 控制 Input 只可以输入数字、字母或正则匹配 # 文章描述
-tags: JS,Vue # 文章标签
+tag: JS,Vue # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
 shadow: false # 是否隐藏

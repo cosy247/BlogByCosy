@@ -2,7 +2,7 @@
 id: 15
 date: 2023/08/29 17:16
 title: md文档转pdf
-tags: 随笔
+tag: 随笔
 archive:
 recommendations:
 description: md文档转pdf

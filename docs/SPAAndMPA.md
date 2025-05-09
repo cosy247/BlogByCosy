@@ -3,7 +3,7 @@ id: 1726933540924 # 文章id
 date: 2024/09/21 23:48
 title: SPA (单页面应用)和 MPA (多页面应用) # 文章标题
 description: SPA (单页面应用)和 MPA (多页面应用) # 文章描述
-tags: 前端 # 文章标签
+tag: 前端 # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
 shadow: false # 是否隐藏

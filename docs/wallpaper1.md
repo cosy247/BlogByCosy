@@ -3,7 +3,7 @@ id: 1731047648003 # 文章id
 date: 2024/11/08 17:03
 title: 壁纸集合1 # 文章标题
 description: 壁纸集合1 # 文章描述
-tags: 图集 # 文章标签
+tag: 图集 # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
 shadow: n # 是否隐藏

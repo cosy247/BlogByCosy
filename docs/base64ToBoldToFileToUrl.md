@@ -2,7 +2,7 @@
 id: 2
 date: 2024/01/16 15:56
 title: JS实现Blob、File、ArrayBuffer、base64、URL之间互转
-tags: JS 前端
+tag: JS 前端
 description: JS实现Blob、File、ArrayBuffer、base64、URL之间互转
 ---
 

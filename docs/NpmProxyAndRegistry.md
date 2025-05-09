@@ -3,7 +3,7 @@ id: 1729751422783 # 文章id
 date: 2024/10/24 14:57
 title: NPM 代理与镜像配置 # 文章标题
 description: NPM 代理与镜像配置 # 文章描述
-tags: NPM # 文章标签
+tag: NPM # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
 shadow: false # 是否隐藏

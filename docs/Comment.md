@@ -3,7 +3,7 @@ id: 1735545004534 # 文章id
 date: 2024/12/30 16:30
 title: 留言 # 文章标题
 description: 留言 # 文章描述
-tags: # 文章标签
+tag: # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
 shadow: true # 是否隐藏

@@ -2,7 +2,7 @@
 id: 4
 date: 2023/08/14 17:35
 title: 可配置的表格Vue组件
-tags: Vue 前端
+tag: Vue 前端
 description: 可配置的表格Vue组件
 ---
 
