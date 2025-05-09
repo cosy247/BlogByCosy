@@ -1,6 +1,6 @@
 ---
 id: 24090418282446
-date: 2024/09/04
+date: 2024/09/10 11:19
 title: SPA 首屏加载优化
 description: SPA 首屏加载优化
 tags: 前端
@@ -130,7 +130,7 @@ location dist/ {
 ```js title='webpack.config.js'
 module.exports = {
   // ...
-  mode: "production",
+  mode: 'production',
 };
 ```
 
@@ -189,9 +189,9 @@ var Button$1 = /*#__PURE__*/ withAppProvider()(Button);
 **全量引入：** 指的是将一个库或框架的所有功能全部引入到项目中，不论实际使用了多少。这种方式简单方便，但会导致最终打包的文件体积较大，增加加载时间。
 
 ```js title='main.js'
-import Vue from "vue";
-import ElementUI from "element-ui"; // 全量引入了 ElementUI 组件库
-import "element-ui/lib/theme-chalk/index.css";
+import Vue from 'vue';
+import ElementUI from 'element-ui'; // 全量引入了 ElementUI 组件库
+import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(ElementUI);
 ```
@@ -199,9 +199,9 @@ Vue.use(ElementUI);
 **按需引入：** 指的是只引入项目中实际用到的模块或组件，这样可以显著减少打包体积，加快加载速度。
 
 ```js title='main.js'
-import Vue from "vue";
-import { Button, Select } from "element-ui"; // 按需引入 Button 和 Select 组件
-import "element-ui/lib/theme-chalk/index.css";
+import Vue from 'vue';
+import { Button, Select } from 'element-ui'; // 按需引入 Button 和 Select 组件
+import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(Button);
 Vue.use(Select);
@@ -214,15 +214,15 @@ Vue.use(Select);
 正常使用 import 引入模块位于文件顶层，无论是否真正使用到都会加载。如下：
 
 ```js
-import data from "./data.js";
-import { getDate } from "./tools.js";
+import data from './data.js';
+import { getDate } from './tools.js';
 ```
 
 使用 import() 表达式动态引入数据（在用户登录状态下引入 data 数据）：
 
 ```js
 if (user.isLogin) {
-  import("./data.js").then((module) => {
+  import('./data.js').then((module) => {
     // ...
   });
 } else {
@@ -243,7 +243,7 @@ module.exports = {
   //...
   optimization: {
     splitChunks: {
-      chunks: "async", // all，async，initial或函数。
+      chunks: 'async', // all，async，initial或函数。
       minSize: 20000, // 生成 chunk 的最小体积（以 bytes 为单位）。
       minRemainingSize: 0, // 确保拆分后剩余的最小 chunk 体积超过限制来避免大小为零的模块。
       minChunks: 1, // 拆分前必须共享模块的最小 chunks 数。
@@ -310,10 +310,10 @@ module.exports = {
       {
         test: /\.(png|jpg|jpeg|gif)$/,
         use: {
-          loader: "url-loader",
+          loader: 'url-loader',
           options: {
             limit: 5 * 1024, // 小于 5kb 的图片用 base64 格式产出
-            outputPath: "/img1/",
+            outputPath: '/img1/',
           },
         },
       },
@@ -361,16 +361,16 @@ sequenceDiagram
 在 webpack 中添加 gzip 相关配置可在打包时自动生成 gzip 压缩包（后缀名为 `.zp`），需要添加 [compression-webpack-plugin](https://www.npmjs.com/package/compression-webpack-plugin) 包。
 
 ```js title='webpack.config.js'
-const CompressionPlugin = require("compression-webpack-plugin");
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   // ...
   plugins: [
     new CompressionPlugin({
       // filename: "[path][base].gz", // 这种方式是默认的，多个文件压缩就有多个.gz文件，建议使用下方的写法
-      filename: "[path].gz[query]", //  使得多个.gz文件合并成一个文件，这种方式压缩后的文件少，建议使用
+      filename: '[path].gz[query]', //  使得多个.gz文件合并成一个文件，这种方式压缩后的文件少，建议使用
       test: /\.(js|css|html|svg)$/, // 匹配需要进行Gzip压缩的文件类型
-      algorithm: "gzip", // 压缩类型
+      algorithm: 'gzip', // 压缩类型
       threshold: 10240, // 只有文件大小大于等于该值时才会生成Gzip文件
       minRatio: 0.8, // 最小压缩比率
       deleteOriginalAssets: false, //是否删除源文件

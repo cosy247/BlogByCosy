@@ -1,6 +1,6 @@
 ---
 id: 4
-date: 2023/10/21
+date: 2023/08/14 17:35
 title: 可配置的表格Vue组件
 tags: Vue 前端
 description: 可配置的表格Vue组件
@@ -35,14 +35,7 @@ description: 可配置的表格Vue组件
 <script>
   export default {
     data: () => ({
-      ths: [
-        { name: '输入框' },
-        { name: '下拉框' },
-        { name: '单选框' },
-        { name: '日历' },
-        { name: '开关' },
-        { name: '附件' },
-      ],
+      ths: [{ name: '输入框' }, { name: '下拉框' }, { name: '单选框' }, { name: '日历' }, { name: '开关' }, { name: '附件' }],
       tds: [
         ['XX', '321321', true, '2023/6/2', true, '.doc', ''],
         ['XX', '321321', true, '2023/6/2', true, '.doc', ''],

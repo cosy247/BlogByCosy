@@ -1,5 +1,6 @@
 ---
 id: 1737444286721 # 文章id
+date: 2025/01/22 11:02
 title: Vite 模式与环境变量 # 文章标题
 description: Vite 模式与环境变量 # 文章描述
 tags: Vite 前端 # 文章标签

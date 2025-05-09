@@ -1,6 +1,6 @@
 ---
 id: 240409103645
-date: 2024/04/09
+date: 2024/04/09 14:48
 title: Vscode 免密连接远程服务器
 tags: Vscode使用
 archive:
@@ -58,7 +58,7 @@ The key's randomart image is:
 
 连接远程服务器，这里使用 Vscode，也可以使用其他方式（如 XSheel，服务器浏览器连接等）。
 
-在Vscode中安装插件`Remote-SSH`，安装完成后在`远程资源管理`中打开配置文件。
+在 Vscode 中安装插件`Remote-SSH`，安装完成后在`远程资源管理`中打开配置文件。
 
 ![alt text](assets/VsSecretFreeSsh/image-1.png)
 
@@ -111,8 +111,10 @@ Host cosy
 在需要给服务器配置多个公钥方便多台电脑连接时，可以把私钥同步，也可以在服务器上存放多个公钥。
 
 需要在服务器上存放多个公钥时直接在`/root/.ssh/authorized_keys`文件中换行追加即可。
+
 ```
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDbKInL/8zpkQBhGjKWw2/+DRDuTEedCQztlh50aM3LBYc/7ze3aWLwQPLZ/pqx8sM+Ur7g9Z7Vl4qJi56ViWeUdXfc9TCcDl88PlN8g0mJ67d8FLh8M...
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCzOMdL352fvFVpHKt5yFxxYtxWZnVDnghMFT8PB1DE8AMjUrz3BWuyCWPrVQEg5lftA1KOUsnJqBRNcVoi1yWVfSSW2CXLTbY7bjpKDhQ9iLlc8LtNj...
 ```
+
 这样只要使用其中任意一个对应的私钥都可以进行免密连接。

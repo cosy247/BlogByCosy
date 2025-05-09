@@ -1,5 +1,6 @@
 ---
 id: 1731315591091 # 文章id
+date: 2024/11/11 18:00
 title: 项目的一些说明文件 # 文章标题
 description: 项目的一些说明文件 README.md CHANGELOG.md CODE_OF_CONDUCT.md CONTRIBUTING.md LICENSE.md SECURITY.md # 文章描述
 tags: 随笔 # 文章标签
@@ -13,11 +14,11 @@ top: 0 # 是否zhi置顶，数字越大优先级越高
 
 在项目中，除了核心代码之外，还应包含一些关键的项目文档。其中，README 文件是必不可少的，它提供了项目的基本信息和使用指南。除此之外，根据项目的需要，我们还可以添加以下文件：
 
--   **CHANGELOG.md**：记录项目更新和变更的历史。
--   **CODE_OF_CONDUCT.md**：明确项目参与者应遵守的行为准则。
--   **CONTRIBUTING.md**：指导外部贡献者如何为项目做出贡献。
--   **LICENSE.md**：声明项目使用的许可证类型，确保法律合规性。
--   **SECURITY.md**：提供项目安全相关的信息和指导。
+- **CHANGELOG.md**：记录项目更新和变更的历史。
+- **CODE_OF_CONDUCT.md**：明确项目参与者应遵守的行为准则。
+- **CONTRIBUTING.md**：指导外部贡献者如何为项目做出贡献。
+- **LICENSE.md**：声明项目使用的许可证类型，确保法律合规性。
+- **SECURITY.md**：提供项目安全相关的信息和指导。
 
 这些文件有助于维护项目的透明度和可维护性，同时也为项目参与者和用户提供了必要的参考信息。
 
@@ -67,26 +68,26 @@ README 文件应该清晰、简洁，并且易于理解，以便新用户和开�
 
 ## v0.0.5
 
--   配置更新后筛选问题。
--   添加第一次安装会先配置背景一次，如果有相关配置。
+- 配置更新后筛选问题。
+- 添加第一次安装会先配置背景一次，如果有相关配置。
 
 ## v0.0.4
 
--   解决一些 bug。
--   添加可视化配置页面。
+- 解决一些 bug。
+- 添加可视化配置页面。
 
 ## v0.0.3
 
--   使用文件保存背景样式。
+- 使用文件保存背景样式。
 
 ## v0.0.2
 
--   优化 README 文档。
--   在取消激活插件时清理背景。
+- 优化 README 文档。
+- 在取消激活插件时清理背景。
 
 ## v0.0.1
 
--   发布。
+- 发布。
 ```
 
 ## CODE_OF_CONDUCT.md
@@ -96,11 +97,11 @@ README 文件应该清晰、简洁，并且易于理解，以便新用户和开�
 1. **宗旨**：解释行为准则的目的和它对项目社区的重要性。
 2. **我们的承诺**：声明项目维护者和贡献者致力于维护一个包容的环境，其中所有参与者都受到尊重。
 3. **我们的行为准则**：详细列出社区成员在互动时应遵守的行为标准。这可能包括：
-    - 使用包容性语言。
-    - 尊重不同的观点和经历。
-    - 尊重他人的隐私。
-    - 避免侮辱或歧视性评论和行为。
-    - 避免人身攻击或政治攻击。
+   - 使用包容性语言。
+   - 尊重不同的观点和经历。
+   - 尊重他人的隐私。
+   - 避免侮辱或歧视性评论和行为。
+   - 避免人身攻击或政治攻击。
 4. **我们的责任**：描述项目维护者的责任，包括明确和公正地执行行为准则。
 5. **范围**：定义行为准则的适用范围，通常包括项目维护和社区互动的所有场合。
 6. **执行**：说明如何报告违反行为准则的行为，以及维护者将如何处理这些报告。
@@ -124,19 +125,19 @@ We pledge to act and interact in ways that contribute to an open, welcoming, div
 
 Examples of behavior that contributes to a positive environment for our community include:
 
--   Demonstrating empathy and kindness toward other people
--   Being respectful of differing opinions, viewpoints, and experiences
--   Giving and gracefully accepting constructive feedback
--   Accepting responsibility and apologizing to those affected by our mistakes, and learning from the experience
--   Focusing on what is best not just for us as individuals, but for the overall community
+- Demonstrating empathy and kindness toward other people
+- Being respectful of differing opinions, viewpoints, and experiences
+- Giving and gracefully accepting constructive feedback
+- Accepting responsibility and apologizing to those affected by our mistakes, and learning from the experience
+- Focusing on what is best not just for us as individuals, but for the overall community
 
 Examples of unacceptable behavior include:
 
--   The use of sexualized language or imagery, and sexual attention or advances of any kind
--   Trolling, insulting or derogatory comments, and personal or political attacks
--   Public or private harassment
--   Publishing others' private information, such as a physical or email address, without their explicit permission
--   Other conduct which could reasonably be considered inappropriate in a professional setting
+- The use of sexualized language or imagery, and sexual attention or advances of any kind
+- Trolling, insulting or derogatory comments, and personal or political attacks
+- Public or private harassment
+- Publishing others' private information, such as a physical or email address, without their explicit permission
+- Other conduct which could reasonably be considered inappropriate in a professional setting
 
 ## Enforcement Responsibilities
 
@@ -199,47 +200,47 @@ For answers to common questions about this code of conduct, see the FAQ at https
 
 1. **简介**:
 
-    - 对项目和贡献者角色的简短介绍。
-    - 项目的目标和贡献的重要性。
+   - 对项目和贡献者角色的简短介绍。
+   - 项目的目标和贡献的重要性。
 
 2. **代码行为准则**:
 
-    - 链接到项目的`CODE_OF_CONDUCT.md`文件，强调所有贡献者必须遵守的行为准则。
+   - 链接到项目的`CODE_OF_CONDUCT.md`文件，强调所有贡献者必须遵守的行为准则。
 
 3. **如何开始**:
 
-    - 如何设置开发环境。
-    - 如何开始探索项目代码库。
+   - 如何设置开发环境。
+   - 如何开始探索项目代码库。
 
 4. **寻找贡献机会**:
 
-    - 如何找到可以贡献的问题或功能请求。
-    - 如何提出新的想法或功能。
+   - 如何找到可以贡献的问题或功能请求。
+   - 如何提出新的想法或功能。
 
 5. **提交问题（Bug 报告）**:
 
-    - 如何报告 bug，包括需要提供的信息。
-    - 如何搜索现有问题以避免重复。
+   - 如何报告 bug，包括需要提供的信息。
+   - 如何搜索现有问题以避免重复。
 
 6. **提出功能请求**:
 
-    - 如何提出新功能或改进请求。
-    - 提出功能请求时应遵循的模板或指南。
+   - 如何提出新功能或改进请求。
+   - 提出功能请求时应遵循的模板或指南。
 
 7. **代码提交指南**:
 
-    - 如何创建分支、编写代码、运行测试和提交代码。
-    - 代码风格和格式指南。
+   - 如何创建分支、编写代码、运行测试和提交代码。
+   - 代码风格和格式指南。
 
 8. **拉取请求（Pull Request）指南**:
 
-    - 如何创建和提交拉取请求。
-    - 拉取请求的命名约定和描述指南。
+   - 如何创建和提交拉取请求。
+   - 拉取请求的命名约定和描述指南。
 
 9. **审查过程**:
 
-    - 代码审查流程的说明。
-    - 如何处理审查中的反馈。
+   - 代码审查流程的说明。
+   - 如何处理审查中的反馈。
 
 10. **社区参与**:
 
@@ -334,40 +335,40 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 1. **安全政策介绍**:
 
-    - 简要说明文件的目的和项目对安全问题的承诺。
+   - 简要说明文件的目的和项目对安全问题的承诺。
 
 2. **报告安全漏洞**:
 
-    - 详细说明如何报告安全漏洞，包括联系信息（如电子邮件地址或安全团队的联系表单）。
-    - 鼓励通过安全的方式报告漏洞，而不是公开披露。
+   - 详细说明如何报告安全漏洞，包括联系信息（如电子邮件地址或安全团队的联系表单）。
+   - 鼓励通过安全的方式报告漏洞，而不是公开披露。
 
 3. **安全漏洞响应流程**:
 
-    - 描述项目如何处理安全漏洞报告，包括确认、评估、修复和披露的步骤。
+   - 描述项目如何处理安全漏洞报告，包括确认、评估、修复和披露的步骤。
 
 4. **披露政策**:
 
-    - 说明项目在修复安全漏洞后如何披露信息，包括披露的时间框架和方式。
+   - 说明项目在修复安全漏洞后如何披露信息，包括披露的时间框架和方式。
 
 5. **安全补丁和更新**:
 
-    - 描述项目如何发布安全补丁和更新，以及用户如何获取这些更新。
+   - 描述项目如何发布安全补丁和更新，以及用户如何获取这些更新。
 
 6. **依赖和供应链安全**:
 
-    - 如果适用，讨论项目如何管理第三方依赖项和供应链的安全风险。
+   - 如果适用，讨论项目如何管理第三方依赖项和供应链的安全风险。
 
 7. **安全审计和评估**:
 
-    - 提供项目进行安全审计和评估的信息，包括审计的频率和范围。
+   - 提供项目进行安全审计和评估的信息，包括审计的频率和范围。
 
 8. **安全最佳实践**:
 
-    - 分享项目团队遵循的安全最佳实践，如代码审查、静态和动态代码分析等。
+   - 分享项目团队遵循的安全最佳实践，如代码审查、静态和动态代码分析等。
 
 9. **贡献者指南**:
 
-    - 如果项目接受外部贡献，提供有关如何安全地贡献代码和报告潜在安全问题的指南。
+   - 如果项目接受外部贡献，提供有关如何安全地贡献代码和报告潜在安全问题的指南。
 
 10. **常见安全问题**:
 
@@ -391,10 +392,10 @@ We take the security of our project seriously. If you discover a security vulner
 
 **Creat a isssue**: Include the following details in your report:
 
--   A description of the vulnerability.
--   Steps to reproduce the issue.
--   Potential impact of the vulnerability.
--   Any potential fixes or mitigations you have in mind.
+- A description of the vulnerability.
+- Steps to reproduce the issue.
+- Potential impact of the vulnerability.
+- Any potential fixes or mitigations you have in mind.
 
 ## Supported Versions
 

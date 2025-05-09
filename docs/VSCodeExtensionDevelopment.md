@@ -1,5 +1,6 @@
 ---
 id: 1740887608447 # 文章id
+date: 2025/03/06 15:27
 title: Vscode 插件基础开发 # 文章标题
 description: Vscode 插件基础开发 # 文章描述
 tags: Vscode插件开发 # 文章标签

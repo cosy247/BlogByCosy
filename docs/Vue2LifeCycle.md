@@ -1,6 +1,6 @@
 ---
 id: 24091011454890
-date: 2024/09/10
+date: 2024/09/21 23:49
 title: Vue2 生命周期
 description: Vue2 生命周期
 tags: Vue 前端
@@ -51,7 +51,7 @@ shadow: false
 
 ```js
 Vue.config.errorHandler = (err, vm, info) => {
-  console.log("进来啦~");
+  console.log('进来啦~');
   // 错误上报到收集报错的平台
   captureError(err);
 };

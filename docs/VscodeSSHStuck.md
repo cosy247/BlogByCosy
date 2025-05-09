@@ -1,5 +1,6 @@
 ---
 id: 1735869600647 # 文章id
+date: 2025/01/03 10:15
 title: Vscode 连接服务器导致服务器卡死 # 文章标题
 description: Vscode 连接服务器导致服务器卡死 # 文章描述
 tags: Vscode使用 # 文章标签

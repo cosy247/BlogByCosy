@@ -1,5 +1,6 @@
 ---
 id: 1737429447213 # 文章id
+date: 2025/01/21 15:35
 title: Vue Cli的 mode 模式和 env 环境变量 # 文章标题
 description: Vue Cli 的mode 模式和 env 环境变量 # 文章描述
 tags: Vue 前端 # 文章标签

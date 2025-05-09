@@ -1,5 +1,6 @@
 ---
 id: 1728717175995 # 文章id
+date: 2024/10/12 16:15
 title: 三小只 # 文章标题
 description: 养的三只猫猫：布丁，雪糕，多多 # 文章描述
 tags: 图集 # 文章标签
@@ -11,8 +12,7 @@ top: 0 # 是否置顶，数字越大优先级越高
 
 # 三小只
 
-:::Imgs 
-assets/ThreeCats/96c22795e5829eeb448cb6b68614e80.jpg  
+:::Imgs assets/ThreeCats/96c22795e5829eeb448cb6b68614e80.jpg  
 assets/ThreeCats/a52f2f7c8bec62ab990870c92a3fadc.jpg  
 assets/ThreeCats/047a6de3f6d526dbc59953ad39819d7.jpg  
 assets/ThreeCats/abe6b697e4c78c075918814cc1f9178.jpg  

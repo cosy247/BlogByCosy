@@ -1,24 +1,24 @@
 ---
 id: 15
-date: 2024/01/05
+date: 2023/08/29 17:16
 title: md文档转pdf
 tags: 随笔
-archive: 
+archive:
 recommendations:
 description: md文档转pdf
 ---
 
-# md文档转pdf
+# md 文档转 pdf
 
 ## 原理
 
-通过md查看工具将其在浏览器中渲染出来，再利用浏览器的打印功能将其直接转换为pdf文件。
+通过 md 查看工具将其在浏览器中渲染出来，再利用浏览器的打印功能将其直接转换为 pdf 文件。
 
 ## 实现
 
-1. 打开md，这里使用vscode并安装了Markdown Preview Enhanced插件。
+1. 打开 md，这里使用 vscode 并安装了 Markdown Preview Enhanced 插件。
 
-2. 在浏览器中预览md，不同软件方式不同。vscode中在预览中点击鼠标右键选择Open in Browser。
+2. 在浏览器中预览 md，不同软件方式不同。vscode 中在预览中点击鼠标右键选择 Open in Browser。
 
 ![Alt text](./assets/MdTranslateToPdf/image-23.png)
 
@@ -26,7 +26,7 @@ description: md文档转pdf
 
 ![Alt text](./assets/MdTranslateToPdf/image-20.png)
 
-4. 在弹出的打印页面中选择Microsoft Print to PDF作为打印机
+4. 在弹出的打印页面中选择 Microsoft Print to PDF 作为打印机
 
 ![Alt text](./assets/MdTranslateToPdf/image-21.png)
 

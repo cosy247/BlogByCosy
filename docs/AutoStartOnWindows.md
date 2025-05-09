@@ -1,6 +1,6 @@
 ---
 id: 1
-date: 2024/03/26
+date: 2024/03/26 15:36
 title: Window自定义开机自启动程序
 tags: Window使用
 recommendations:

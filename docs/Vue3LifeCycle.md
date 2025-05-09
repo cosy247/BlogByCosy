@@ -1,5 +1,6 @@
 ---
 id: 24091011454891
+date: 2024/09/22 00:51
 title: Vue3 生命周期
 description: Vue3 生命周期
 tags: Vue 前端
@@ -49,7 +50,7 @@ top: 0
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref } from 'vue';
 
 export default {
   setup() {
@@ -70,7 +71,7 @@ export default {
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue';
 
 const count = ref(0);
 </script>
@@ -83,7 +84,7 @@ const count = ref(0);
 ```vue
 <script>
 // 引入生命周期钩子对应的函数名
-import { onBeforeMount, onUpdated, onBeforeUnmount } from "vue";
+import { onBeforeMount, onUpdated, onBeforeUnmount } from 'vue';
 
 export default {
   setup() {

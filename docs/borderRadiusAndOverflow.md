@@ -1,12 +1,12 @@
 ---
 id: 3
-date: 2023/11/21
+date: 2023/12/15 14:52
 title: CSS圆角borderRadius的内容溢出问题
 tags: CSS 前端
 description: CSS属性中的圆角borderRadius和溢出overflow的之间可能存在的冲突情况
 ---
 
-# CSS圆角borderRadius的内容溢出问题
+# CSS 圆角 borderRadius 的内容溢出问题
 
 在 CSS 中[border-radius](https://developer.mozilla.org/zh-CN/docs/Web/CSS/border-radius)属性可以为元素添加圆角。行为圆角矩形或者椭圆（圆）。[overflow](https://developer.mozilla.org/zh-CN/docs/Web/CSS/overflow)属性可以设置元素溢出时所需的行为。一般设置为 auto，自动显示或者隐藏滚动条。
 
@@ -18,21 +18,21 @@ description: CSS属性中的圆角borderRadius和溢出overflow的之间可能�
 
 ```html
 <style>
-    .s-outer {
-        border-radius: 10px;
-        background: yellowgreen;
-        width: 100px;
-        height: 40px;
-        margin: 20px auto;
-    }
-    .s-inner {
-        background: wheat;
-        width: 20px;
-        height: 20px;
-    }
+  .s-outer {
+    border-radius: 10px;
+    background: yellowgreen;
+    width: 100px;
+    height: 40px;
+    margin: 20px auto;
+  }
+  .s-inner {
+    background: wheat;
+    width: 20px;
+    height: 20px;
+  }
 </style>
 <div class="s-outer">
-    <div class="s-inner"></div>
+  <div class="s-inner"></div>
 </div>
 ```
 

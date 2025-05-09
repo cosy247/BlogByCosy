@@ -1,5 +1,6 @@
 ---
 id: 1735888790018 # 文章id
+date: 2025/01/03 15:33
 title: NRM - NPM 的镜像源管理工具 # 文章标题
 description: NRM - NPM 的镜像源管理工具 # 文章描述
 tags: NPM # 文章标签

@@ -1,5 +1,6 @@
 ---
 id: 1726980130312 # 文章id
+date: 2024/09/25 12:28
 title: Vue组件间通信 # 文章标题
 description: Vue组件间通信 # 文章描述
 tags: Vue 前端 # 文章标签
@@ -23,9 +24,9 @@ top: 0 # 是否置顶，数字越大优先级越高
 
 ```vue title='Children.vue'
 <script>
-  export default {
-    props: ['name', age],
-  };
+export default {
+  props: ['name', age],
+};
 </script>
 ```
 
@@ -38,14 +39,14 @@ top: 0 # 是否置顶，数字越大优先级越高
   <Children @add="addUser" />
 </template>
 <script>
-  export default {
-    // ...
-    methods: {
-      addUser(user) {
-        // ...
-      },
+export default {
+  // ...
+  methods: {
+    addUser(user) {
+      // ...
     },
-  };
+  },
+};
 </script>
 ```
 
@@ -54,14 +55,14 @@ top: 0 # 是否置顶，数字越大优先级越高
   <button @click="addUser">添加用户</button>
 </template>
 <script>
-  export default {
-    // ...
-    methods: {
-      addUser() {
-        this.$emit('add', { name: 'wendy', age: 18 });
-      },
+export default {
+  // ...
+  methods: {
+    addUser() {
+      this.$emit('add', { name: 'wendy', age: 18 });
     },
-  };
+  },
+};
 </script>
 ```
 
@@ -76,15 +77,15 @@ top: 0 # 是否置顶，数字越大优先级越高
   <Children ref="children" />
 </template>
 <script>
-  export default {
-    // ...
-    methods: {
-      getChildrenData(key) {
-        // this.$children ...
-        return this.$refs.children[key];
-      },
+export default {
+  // ...
+  methods: {
+    getChildrenData(key) {
+      // this.$children ...
+      return this.$refs.children[key];
     },
-  };
+  },
+};
 </script>
 ```
 
@@ -96,14 +97,14 @@ top: 0 # 是否置顶，数字越大优先级越高
 
 ```vue
 <script>
-  export default {
-    // ...
-    mounted() {
-      // 在 mounted 后才可以访问当实例
-      // this.$parent...
-      // this.$root...
-    },
-  };
+export default {
+  // ...
+  mounted() {
+    // 在 mounted 后才可以访问当实例
+    // this.$parent...
+    // this.$root...
+  },
+};
 </script>
 ```
 
@@ -123,13 +124,13 @@ top: 0 # 是否置顶，数字越大优先级越高
 
 ```vue title="Children.vue"
 <script>
-  export default {
-    // ...
-  	props: ['t0']
-    created() {
-      console.log("Children", this.$attrs);
-    },
-  };
+export default {
+  // ...
+	props: ['t0']
+  created() {
+    console.log("Children", this.$attrs);
+  },
+};
 </script>
 ```
 
@@ -157,32 +158,32 @@ vue2 中简单的使用：
 
 ```vue title="Parent.vue"
 <script>
-  export default {
-    // ...
-    provide: {
-      name: 'Wendy',
-      age: 18,
-    },
-  };
+export default {
+  // ...
+  provide: {
+    name: 'Wendy',
+    age: 18,
+  },
+};
 </script>
 ```
 
 ```vue title="Grandchild.vue"
 <script>
-  export default {
-    // ...
-    // inject: ['name', 'age'], 使用数组接收
-    inject: {
-      userName: {
-        from: 'name',
-        default: 'noUser',
-      },
-      userAge: {
-        from: 'age',
-        default: 18,
-      },
+export default {
+  // ...
+  // inject: ['name', 'age'], 使用数组接收
+  inject: {
+    userName: {
+      from: 'name',
+      default: 'noUser',
     },
-  };
+    userAge: {
+      from: 'age',
+      default: 18,
+    },
+  },
+};
 </script>
 ```
 
@@ -201,14 +202,14 @@ Vue.prototype.$bus = new Vue();
 
 ```vue title='Children1.vue'
 <script>
-  export default {
-    // ...
-    methods: {
-      sendEvent(data) {
-        this.$bus.$emit('eventName', data);
-      },
+export default {
+  // ...
+  methods: {
+    sendEvent(data) {
+      this.$bus.$emit('eventName', data);
     },
-  };
+  },
+};
 </script>
 ```
 
@@ -216,14 +217,14 @@ Vue.prototype.$bus = new Vue();
 
 ```vue title='Children2.vue'
 <script>
-  export default {
-    // ...
-    created() {
-      this.$bus.$on('eventName', (data) => {
-        // ...
-      });
-    },
-  };
+export default {
+  // ...
+  created() {
+    this.$bus.$on('eventName', (data) => {
+      // ...
+    });
+  },
+};
 </script>
 ```
 
@@ -235,17 +236,17 @@ Vue.prototype.$bus = new Vue();
 
 ```vue
 <script>
-  export default {
-    // ...
-    watch: {
-      '$store.state.count'(newVal, oldVal) {
-        // ...
-      },
-      '$store.state.message'(newVal, oldVal) {
-        // ...
-      },
+export default {
+  // ...
+  watch: {
+    '$store.state.count'(newVal, oldVal) {
+      // ...
     },
-  };
+    '$store.state.message'(newVal, oldVal) {
+      // ...
+    },
+  },
+};
 </script>
 ```
 
