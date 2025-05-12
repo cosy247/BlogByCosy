@@ -1,7 +1,7 @@
 <template>
   <div class="Menu">
     <div class="content">
-      <a href="/" class="logo" v-html="config.title"></a>
+      <a href="/" class="logo" target="_self" v-html="config.title"></a>
       <div
         href="/"
         class="logo mobile"
@@ -38,14 +38,14 @@
                   </span>
                   <span class="menu-content-title-describe" v-html="menu.description"></span>
                 </div>
-                <!-- statistics -->
-                <div class="menu-content-list" v-if="menu.type === 'statistics'">
-                  <!-- <a
-                    v-for="(item, key) in docsData.statistics[menu.statistics.frontName]"
+                <!-- classify -->
+                <div class="menu-content-list" v-if="menu.type === 'classify'">
+                  <a
+                    v-for="(item, key) in classifyData[menu.classify.name]"
                     class="menu-content-item"
-                    :href="`/${menu.statistics.frontName}/${key}`">
+                    :href="`/?${menu.classify.name}=${key}`">
                     {{ key }}({{ item }})
-                  </a> -->
+                  </a>
                 </div>
                 <!-- exhibit -->
                 <div class="menu-exhibit-list" v-else-if="menu.type === 'exhibit'">
@@ -91,12 +91,14 @@
           <a
             v-for="(item, index) in searchList"
             class="search-result-item"
-            @click="goSearchLine(item)"
             :class="{ 'search-result-item-active': index === currentSearchLineIndex }"
-            @mouseover="currentSearchLineIndex = index">
+            @click="goSearchLine(item)"
+            @mouseover="currentSearchLineIndex = index"
+            :href="item.url"
+            target="_self">
             <p class="search-result-item-title">
               <span
-                v-for="(key, i) in item.attrs.title"
+                v-for="(key, i) in item.frontmatter.title"
                 :class="{ 'search-result-key': item.countIndexs && item.countIndexs.includes(i) }">
                 {{ key }}
               </span>
@@ -119,12 +121,11 @@
 
 <script setup>
 import MdView from './MdView.vue';
-// import docsData from '../../temp/docsData';
 import config from '../../config';
 import Icon from './Icon.vue';
 import { ref, nextTick } from 'vue';
-// import { pageList } from '../../temp/docsData.json';
-import { RouterLink } from 'vue-router';
+import { data as classifyData } from '../data/classify.data';
+import { postsData } from '../data';
 
 const isShowSearch = ref(false);
 const searchText = ref('');
@@ -158,11 +159,15 @@ function search() {
   if (searchTextTrim === '') {
     searchList.value = [];
   } else {
-    searchList.value = pageList
+    console.log(postsData);
+
+    searchList.value = postsData
       .map((item) => {
         let count = 0;
         const countIndexs = [];
-        const lowerCasetitle = item.attrs.title.toLowerCase();
+        console.log(item);
+
+        const lowerCasetitle = item.frontmatter.title.toLowerCase();
         for (let index = 0; index < lowerCasetitle.length; index++) {
           if (lowerCasetitle[index] !== searchTextTrim[count]) continue;
           count++;
@@ -193,10 +198,6 @@ function searchPreventDefault(event) {
     event.preventDefault();
     return;
   }
-}
-
-function goSearchLine(item) {
-  window.location.href = `/docs/${item.file}`;
 }
 
 window.addEventListener('keydown', ({ code, key, keyCode, which }) => {

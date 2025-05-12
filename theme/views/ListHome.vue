@@ -38,12 +38,9 @@
 
 <script setup>
 import Icon from '../components/Icon.vue';
-import { ref, computed, nextTick } from 'vue';
+import { ref, computed } from 'vue';
 import config from '../../config';
-import { watch } from 'vue';
 import { data as postsData } from '../data/posts.data';
-
-console.log(postsData);
 
 const filter = computed(() => {
   const params = new URL(window.location.href).searchParams;
@@ -58,11 +55,8 @@ const filter = computed(() => {
 
 const filterPosts = computed(() => {
   if (!filter.value) return postsData;
-  console.log(filter.value.multiple);
-
   if (filter.value.multiple) {
     return postsData.filter((p) => {
-      console.log(p, filter.value.type);
       return p.frontmatter[filter.value.type]?.includes(filter.value.value);
     });
   } else {
