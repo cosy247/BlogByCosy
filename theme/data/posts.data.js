@@ -14,6 +14,7 @@ export default createContentLoader('../docs/**.md', {
         post.frontmatter[classifyName] = post.frontmatter[classifyName].split(' ');
       });
     });
+    posts.sort((p1, p2) => new Date(p2.frontmatter.date) - new Date(p1.frontmatter.date));
     return posts;
   },
 });
