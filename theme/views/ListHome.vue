@@ -8,7 +8,7 @@
       </p>
       <template v-else>
         <div class="cover-title">
-          <div class="cover-logo" v-html="config.title"></div>
+          <div class="cover-logo" v-html="config.pageTitle"></div>
           <span class="cover-count">【{{ filterPosts.length }}】</span>
         </div>
         <p class="cover-dictum">{{ mottos[0] }}</p>

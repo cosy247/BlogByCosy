@@ -1,7 +1,7 @@
 import { createContentLoader } from 'vitepress';
 import config from '../../config';
 
-export default createContentLoader('../docs/**.md', {
+export default createContentLoader(`../${config.srcDir}/**.md`, {
   includeSrc: false,
   excerpt: false,
   async transform(data) {

@@ -1,13 +1,13 @@
 <template>
   <div class="Menu">
     <div class="content">
-      <a href="/" class="logo" target="_self" v-html="config.title"></a>
+      <a href="/" class="logo" target="_self" v-html="config.pageTitle"></a>
       <div
         href="/"
         class="logo mobile"
         :class="{ showMenu: isShowMenu }"
         @click="isShowMenu = !isShowMenu"
-        v-html="config.title"></div>
+        v-html="config.pageTitle"></div>
       <div class="tools menus-right-tools" v-if="config.menuAlign === 'right-right'">
         <div class="tool" @click="showSearchBox">&#xe618;</div>
         <span class="tool" v-if="config.homeType !== 'introduce'" @click="openReadMeContent">&#xe650;</span>
@@ -98,7 +98,7 @@
             target="_self">
             <p class="search-result-item-title">
               <span
-                v-for="(key, i) in item.frontmatter.title"
+                v-for="(key, i) in item.frontmatter.pageTitle"
                 :class="{ 'search-result-key': item.countIndexs && item.countIndexs.includes(i) }">
                 {{ key }}
               </span>
@@ -121,11 +121,11 @@
 
 <script setup>
 import MdView from './MdView.vue';
-import config from '../../config';
 import Icon from './Icon.vue';
 import { ref, nextTick } from 'vue';
 import { data as classifyData } from '../data/classify.data';
-import { postsData } from '../data';
+import { data as postsData } from '../data/posts.data';
+import config from '../../config';
 
 const isShowSearch = ref(false);
 const searchText = ref('');
@@ -159,14 +159,10 @@ function search() {
   if (searchTextTrim === '') {
     searchList.value = [];
   } else {
-    console.log(postsData);
-
     searchList.value = postsData
       .map((item) => {
         let count = 0;
         const countIndexs = [];
-        console.log(item);
-
         const lowerCasetitle = item.frontmatter.title.toLowerCase();
         for (let index = 0; index < lowerCasetitle.length; index++) {
           if (lowerCasetitle[index] !== searchTextTrim[count]) continue;

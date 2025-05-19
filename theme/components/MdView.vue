@@ -12,9 +12,6 @@
 import { Content } from 'vitepress';
 import * as vitepress from 'vitepress';
 import '../styles/md.css';
-console.log(vitepress);
-
-console.log(Content);
 
 // import { defineAsyncComponent, ref, shallowRef } from 'vue';
 // import pageContent from '../utils/pageContent';
