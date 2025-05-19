@@ -1,14 +1,23 @@
 export default {
+  title: 'BlogByCosy',
+  description: 'BlogByCosy',
+  srcDir: './articles',
+  vite: {
+    server: {
+      port: 2470,
+    },
+  },
+
   // 项目自动生成文件路径
   tempDir: '/temp',
   // 打包路径
-  outDir: './BlogByCosy',
+  outDir: './docs',
   // 高亮代码支持的语言
   codeLangs: ['javascript', 'vue', 'text', 'shell', 'json', 'html', 'css'],
   // 高亮代码支持的语言别名
   codeLangAlias: { js: 'javascript' },
   // 页面显示标题，浏览器 tab 标题在 index.html 中设置
-  title: '<p class="c-page-title">C<img src="/assets/images/logo.ico"/>SY247</p>',
+  pageTitle: '<p class="c-page-title">C<img src="/assets/images/logo.ico"/>SY247</p>',
   // 是否开启相似推荐，0表示不开启，大于0将为补充至推荐文章数
   similarRecommendNumber: 5,
   // 全局组件目录

@@ -1,12 +1,4 @@
 import { defineConfig } from 'vitepress';
+import config from '../config';
 
-export default defineConfig({
-  title: 'BlogByCosy',
-  description: 'BlogByCosy',
-  srcDir: './docs',
-  vite: {
-    server: {
-      port: 2470,
-    },
-  },
-});
+export default defineConfig(config);
