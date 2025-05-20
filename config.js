@@ -7,6 +7,11 @@ export default {
       port: 2470,
     },
   },
+  appearance: 'dark',
+  // 配置代码高亮主题
+  shikiConfig: {
+    theme: 'dark', // 使用 Dracula 主题
+  },
 
   // 项目自动生成文件路径
   tempDir: '/temp',
@@ -51,6 +56,11 @@ export default {
       url: 'https://www.npmjs.com/~cosy247',
     },
   ],
+  toc: {
+    auto: true, // 自动生成目录
+    level: [2, 3, 4], // 目录支持的标题级别（例如，##、###、####）
+    linkIcons: true, // 是否在目录项旁边显示链接图标
+  },
   // 页面顶部的菜单设置
   menus: [
     {
