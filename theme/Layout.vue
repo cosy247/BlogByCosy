@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-import './styles/common.css';
+import './assets/styles/common.css';
 import PageOuter from './components/PageOuter.vue';
 import { useRoute } from 'vitepress';
 import { computed, defineAsyncComponent } from 'vue';
@@ -15,7 +15,7 @@ const asyncComponent = computed(() => {
   if (!route.component) {
     componentName = 'NotFound';
   } else if (route.path === '/') {
-    componentName = 'ListHome';
+    componentName = 'Home';
   }
   return defineAsyncComponent({
     loader: () => import(`./views/${componentName}.vue`),

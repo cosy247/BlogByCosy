@@ -1,23 +1,23 @@
 <template>
-  <!-- <div class="blog-infos">
-    <a :href="item.url" class="blog-info" v-for="item in statisAttrs">
+  <div class="blog-infos">
+    <a :href="`/?${item.name}=${item.value}`" class="blog-info" v-for="item in classifys">
       <span class="blog-info-text">{{ item.value }}</span>
-      <Icon class="blog-info-icon" :icon="staticIconMap[item.name]" />
+      <Icon class="blog-info-icon" :icon="classifyIconMap[item.name]" />
     </a>
-    <div v-if="statisAttrs.length" class="blog-info-br"></div>
-    <div class="blog-info" @click="gotoRecom" v-if="recommendations.length">
+    <div v-if="classifys.length" class="blog-info-br"></div>
+    <!-- <div class="blog-info" @click="gotoRecom" v-if="recommendations.length">
       <span class="blog-info-text">相关推荐</span>
       <span class="blog-info-icon">&#xe60d;</span>
-    </div>
-    <div class="blog-info" @click="gotoComment">
+    </div> -->
+    <!-- <div class="blog-info" @click="gotoComment">
       <span class="blog-info-text">评论</span>
       <span class="blog-info-icon">&#xe6b3;</span>
-    </div>
+    </div> -->
     <div class="blog-info" @click="gotoTop">
       <span class="blog-info-text">顶部</span>
       <span class="blog-info-icon">&#xe62b;</span>
     </div>
-  </div> -->
+  </div>
   <!-- <div class="blog-toc">
     <div
       class="blog-toc-item"
@@ -28,7 +28,7 @@
     </div>
   </div> -->
   <!-- <div ref="mdView"> -->
-  <MdView class="blog-mdView" :fileName="docsFile" @load="setToc" />
+  <MdView class="blog-mdView" />
   <!-- </div> -->
   <!-- <template v-if="recommendations.length">
     <div class="content-cubicle"></div>
@@ -41,14 +41,77 @@
 
 <script setup>
 import MdView from '../components/MdView.vue';
-// import Icon from '../components/Icon.vue';
-// import { ref, computed } from 'vue';
+import Icon from '../components/Icon.vue';
+import { computed, onMounted, ref } from 'vue';
 // import config from '../../config';
 // import { useRoute } from 'vue-router';
 // import { pageList } from '../../temp/docsData.json';
 // import { getPageMateById } from '../utils/getPage';
 // import Giscus from '@giscus/vue';
 // import { markTocMap } from '../utils/renderMark';
+// import { data as postsData } from '../data/posts.data';
+import { useData, useRoute } from 'vitepress';
+import { postsData } from '../data';
+import { classifyNames, multipleClassifyNames } from '../data/classifyNames';
+import config from '../../config';
+
+const route = useRoute();
+
+// 当前文章信息
+const pageInfo = computed(() => {
+  return postsData.find((p) => p.frontmatter.id === route.data.frontmatter.id) || {};
+});
+
+// 当前分类
+const classifys = computed(() => {
+  const classify = [];
+  classifyNames.forEach((name) => {
+    if (!pageInfo.value.frontmatter[name]) return;
+    if (multipleClassifyNames.includes(name)) {
+      pageInfo.value.frontmatter[name].forEach((value) => {
+        classify.push({ name, value });
+      });
+    } else {
+      classify.push({ name, value: pageInfo.value.frontmatter[name] });
+    }
+  });
+  return classify;
+});
+
+// 分类图标映射
+const classifyIconMap = computed(() => {
+  const map = {};
+  config.menus.forEach((menu) => {
+    if (menu.type !== 'classify') return;
+    if (menu.classify?.name) {
+      map[menu.classify.name] = menu;
+    }
+  });
+  return map;
+});
+
+// 获取目录结构
+const toc = ref([]);
+window.addEventListener('load', () => {
+  document.querySelectorAll('.blog-mdView > h2, .markdown-body > h3').forEach((item) => {
+    const depth = item.tagName === 'H2' ? 2 : 3;
+    toc.value.push({
+      id: item.id,
+      name: item.innerText,
+      depth,
+    });
+  });
+});
+// onMounted(() => {
+//   document.querySelectorAll('.blog-mdView > h2, .markdown-body > h3').forEach((item) => {
+//     const depth = item.tagName === 'H2' ? 2 : 3;
+//     toc.value.push({
+//       id: item.id,
+//       name: item.innerText,
+//       depth,
+//     });
+//   });
+// });
 
 // const route = useRoute();
 
@@ -70,7 +133,6 @@ import MdView from '../components/MdView.vue';
 
 // 当前文章的统计属性
 // const statisAttrs = ref([]);
-// const staticIconMap = ref({});
 // const staticMenus = config.menus.filter((m) => m.type === 'statistics');
 // if (pageMates) {
 //   staticMenus.forEach((s) => {
@@ -134,9 +196,10 @@ import MdView from '../components/MdView.vue';
 //   }, 200);
 // });
 
-// function gotoTop() {
-//   window.document.documentElement.scrollTop = 0;
-// }
+function gotoTop() {
+  if (typeof window === 'undefined') return;
+  window.document.documentElement.scrollTop = 0;
+}
 
 // const recom = ref(null);
 // function gotoRecom() {

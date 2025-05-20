@@ -11,7 +11,7 @@ export default createContentLoader(`../${config.srcDir}/**.md`, {
       classifys.forEach((classify) => {
         const classifyName = classify.classify.name;
         if (!post.frontmatter[classifyName]) return;
-        post.frontmatter[classifyName] = post.frontmatter[classifyName].split(' ');
+        post.frontmatter[classifyName] = post.frontmatter[classifyName]?.split(' ');
       });
     });
     posts.sort((p1, p2) => new Date(p2.frontmatter.date) - new Date(p1.frontmatter.date));

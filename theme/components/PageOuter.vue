@@ -6,15 +6,7 @@
 </template>
 
 <script setup>
-// import { pageConfig } from '../utils/blogMate';
 import Menu from './Menu.vue';
-
-// if (pageConfig.outline === false && typeof window !== 'undefined') {
-//   const style = window.document.createElement('style');
-//   style.innerHTML = ':root{--outer-width: 0px}';
-//   window.document.body.append(style);
-//   window.document.body.classList.add('noOutline');
-// }
 </script>
 
 <style>

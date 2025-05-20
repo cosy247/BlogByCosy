@@ -550,8 +550,6 @@
 
 .mdContent .highlight pre,
 .mdContent pre {
-  /* background-color: #f6f8fa; */
-  background: #2a303a;
   border-radius: 3px;
   font-size: 85%;
   line-height: 1.45;

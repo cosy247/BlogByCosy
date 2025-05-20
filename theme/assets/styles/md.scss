@@ -1,0 +1,150 @@
+@import url('./rainbow.css');
+
+.mdContent > div {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 1;
+
+  /* 标题 */
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: #0366d6;
+  }
+  h1::before {
+    content: '🐲';
+  }
+  h2::before {
+    content: '🦄';
+  }
+  h3::before {
+    content: '🐳';
+  }
+  h4::before {
+    content: '🦋';
+  }
+
+  /* 图片 */
+  & > p > img {
+    box-shadow: 0 0 5px #8883;
+    border-radius: 5px;
+    &:only-child {
+      display: block;
+      margin: auto;
+    }
+  }
+
+  /* 代码块 */
+  div[class*='language-'] {
+    position: relative;
+    background: #282c34;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    font-size: 16px;
+    .lang {
+      display: block;
+      color: #eee;
+      padding: 2px 16px;
+      line-height: 30px;
+      font-size: 16px;
+      background: #2e374a;
+    }
+    .copy {
+      position: absolute;
+      right: 10px;
+      top: 2px;
+      background: url('../images/copy.png') 0/100% 100% no-repeat, #333 !important;
+      height: 16px;
+      width: 16px;
+      border: 6px solid #0000;
+      box-sizing: content-box;
+      cursor: pointer;
+      border-radius: 6px;
+      &.copied::before {
+        content: '😘';
+        white-space: nowrap;
+        color: #eee;
+        position: absolute;
+        right: 26px;
+        top: -6px;
+        display: block;
+        width: 27px;
+        height: 27px;
+        font-size: 16px;
+        line-height: 27px;
+        background: #333;
+      }
+    }
+    pre.shiki {
+      padding: 10px 15px;
+      code span.line span {
+        color: var(--shiki-dark);
+      }
+    }
+  }
+  & .code-block {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #282c34;
+  }
+  & .code-block-lang {
+    position: absolute;
+    left: 16px;
+    top: 0px;
+    line-height: 35px;
+    color: #ccc;
+  }
+  .code-block-headless .code-block-lang {
+    display: none;
+  }
+  .code-block-copied {
+    background-color: #15181d;
+  }
+  .code-block-copied::after {
+    content: '😘';
+    position: absolute;
+    right: 200%;
+    top: -8px;
+    line-height: 14px;
+    height: 16px;
+    background: #15181d;
+    border: inherit;
+    border-radius: inherit;
+  }
+  .code-block-copy:hover {
+    background-color: #15181d;
+  }
+  .code-block-content {
+    border-top: 35px solid #2e3641;
+  }
+  .code-block-headless .code-block-content {
+    border-top: none;
+  }
+
+  & blockquote {
+    padding: 1em;
+    background: #eff0f3;
+    border-left: 0.5em solid #819be6;
+    box-sizing: border-box;
+    color: #333;
+  }
+
+  & > blockquote > blockquote:only-child {
+    padding: 1em;
+    background: rgb(227, 181, 181);
+    border-left: 0.5em solid rgb(199, 39, 39);
+    margin: -10px -20px -10px -24px;
+    color: #333;
+  }
+
+  /* 代码片段 */
+  p code {
+    background: #dfe5f7;
+  }
+}
