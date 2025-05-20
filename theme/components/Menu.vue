@@ -137,14 +137,18 @@ const searchList = ref([]);
 
 function openReadMeContent() {
   isShowReadMe.value = true;
-  window.document.body.style.overflowY = 'hidden';
-  window.document.body.style.paddingRight = 'var(--outer-width)';
+  if (typeof window !== 'undefined') {
+    window.document.body.style.overflowY = 'hidden';
+    window.document.body.style.paddingRight = 'var(--outer-width)';
+  }
 }
 
 function closeReadMeContent() {
   isShowReadMe.value = false;
-  window.document.body.style.overflowY = 'auto';
-  window.document.body.style.paddingRight = '0';
+  if (typeof window !== 'undefined') {
+    window.document.body.style.overflowY = 'auto';
+    window.document.body.style.paddingRight = '0';
+  }
 }
 
 async function showSearchBox() {
@@ -196,16 +200,18 @@ function searchPreventDefault(event) {
   }
 }
 
-window.addEventListener('keydown', ({ code, key, keyCode, which }) => {
-  if (!isShowSearch.value) return;
-  if (code === 'ArrowDown' || key === 'ArrowDown' || keyCode === 40 || which === 40) {
-    currentSearchLineIndex.value = Math.min(currentSearchLineIndex.value + 1, searchList.value.length - 1);
-  } else if (code === 'ArrowUp' || key === 'ArrowUp' || keyCode === 38 || which === 38) {
-    currentSearchLineIndex.value = Math.max(currentSearchLineIndex.value - 1, 0);
-  } else if (code === 'Enter' || key === 'Enter' || keyCode === 13 || which === 13) {
-    goSearchLine();
-  }
-});
+if (typeof window !== 'undefined') {
+  window.addEventListener('keydown', ({ code, key, keyCode, which }) => {
+    if (!isShowSearch.value) return;
+    if (code === 'ArrowDown' || key === 'ArrowDown' || keyCode === 40 || which === 40) {
+      currentSearchLineIndex.value = Math.min(currentSearchLineIndex.value + 1, searchList.value.length - 1);
+    } else if (code === 'ArrowUp' || key === 'ArrowUp' || keyCode === 38 || which === 38) {
+      currentSearchLineIndex.value = Math.max(currentSearchLineIndex.value - 1, 0);
+    } else if (code === 'Enter' || key === 'Enter' || keyCode === 13 || which === 13) {
+      goSearchLine();
+    }
+  });
+}
 </script>
 
 <style scoped>

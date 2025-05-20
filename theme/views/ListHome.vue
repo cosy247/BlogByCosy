@@ -43,6 +43,7 @@ import config from '../../config';
 import { data as postsData } from '../data/posts.data';
 
 const filter = computed(() => {
+  if (typeof window === 'undefined') return null;
   const params = new URL(window.location.href).searchParams;
   const classifys = config.menus.filter((m) => m.type === 'classify');
   for (const classify of classifys) {
@@ -105,12 +106,14 @@ const mottos = config.mottos[(Math.random() * config.mottos.length) >> 0];
 
 // 首屏滚动百分比
 const firstPageProportion = ref(0);
-window.addEventListener('scroll', () => {
-  const { clientHeight, scrollTop } = document.documentElement;
-  if (scrollTop < clientHeight) {
-    firstPageProportion.value = scrollTop / clientHeight;
-  }
-});
+if (typeof window !== 'undefined') {
+  window.addEventListener('scroll', () => {
+    const { clientHeight, scrollTop } = document.documentElement;
+    if (scrollTop < clientHeight) {
+      firstPageProportion.value = scrollTop / clientHeight;
+    }
+  });
+}
 
 // 当前需要显示的文章列表
 // const pageSize = 10;
