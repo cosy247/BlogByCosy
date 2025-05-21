@@ -11,6 +11,7 @@
     "preview": "vitepress preview ."
   },
   "devDependencies": {
+    "sass": "^1.89.0",
     "sass-embedded": "^1.89.0",
     "vitepress": "^1.6.3"
   }

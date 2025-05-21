@@ -22,13 +22,13 @@ export default {
   // 高亮代码支持的语言别名
   codeLangAlias: { js: 'javascript' },
   // 页面显示标题，浏览器 tab 标题在 index.html 中设置
-  pageTitle: '<p class="c-page-title">C<img src="/assets/images/logo.ico"/>SY247</p>',
+  pageTitle: '<p class="c-page-title">C<img src="/assets/images/logo.png"/>SY247</p>',
   // 是否开启相似推荐，0表示不开启，大于0将为补充至推荐文章数
   similarRecommendNumber: 5,
   // 全局组件目录
   componentDir: '/components',
 
-  heads: [],
+  head: [['link', { rel: 'icon', href: '/assets/images/logo.png' }]],
 
   // 首页座右铭
   mottos: [
@@ -107,14 +107,14 @@ export default {
         {
           name: 'PackOnePage',
           url: 'https://cosy247.top/alones/PackOnePage/index.html',
-          imgIcon: 'https://cosy247.top/alones/PackOnePage/icon/icon.png',
+          imgIcon: 'https://cosy247.github.io/PackOnePage/icon/icon.ico',
           describe: '将html网页的js和css打包成一个html文件。',
         },
         {
           name: 'MarkdownInSider',
           url: 'https://marketplace.visualstudio.com/items?itemName=cosy247.markdown-in-sider',
           imgIcon: '/assets/images/MarkdownInSider.png',
-          describe: '将html网页的js和css打包成一个html文件。',
+          describe: 'VSCode 插件，可以在侧边栏编辑 Markdown。',
         },
       ],
     },
