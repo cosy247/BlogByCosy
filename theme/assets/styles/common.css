@@ -108,9 +108,9 @@ a {
   #app .PageOuter {
     display: none;
   }
-  body:not(#body) {
+  /* body:not(#body) {
     padding: 60px 0 0;
-  }
+  } */
   body:not(#body)::-webkit-scrollbar {
     width: 0;
     background: transparent;

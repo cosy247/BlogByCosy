@@ -1,25 +1,24 @@
 <template>
-  <PageOuter />
   <asyncComponent v-if="asyncComponent" />
 </template>
 
 <script setup>
 import './assets/styles/common.css';
-import PageOuter from './components/PageOuter.vue';
 import { useRoute } from 'vitepress';
 import { computed, defineAsyncComponent } from 'vue';
 
 const route = useRoute();
+
 const asyncComponent = computed(() => {
-  let componentName = 'Blog';
   if (!route.component) {
-    componentName = 'NotFound';
+    return defineAsyncComponent({ loader: () => import('./views/NotFound.vue') });
   } else if (route.path === '/') {
-    componentName = 'Home';
+    return defineAsyncComponent({ loader: () => import('./views/Home.vue') });
+  } else if (route.path.toLocaleLowerCase() === '/readme.html') {
+    return defineAsyncComponent({ loader: () => import('./components/MdView.vue') });
+  } else {
+    return defineAsyncComponent({ loader: () => import('./views/Blog.vue') });
   }
-  return defineAsyncComponent({
-    loader: () => import(`./views/${componentName}.vue`),
-  });
 });
 </script>
 

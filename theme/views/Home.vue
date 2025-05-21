@@ -1,4 +1,5 @@
 <template>
+  <PageOuter />
   <div class="cover">
     <div class="cover-content" :style="{ paddingTop: 37 * firstPageProportion + '%' }">
       <p class="cover-title" v-if="filter">
@@ -37,6 +38,7 @@
 </template>
 
 <script setup>
+import PageOuter from '../components/PageOuter.vue';
 import Icon from '../components/Icon.vue';
 import { ref, computed } from 'vue';
 import config from '../../config';

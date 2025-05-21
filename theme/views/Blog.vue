@@ -1,14 +1,15 @@
 <template>
+  <PageOuter />
   <div class="blog-infos">
     <a :href="`/?${item.name}=${item.value}`" class="blog-info" v-for="item in classifys">
       <span class="blog-info-text">{{ item.value }}</span>
       <Icon class="blog-info-icon" :icon="classifyIconMap[item.name]" />
     </a>
     <div v-if="classifys.length" class="blog-info-br"></div>
-    <!-- <div class="blog-info" @click="gotoRecom" v-if="recommendations.length">
+    <div class="blog-info" @click="gotoRecom" v-if="pageInfo.recommendations.length">
       <span class="blog-info-text">相关推荐</span>
       <span class="blog-info-icon">&#xe60d;</span>
-    </div> -->
+    </div>
     <!-- <div class="blog-info" @click="gotoComment">
       <span class="blog-info-text">评论</span>
       <span class="blog-info-icon">&#xe6b3;</span>
@@ -18,28 +19,29 @@
       <span class="blog-info-icon">&#xe62b;</span>
     </div>
   </div>
-  <!-- <div class="blog-toc">
+  <div class="blog-toc">
     <div
       class="blog-toc-item"
       v-for="item in toc"
       :class="`blog-toc-depth${item.depth} ${item.id === currentTocId ? 'blog-toc-active' : ''}`"
-      @click="goToDepth(item.id)">
+      @click="goToDepth(item.el)">
       <p>{{ item.name }}</p>
     </div>
-  </div> -->
+  </div>
   <!-- <div ref="mdView"> -->
-  <MdView class="blog-mdView" />
+  <MdView class="blog-mdView" ref="mdView" />
   <!-- </div> -->
-  <!-- <template v-if="recommendations.length">
-    <div class="content-cubicle"></div>
+  <template v-if="pageInfo.recommendations.length">
     <p class="recom-title" ref="recom">✨相关推荐✨</p>
     <div class="recoms">
-      <a :href="item.url" class="recom" v-for="(item, index) in recommendations" :key="index">✨ {{ item.attrs.title }}</a>
+      <a :href="item.url" class="recom" v-for="item in pageInfo.recommendations">✨ {{ item.title }}</a>
     </div>
-  </template> -->
+  </template>
+  <div class="footer-space"></div>
 </template>
 
 <script setup>
+import PageOuter from '../components/PageOuter.vue';
 import MdView from '../components/MdView.vue';
 import Icon from '../components/Icon.vue';
 import { computed, onMounted, ref } from 'vue';
@@ -59,7 +61,7 @@ const route = useRoute();
 
 // 当前文章信息
 const pageInfo = computed(() => {
-  return postsData.find((p) => p.frontmatter.id === route.data.frontmatter.id) || {};
+  return postsData.find((p) => p.frontmatter.id === route.data.frontmatter.id) || { frontmatter: {}, recommendations: [] };
 });
 
 // 当前分类
@@ -92,16 +94,26 @@ const classifyIconMap = computed(() => {
 
 // 获取目录结构
 const toc = ref([]);
-window.addEventListener('load', () => {
-  document.querySelectorAll('.blog-mdView > h2, .markdown-body > h3').forEach((item) => {
-    const depth = item.tagName === 'H2' ? 2 : 3;
+onMounted(() => {
+  document.querySelectorAll('.blog-mdView > div > h2, .blog-mdView > div > h3').forEach((item) => {
     toc.value.push({
+      el: item,
       id: item.id,
       name: item.innerText,
-      depth,
+      depth: item.tagName === 'H2' ? 2 : 3,
     });
   });
 });
+// window.addEventListener('load', () => {
+//   document.querySelectorAll('.blog-mdView > h2, .markdown-body > h3').forEach((item) => {
+//     const depth = item.tagName === 'H2' ? 2 : 3;
+//     toc.value.push({
+//       id: item.id,
+//       name: item.innerText,
+//       depth,
+//     });
+//   });
+// });
 // onMounted(() => {
 //   document.querySelectorAll('.blog-mdView > h2, .markdown-body > h3').forEach((item) => {
 //     const depth = item.tagName === 'H2' ? 2 : 3;
@@ -156,55 +168,35 @@ window.addEventListener('load', () => {
 //   });
 // }
 
-// 推荐的文章
-// const recommendations = pageMates
-//   ? pageMates.attrs.recommendations
-//       .map((d) => getPageMateById(d))
-//       .map((d) => ({
-//         url: `/docs/${d.file}`,
-//         ...d,
-//       }))
-//   : [];
-
 // 点击目录定位到目标标题
-// const mdView = ref(null);
-// function goToDepth(id) {
-//   let target = mdView.value.querySelector(`#${id}`);
-//   currentTocId.value = target.id;
-//   if (!target) return;
-//   let top = -435;
-//   while (target) {
-//     top += target.offsetTop;
-//     target = target.parentElement;
-//   }
-//   window.scrollTo({ top, behavior: 'smooth' });
-// }
+const mdView = ref(null);
+function goToDepth(target) {
+  let top = -200;
+  while (target) {
+    top += target.offsetTop;
+    target = target.parentElement;
+  }
+  window.scrollTo({ top, behavior: 'smooth' });
+}
 
 // 目录当前显示节点
-// const currentTocId = ref('');
-// let mdHeads = [];
-// let tocTimeout = null;
-// window.addEventListener('scroll', () => {
-//   if (!mdHeads.length) {
-//     mdHeads = [...mdView.value.querySelectorAll(`.mdContent > h2, .mdContent > h3`)];
-//   }
-//   tocTimeout && clearTimeout(tocTimeout);
-//   tocTimeout = setTimeout(() => {
-//     const target = mdHeads.filter((m) => m.getBoundingClientRect().top < 200).pop() || mdHeads[0];
-//     if (!target) return;
-//     currentTocId.value = target.id;
-//   }, 200);
-// });
+const currentTocId = ref(null);
+window.addEventListener('scroll', () => {
+  const target = toc.value.find((m) => m.el.getBoundingClientRect().top > 100) || toc.value.at(-1);
+  if (target) currentTocId.value = target.id;
+});
 
+// 点击顶部按钮
 function gotoTop() {
   if (typeof window === 'undefined') return;
   window.document.documentElement.scrollTop = 0;
 }
 
-// const recom = ref(null);
-// function gotoRecom() {
-//   window.document.documentElement.scrollTop = recom.value.offsetTop - 100;
-// }
+const recom = ref(null);
+function gotoRecom() {
+  if (typeof window === 'undefined') return;
+  window.document.documentElement.scrollTop = recom.value.offsetTop - 100;
+}
 
 // const comment = ref(null);
 // function gotoComment() {
@@ -255,7 +247,6 @@ function gotoTop() {
   font-size: var(--size1);
   margin-right: 10px;
   opacity: 0;
-  font-weight: 900;
   transition: 0.5s;
 }
 .blog-info:hover > .blog-info-text {
@@ -295,12 +286,10 @@ function gotoTop() {
   width: 95%;
   max-width: var(--blog-width);
 }
-.content-cubicle {
-  height: 100px;
-}
 .recom-title {
   font-size: var(--size3);
   text-align: center;
+  margin-top: 100px;
 }
 .recoms {
   display: flex;
@@ -325,9 +314,6 @@ function gotoTop() {
   border: 1px solid #1979df;
   background: #1979df;
   color: white;
-}
-.bottom {
-  height: 200px;
 }
 .blog-comment {
   position: relative;
@@ -412,6 +398,9 @@ function gotoTop() {
 }
 .blog-toc::-webkit-scrollbar-thumb {
   background: #0000;
+}
+.footer-space {
+  height: 200px;
 }
 </style>
 

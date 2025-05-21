@@ -46,11 +46,13 @@
     border: 1px solid #ddd;
     box-sizing: border-box;
     font-size: 16px;
+    color: #eee;
     .lang {
       display: block;
       color: #eee;
       padding: 2px 16px;
       line-height: 30px;
+      height: 30px;
       font-size: 16px;
       background: #2e374a;
     }
@@ -146,5 +148,8 @@
   /* 代码片段 */
   p code {
     background: #dfe5f7;
+    font-family: inherit;
+    text-align: text-bottom;
+    margin: 0 0.4em;
   }
 }

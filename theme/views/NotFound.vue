@@ -1,8 +1,11 @@
 <template>
+  <PageOuter />
   <div class="NotFound">NotFound</div>
 </template>
 
-<script setup></script>
+<script setup>
+import PageOuter from '../components/PageOuter.vue';
+</script>
 
 <style scoped>
 .NotFound {

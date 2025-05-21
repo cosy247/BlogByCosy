@@ -114,13 +114,12 @@
   <div class="readme-box" v-show="isShowReadMe" @click.self="closeReadMeContent">
     <div class="readme-container">
       <div class="readme-close" @click="closeReadMeContent">&#xe632;</div>
-      <MdView fileName="README" class="readme-content" />
+      <iframe class="readme-iframe" src="./readme.html" frameborder="0"></iframe>
     </div>
   </div>
 </template>
 
 <script setup>
-import MdView from './MdView.vue';
 import Icon from './Icon.vue';
 import { ref, nextTick } from 'vue';
 import { data as classifyData } from '../data/classify.data';
@@ -606,21 +605,12 @@ if (typeof window !== 'undefined') {
   filter: brightness(1.8);
   transition-duration: 0.1s;
 }
-.readme-content {
-  overflow: auto;
+.readme-iframe {
+  width: 90%;
   height: 100%;
-  width: 95%;
+  border: none;
+  display: block;
   margin: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.readme-content::-webkit-scrollbar {
-  display: none;
-}
-
-.readme-content:deep(h1) {
-  padding-top: 0;
-  margin-top: 0;
+  border-radius: 10px;
 }
 </style>
