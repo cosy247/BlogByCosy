@@ -114,7 +114,7 @@
   <div class="readme-box" v-show="isShowReadMe" @click.self="closeReadMeContent">
     <div class="readme-container">
       <div class="readme-close" @click="closeReadMeContent">&#xe632;</div>
-      <iframe class="readme-iframe" src="./readme.html" frameborder="0"></iframe>
+      <iframe class="readme-iframe" src="/README.html" frameborder="0"></iframe>
     </div>
   </div>
 </template>
