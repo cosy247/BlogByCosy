@@ -17,7 +17,7 @@ export default {
   // 项目自动生成文件路径
   tempDir: '/temp',
   // 打包路径
-  // outDir: './docs',
+  outDir: './BlogByCosy',
   // 高亮代码支持的语言
   codeLangs: ['javascript', 'vue', 'text', 'shell', 'json', 'html', 'css'],
   // 高亮代码支持的语言别名
