@@ -1,10 +1,15 @@
-console.log(import.meta.env?.BASE || process.env.BASE || '/');
+let base = '/';
+if (import.meta.env?.BASE) {
+  base = import.meta.env.BASE;
+} else if (typeof process !== 'undefined' && process.env?.BASE) {
+  base = process.env.BASE;
+}
 
 export default {
   title: 'BlogByCosy',
   description: 'BlogByCosy',
   srcDir: './docs',
-  base: import.meta.env?.BASE || process.env.BASE || '/',
+  base,
   vite: {
     server: {
       port: 2470,
