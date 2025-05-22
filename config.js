@@ -1,7 +1,7 @@
 export default {
   title: 'BlogByCosy',
   description: 'BlogByCosy',
-  srcDir: './articles',
+  // srcDir: './articles',
   base: process.env.NODE_ENV === 'production' ? '/BlogByCosy/' : '/',
   vite: {
     server: {
@@ -17,7 +17,7 @@ export default {
   // 项目自动生成文件路径
   tempDir: '/temp',
   // 打包路径
-  outDir: './docs',
+  // outDir: './docs',
   // 高亮代码支持的语言
   codeLangs: ['javascript', 'vue', 'text', 'shell', 'json', 'html', 'css'],
   // 高亮代码支持的语言别名
