@@ -1,8 +1,10 @@
+console.log(import.meta.env?.BASE || process.env.BASE || '/');
+
 export default {
   title: 'BlogByCosy',
   description: 'BlogByCosy',
   srcDir: './docs',
-  base: '/BlogByCosy/',
+  base: import.meta.env?.BASE || process.env.BASE || '/',
   vite: {
     server: {
       port: 2470,

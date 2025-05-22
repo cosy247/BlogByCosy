@@ -8,6 +8,7 @@
     "new": "node ./src/bin/newDocs.js",
     "dev": "vitepress dev . --no-cache",
     "build": "vitepress build . --no-cache",
+    "build:github": "set BASE=/BlogByCosy/ && vitepress build . --no-cache",
     "preview": "vitepress preview ."
   },
   "devDependencies": {
