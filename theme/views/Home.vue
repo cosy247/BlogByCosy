@@ -2,7 +2,7 @@
   <PageOuter />
   <div class="cover">
     <div class="cover-content" :style="{ paddingTop: 37 * firstPageProportion + '%' }">
-      <p class="cover-title" v-if="filter">
+      <p class="cover-title" v-if="filter.type">
         {{ filter.type }}
         <span class="cover-title-value">.{{ filter.value }}</span>
         <span class="cover-count">【{{ filterPosts.length }}】</span>
@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="list">
-    <a :href="item.url" class="list-item" v-for="item in filterPosts">
+    <a :href="item.url" class="list-item" v-for="item in filterPosts" target="_self">
       <p class="list-item-title">{{ item.frontmatter.title }}</p>
       <div class="list-item-infos">
         <p class="list-item-info">
@@ -45,7 +45,7 @@ import config from '../../config';
 import { data as postsData } from '../data/posts.data';
 
 const filter = computed(() => {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined') return {};
   const params = new URL(window.location.href).searchParams;
   const classifys = config.menus.filter((m) => m.type === 'classify');
   for (const classify of classifys) {
@@ -54,10 +54,11 @@ const filter = computed(() => {
       return { type: classifyName, value: params.get(classifyName), multiple: classify.classify.multiple };
     }
   }
+  return {};
 });
 
 const filterPosts = computed(() => {
-  if (!filter.value) return postsData;
+  if (!filter.value.type) return postsData;
   if (filter.value.multiple) {
     return postsData.filter((p) => {
       return p.frontmatter[filter.value.type]?.includes(filter.value.value);
@@ -66,6 +67,7 @@ const filterPosts = computed(() => {
     return postsData.filter((p) => (p.frontmatter[filter.value.type] = filter.value.value));
   }
 });
+
 
 // 示例：修改URL并添加参数
 // function addTagParameter(tagValue) {

@@ -5,21 +5,31 @@
 <script setup>
 import './assets/styles/common.css';
 import { useRoute } from 'vitepress';
-import { computed, defineAsyncComponent } from 'vue';
+import { computed, defineAsyncComponent, onMounted } from 'vue';
+import config from '../config';
 
 const route = useRoute();
 
 const asyncComponent = computed(() => {
   if (!route.component) {
     return defineAsyncComponent({ loader: () => import('./views/NotFound.vue') });
-  } else if (route.path === '/') {
+  } else if (route.path === config.base) {
     return defineAsyncComponent({ loader: () => import('./views/Home.vue') });
-  } else if (route.path.toLocaleLowerCase() === '/readme.html') {
+  } else if (route.path.toLocaleLowerCase().includes('/readme.html')) {
     return defineAsyncComponent({ loader: () => import('./components/MdView.vue') });
   } else {
     return defineAsyncComponent({ loader: () => import('./views/Blog.vue') });
   }
 });
+
+const consoleLog = console.log;
+console.log = (...args) => {
+  consoleLog(
+    '%c💎💎💎',
+    'background: linear-gradient(90deg, #f00 0%, #00f 100%) text; color: transparent; font-weight: 900;',
+    ...args
+  );
+};
 </script>
 
 <style scoped>

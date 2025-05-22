@@ -1,9 +1,9 @@
 <template>
   <div class="Menu">
     <div class="content">
-      <a href="/" class="logo" target="_self" v-html="config.pageTitle"></a>
+      <a :href="config.base" class="logo" target="_self" v-html="config.pageTitle"></a>
       <div
-        href="/"
+        :href="config.base"
         class="logo mobile"
         :class="{ showMenu: isShowMenu }"
         @click="isShowMenu = !isShowMenu"
@@ -11,14 +11,14 @@
       <div class="tools menus-right-tools" v-if="config.menuAlign === 'right-right'">
         <div class="tool" @click="showSearchBox">&#xe618;</div>
         <span class="tool" v-if="config.homeType !== 'introduce'" @click="openReadMeContent">&#xe650;</span>
-        <a class="tool home" href="/">
+        <a class="tool home" :href="config.base" target="_self">
           <img :src="config.logo" alt="" />
         </a>
       </div>
       <div class="menus" :class="`menus-${config.menuAlign}`">
         <div class="menu" v-for="menu in config.menus">
           <!-- link -->
-          <a v-if="menu.type === 'link'" class="menu-title" :href="menu.link">
+          <a v-if="menu.type === 'link'" class="menu-title" :href="menu.link" target="_self">
             <Icon class="menu-title-icon" size="18" :icon="menu" />
             {{ menu.name }}
           </a>
@@ -43,7 +43,8 @@
                   <a
                     v-for="(item, key) in classifyData[menu.classify.name]"
                     class="menu-content-item"
-                    :href="`/?${menu.classify.name}=${key}`">
+                    :href="`${config.base}?${menu.classify.name}=${key}`"
+                    target="_self">
                     {{ key }}({{ item }})
                   </a>
                 </div>
@@ -67,7 +68,7 @@
       <div class="tools">
         <div class="tool" @click="showSearchBox">&#xe618;</div>
         <span class="tool" @click="openReadMeContent">&#xe650;</span>
-        <a class="tool home" href="/">
+        <a class="tool home" :href="`${config.base}`" target="_self">
           <img :src="config.logo" alt="" />
         </a>
       </div>
@@ -114,7 +115,7 @@
   <div class="readme-box" v-show="isShowReadMe" @click.self="closeReadMeContent">
     <div class="readme-container">
       <div class="readme-close" @click="closeReadMeContent">&#xe632;</div>
-      <iframe class="readme-iframe" src="/README.html" frameborder="0"></iframe>
+      <iframe class="readme-iframe" :src="`${config.base}README.html`" frameborder="0"></iframe>
     </div>
   </div>
 </template>
@@ -135,7 +136,7 @@ const searchInput = ref(null);
 const searchList = ref([]);
 
 function openReadMeContent() {
-  if (typeof window !== 'undefined') return;
+  if (typeof window === 'undefined') return;
   isShowReadMe.value = true;
   window.document.body.style.overflowY = 'hidden';
   window.document.body.style.paddingRight = 'var(--outer-width)';
