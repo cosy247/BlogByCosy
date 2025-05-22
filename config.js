@@ -2,6 +2,7 @@ export default {
   title: 'BlogByCosy',
   description: 'BlogByCosy',
   srcDir: './articles',
+  base: process.env.NODE_ENV === 'production' ? '/BlogByCosy/' : '/',
   vite: {
     server: {
       port: 2470,
