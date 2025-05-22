@@ -2,7 +2,7 @@ export default {
   title: 'BlogByCosy',
   description: 'BlogByCosy',
   srcDir: './docs',
-  base: process.env.NODE_ENV === 'production' ? '/BlogByCosy/' : '/',
+  base: '/BlogByCosy/',
   vite: {
     server: {
       port: 2470,
@@ -23,13 +23,13 @@ export default {
   // 高亮代码支持的语言别名
   codeLangAlias: { js: 'javascript' },
   // 页面显示标题，浏览器 tab 标题在 index.html 中设置
-  pageTitle: '<p class="c-page-title">C<img src="/assets/images/logo.png"/>SY247</p>',
+  pageTitle: '<p class="c-page-title">C<img src="./logo.png"/>SY247</p>',
   // 是否开启相似推荐，0表示不开启，大于0将为补充至推荐文章数
   similarRecommendNumber: 5,
   // 全局组件目录
   componentDir: '/components',
 
-  head: [['link', { rel: 'icon', href: '/assets/images/logo.png' }]],
+  head: [['link', { rel: 'icon', href: './logo.png' }]],
 
   // 首页座右铭
   mottos: [
@@ -96,13 +96,13 @@ export default {
         {
           name: 'DrinkWater',
           url: 'https://github.com/cosy247/DrinkWater',
-          imgIcon: '/assets/images/DrinkWater.png',
+          imgIcon: './DrinkWater.png',
           describe: '桌面小工具，用于定时提醒喝水。',
         },
         {
           name: 'VsBackground',
           url: 'https://marketplace.visualstudio.com/items?itemName=cosy247.vsBackground',
-          imgIcon: '/assets/images/VsBackground.png',
+          imgIcon: './VsBackground.png',
           describe: 'VsCode插件，给页面添加背景图片。',
         },
         {
@@ -114,7 +114,7 @@ export default {
         {
           name: 'MarkdownInSider',
           url: 'https://marketplace.visualstudio.com/items?itemName=cosy247.markdown-in-sider',
-          imgIcon: '/assets/images/MarkdownInSider.png',
+          imgIcon: './MarkdownInSider.png',
           describe: 'VSCode 插件，可以在侧边栏编辑 Markdown。',
         },
       ],
