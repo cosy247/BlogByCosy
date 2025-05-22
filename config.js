@@ -1,7 +1,7 @@
 export default {
   title: 'BlogByCosy',
   description: 'BlogByCosy',
-  // srcDir: './articles',
+  srcDir: './docs',
   base: process.env.NODE_ENV === 'production' ? '/BlogByCosy/' : '/',
   vite: {
     server: {
