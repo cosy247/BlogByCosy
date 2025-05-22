@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="list">
-    <a :href="item.url" class="list-item" v-for="item in filterPosts" target="_self">
+    <a :href="item.url" class="list-item" v-for="item in filterPosts" target="_self" :key="item.frontmatter.id">
       <p class="list-item-title">{{ item.frontmatter.title }}</p>
       <div class="list-item-infos">
         <p class="list-item-info">
@@ -67,7 +67,6 @@ const filterPosts = computed(() => {
     return postsData.filter((p) => (p.frontmatter[filter.value.type] = filter.value.value));
   }
 });
-
 
 // 示例：修改URL并添加参数
 // function addTagParameter(tagValue) {

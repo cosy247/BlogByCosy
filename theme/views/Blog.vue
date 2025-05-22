@@ -1,7 +1,7 @@
 <template>
   <PageOuter />
   <div class="blog-infos">
-    <a :href="`/?${item.name}=${item.value}`" class="blog-info" v-for="item in classifys">
+    <a :href="`${config.base}?${item.name}=${item.value}`" class="blog-info" v-for="item in classifys">
       <span class="blog-info-text">{{ item.value }}</span>
       <Icon class="blog-info-icon" :icon="classifyIconMap[item.name]" />
     </a>
@@ -108,7 +108,7 @@ onMounted(() => {
 // 点击目录定位到目标标题
 const mdView = ref(null);
 function goToDepth(target) {
-  if(typeof window === 'undefined') return;
+  if (typeof window === 'undefined') return;
   let top = -200;
   while (target) {
     top += target.offsetTop;
@@ -119,11 +119,11 @@ function goToDepth(target) {
 
 // 目录当前显示节点
 const currentTocId = ref(null);
-if(typeof window !== 'undefined') {
-window.addEventListener('scroll', () => {
-  const target = toc.value.find((m) => m.el.getBoundingClientRect().top > 100) || toc.value.at(-1);
-  if (target) currentTocId.value = target.id;
-});
+if (typeof window !== 'undefined') {
+  window.addEventListener('scroll', () => {
+    const target = toc.value.find((m) => m.el.getBoundingClientRect().top > 100) || toc.value.at(-1);
+    if (target) currentTocId.value = target.id;
+  });
 }
 
 // 点击顶部按钮
