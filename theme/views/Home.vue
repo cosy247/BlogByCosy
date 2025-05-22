@@ -5,12 +5,12 @@
       <p class="cover-title" v-if="filter.type">
         {{ filter.type }}
         <span class="cover-title-value">.{{ filter.value }}</span>
-        <span class="cover-count">【{{ filterPosts.length }}】</span>
+        <span class="cover-count">【{{ postCount }}】</span>
       </p>
       <template v-else>
         <div class="cover-title">
           <div class="cover-logo" v-html="config.pageTitle"></div>
-          <span class="cover-count">【{{ filterPosts.length }}】</span>
+          <span class="cover-count">【{{ postCount }}】</span>
         </div>
         <p class="cover-dictum">{{ mottos[0] }}</p>
         <p class="cover-dictum-2" v-for="motto in mottos.slice(1)">{{ motto }}</p>
@@ -23,16 +23,18 @@
       </div>
     </div>
   </div>
-  <div class="list">
-    <a :href="item.url" class="list-item" v-for="item in filterPosts" target="_self" :key="item.frontmatter.id">
-      <p class="list-item-title">{{ item.frontmatter.title }}</p>
-      <div class="list-item-infos">
-        <p class="list-item-info">
-          &#xe6ad;
-          {{ item.frontmatter.date }}
-        </p>
-      </div>
-    </a>
+  <div class="list" v-if="postsData">
+    <template v-for="item in postsData" :key="item.frontmatter.id">
+      <a :href="item.url" class="list-item" target="_self" v-show="!item.hidden">
+        <p class="list-item-title">{{ item.frontmatter.title }}</p>
+        <div class="list-item-infos">
+          <p class="list-item-info">
+            &#xe6ad;
+            {{ item.frontmatter.date }}
+          </p>
+        </div>
+      </a>
+    </template>
     <div class="list-over">🐲 时间线到头了 🦄</div>
   </div>
 </template>
@@ -43,66 +45,37 @@ import Icon from '../components/Icon.vue';
 import { ref, computed } from 'vue';
 import config from '../../config';
 import { data as postsData } from '../data/posts.data';
+import { multipleClassifyNames } from '../data/classifyNames';
 
-const filter = computed(() => {
-  if (typeof window === 'undefined') return {};
+// 筛选
+const filter = {};
+if (typeof window !== 'undefined') {
   const params = new URL(window.location.href).searchParams;
-  const classifys = config.menus.filter((m) => m.type === 'classify');
-  for (const classify of classifys) {
-    const classifyName = classify.classify.name;
+  for (const classifyName of multipleClassifyNames) {
     if (params.get(classifyName)) {
-      return { type: classifyName, value: params.get(classifyName), multiple: classify.classify.multiple };
+      filter.type = classifyName;
+      filter.value = params.get(classifyName);
+      filter.multiple = multipleClassifyNames.includes(classifyName);
     }
   }
-  return {};
-});
+}
 
-const filterPosts = computed(() => {
-  if (!filter.value.type) return postsData;
-  if (filter.value.multiple) {
-    return postsData.filter((p) => {
-      return p.frontmatter[filter.value.type]?.includes(filter.value.value);
-    });
+// 过滤
+postsData.forEach((p) => {
+  if (!filter.type) return;
+  if (p.frontmatter[filter.type]) {
+    if (filter.multiple) {
+      p.hidden = !p.frontmatter[filter.type].includes(filter.value);
+    } else {
+      p.hidden = p.frontmatter[filter.type] !== filter.value;
+    }
   } else {
-    return postsData.filter((p) => (p.frontmatter[filter.value.type] = filter.value.value));
+    p.hidden = true;
   }
 });
 
-// 示例：修改URL并添加参数
-// function addTagParameter(tagValue) {
-//   const url = new URL(window.location.href);
-//   url.searchParams.set('tag', tagValue);
-//   history.pushState({}, '', url.href);
-//   console.log('URL updated to:', url.href);
-// }
-
-// // 调用函数，添加参数
-// addTagParameter('123');
-
-// 过滤文章列表
-// const allPageList = ref([]);
-// const route = useRoute();
-// const isStaticPage = ref(false);
-// watch(
-//   () => [route.params.name, route.params.value],
-//   ([name, value]) => {
-//     isStaticPage.value = name && value;
-//     if (isStaticPage.value && statistics[name]) {
-//       allPageList.value = pageList.filter((page) => {
-//         if (Array.isArray(page.attrs[name])) {
-//           return page.attrs[name].some((val) => {
-//             return val.toLowerCase() === value.toLowerCase();
-//           });
-//         } else {
-//           return page.attrs[name]?.toLowerCase() === value.toLowerCase();
-//         }
-//       });
-//     } else {
-//       allPageList.value = pageList;
-//     }
-//   },
-//   { immediate: true }
-// );
+// 文章数量
+const postCount = postsData.filter((p) => !p.hidden).length;
 
 // 座右铭
 const mottos = config.mottos[(Math.random() * config.mottos.length) >> 0];
@@ -117,49 +90,6 @@ if (typeof window !== 'undefined') {
     }
   });
 }
-
-// 当前需要显示的文章列表
-// const pageSize = 10;
-// const pageIndex = ref(1);
-// const isAddingPageList = ref(false);
-// const currentPageList = computed(() => allPageList.value.slice(0, pageSize * pageIndex.value));
-// window.addEventListener('scroll', () => {
-//   const { clientHeight, scrollTop, scrollHeight } = document.documentElement;
-//   if (isAddingPageList.value || currentPageList.length === allPageList.value.length) return;
-//   if (scrollHeight - clientHeight - scrollTop > 400) return;
-//   isAddingPageList.value = true;
-//   nextTick(() => (isAddingPageList.value = false));
-//   pageIndex.value++;
-// });
-
-// const pageFilterType = computed(() => {
-//   return pageConfig.countMateNames.find((name) => route.query[name]) || '';
-// });
-
-// const pageFilterValue = computed(() => {
-//   return route.query[pageFilterType.value] || '';
-// });
-
-// watch(() => [pageFilterType, pageFilterValue], initPageList);
-
-// function initPageList() {
-//   if (pageFilterType.value) {
-//     if (pageConfig.isArrMateNames.includes(pageFilterType.value)) {
-//       remainPageList.value = pageDatas.filter((item) => {
-//         return item.frontmatter[pageFilterType.value].includes(pageFilterValue.value);
-//       });
-//     } else {
-//       remainPageList.value = pageDatas.filter((item) => {
-//         return item.frontmatter[pageFilterType.value] == pageFilterValue.value;
-//       });
-//     }
-//   } else {
-//     remainPageList.value = pageDatas;
-//   }
-//   allPageCount.value = pageList.value.length + remainPageList.value.length;
-//   pageList.value = remainPageList.value.splice(0, pageSize.value);
-// }
-// initPageList();
 </script>
 
 <style scoped>
