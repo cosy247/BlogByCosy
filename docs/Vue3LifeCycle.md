@@ -12,7 +12,7 @@ top: 0
 
 # vue3 生命周期
 
-在了解 vue3 生命周期前，建议先阅读[vue2 生命周期钩子](/Vue2LifeCycle.html)。
+在了解 vue3 生命周期前，建议先阅读[vue2 生命周期钩子](./Vue2LifeCycle.html)。
 
 ## 生命周期一览
 
