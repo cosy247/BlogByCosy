@@ -6,7 +6,7 @@ description: Vue3 生命周期
 tag: Vue 前端
 archive:
 recommendations:
-shadow: false
+hidden: false
 top: 0
 ---
 

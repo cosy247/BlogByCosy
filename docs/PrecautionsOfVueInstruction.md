@@ -6,7 +6,7 @@ description: Vue 指令的注意事项
 tag: Vue 前端
 archive:
 recommendations:
-shadow: false
+hidden: false
 ---
 
 # Vue 指令的注意事项

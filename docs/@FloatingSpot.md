@@ -5,7 +5,7 @@ description: 前端实现浮动光斑效果 # 文章描述
 tag: 前端 # 文章标签
 archive: 前端小dome # 文章归档
 recommendations: # 相关推荐id
-shadow: false # 是否隐藏
+hidden: false # 是否隐藏
 top: 0 # 是否zhi置顶，数字越大优先级越高
 ---
 

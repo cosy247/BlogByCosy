@@ -6,7 +6,7 @@ description: NRM - NPM 的镜像源管理工具 # 文章描述
 tag: NPM # 文章标签
 archive: # 文章归档
 recommendations: 1729751422783 # 相关推荐id
-shadow: false # 是否隐藏
+hidden: false # 是否隐藏
 top: 0 # 是否zhi置顶，数字越大优先级越高
 ---
 

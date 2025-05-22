@@ -6,7 +6,7 @@ description: SPA 首屏加载优化
 tag: 前端
 archive:
 recommendations:
-shadow: false
+hidden: false
 ---
 
 # SPA 首屏加载优化

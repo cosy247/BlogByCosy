@@ -6,7 +6,7 @@ description: 养的三只猫猫：布丁，雪糕，多多 # 文章描述
 tag: 图集 # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
-shadow: false # 是否隐藏
+hidden: false # 是否隐藏
 top: 0 # 是否置顶，数字越大优先级越高
 ---
 

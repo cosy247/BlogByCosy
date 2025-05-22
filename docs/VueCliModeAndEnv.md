@@ -6,7 +6,7 @@ description: Vue Cli 的mode 模式和 env 环境变量 # 文章描述
 tag: Vue 前端 # 文章标签
 archive: # 文章归档
 recommendations: 1737444286721 # 相关推荐id
-shadow: false # 是否隐藏
+hidden: false # 是否隐藏
 top: 0 # 是否zhi置顶，数字越大优先级越高
 ---
 

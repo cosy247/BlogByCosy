@@ -6,7 +6,7 @@ description: Vscode 连接服务器导致服务器卡死 # 文章描述
 tag: Vscode使用 # 文章标签
 archive: # 文章归档
 recommendations: 240409103645 # 相关推荐id
-shadow: false # 是否隐藏
+hidden: false # 是否隐藏
 top: 0 # 是否zhi置顶，数字越大优先级越高
 ---
 

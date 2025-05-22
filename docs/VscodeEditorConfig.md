@@ -14,11 +14,17 @@ description: Vscode 格式化配置文件 editorConfig 属性说明
 
 ## Vscode 中使用
 
-Vscode 可以安装`EditorConfig for VS Code`插件，也可以安装其他组件。 ![Alt text](assets/VscodeEditorConfig/image.png)
+Vscode 可以安装`EditorConfig for VS Code`插件，也可以安装其他组件。
 
-这里使用`Prettier - Code formatter`插件为例。 ![Alt text](assets/VscodeEditorConfig/image-1.png)
+![Alt text](assets/VscodeEditorConfig/image.png)
 
-其中配置`Use Editor Config`即可启动 editorConfig 文件中的格式化配置 ![Alt text](assets/VscodeEditorConfig/image-2.png)
+这里使用`Prettier - Code formatter`插件为例。
+
+![Alt text](assets/VscodeEditorConfig/image-1.png)
+
+其中配置`Use Editor Config`即可启动 editorConfig 文件中的格式化配置
+
+![Alt text](assets/VscodeEditorConfig/image-2.png)
 
 ## 属性配置
 

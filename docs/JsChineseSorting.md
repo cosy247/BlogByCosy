@@ -6,7 +6,7 @@ description: JS Array.sort 从基础到中文排序 # 文章描述
 tag: 前端 JS # 文章标签
 archive: # 文章归档
 recommendations: # 相关推荐id
-shadow: false # 是否隐藏
+hidden: false # 是否隐藏
 top: 0 # 是否zhi置顶，数字越大优先级越高
 ---
 
