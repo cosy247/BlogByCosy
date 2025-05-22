@@ -15,7 +15,7 @@ export default createContentLoader(`../${config.srcDir}/**.md`, {
   includeSrc: false,
   excerpt: false,
   async transform(data) {
-    const posts = data.filter((d) => d.frontmatter.id && !d.url.startsWith('/@'));
+    const posts = JSON.parse(JSON.stringify(data)).filter((d) => d.frontmatter.id && !d.url.startsWith('/@'));
     posts.forEach((post) => (post.url = `${config.base}${post.url.slice(1)}`));
     posts.forEach((post) => {
       // 处理文章的 classify
