@@ -135,11 +135,10 @@ const searchInput = ref(null);
 const searchList = ref([]);
 
 function openReadMeContent() {
+  if (typeof window !== 'undefined') return;
   isShowReadMe.value = true;
-  if (typeof window !== 'undefined') {
-    window.document.body.style.overflowY = 'hidden';
-    window.document.body.style.paddingRight = 'var(--outer-width)';
-  }
+  window.document.body.style.overflowY = 'hidden';
+  window.document.body.style.paddingRight = 'var(--outer-width)';
 }
 
 function closeReadMeContent() {

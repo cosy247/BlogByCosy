@@ -104,73 +104,11 @@ onMounted(() => {
     });
   });
 });
-// window.addEventListener('load', () => {
-//   document.querySelectorAll('.blog-mdView > h2, .markdown-body > h3').forEach((item) => {
-//     const depth = item.tagName === 'H2' ? 2 : 3;
-//     toc.value.push({
-//       id: item.id,
-//       name: item.innerText,
-//       depth,
-//     });
-//   });
-// });
-// onMounted(() => {
-//   document.querySelectorAll('.blog-mdView > h2, .markdown-body > h3').forEach((item) => {
-//     const depth = item.tagName === 'H2' ? 2 : 3;
-//     toc.value.push({
-//       id: item.id,
-//       name: item.innerText,
-//       depth,
-//     });
-//   });
-// });
-
-// const route = useRoute();
-
-// 当前文章名
-// const docsFile = computed(() => route.params.file);
-
-/** 目录 */
-// const toc = ref([]);
-// function setToc() {
-// toc.value = markTocMap[docsFile.value];
-// currentTocId.value = toc.value[1]?.id;
-// }
-
-// 当前文章的设置的属性
-// const pageMates = pageList.find((p) => p.file === route.params.file);
-// if (pageMates) {
-//   document.title = pageMates.attrs.title;
-// }
-
-// 当前文章的统计属性
-// const statisAttrs = ref([]);
-// const staticMenus = config.menus.filter((m) => m.type === 'statistics');
-// if (pageMates) {
-//   staticMenus.forEach((s) => {
-//     const name = s.statistics.frontName;
-//     staticIconMap.value[name] = s;
-//     if (Array.isArray(pageMates.attrs[name])) {
-//       pageMates.attrs[name].forEach((value) => {
-//         statisAttrs.value.push({
-//           name,
-//           value,
-//           url: `/${name}/${value}`,
-//         });
-//       });
-//     } else if (pageMates.attrs[name]) {
-//       statisAttrs.value.push({
-//         name,
-//         value: pageMates.attrs[name],
-//         url: `/${name}/${pageMates.attrs[name]}`,
-//       });
-//     }
-//   });
-// }
 
 // 点击目录定位到目标标题
 const mdView = ref(null);
 function goToDepth(target) {
+  if(typeof window === 'undefined') return;
   let top = -200;
   while (target) {
     top += target.offsetTop;
@@ -181,10 +119,12 @@ function goToDepth(target) {
 
 // 目录当前显示节点
 const currentTocId = ref(null);
+if(typeof window !== 'undefined') {
 window.addEventListener('scroll', () => {
   const target = toc.value.find((m) => m.el.getBoundingClientRect().top > 100) || toc.value.at(-1);
   if (target) currentTocId.value = target.id;
 });
+}
 
 // 点击顶部按钮
 function gotoTop() {
