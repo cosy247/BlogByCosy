@@ -1,1 +1,0 @@
-import{_ as a}from"./theme.Bcgzs5jl.js";import{_ as e,c as s,o as c}from"./framework.CUk_15SL.js";const _={__name:"Blog",setup(l){return(o,r)=>(c(),s(a,{class:"blog-mdView",fileName:o.docsFile,onLoad:o.setToc},null,8,["fileName","onLoad"]))}},m=e(_,[["__scopeId","data-v-17a95948"]]);export{m as default};

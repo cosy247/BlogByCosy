@@ -1,0 +1,1 @@
+import{P as e}from"./PageOuter.BCc4fEAg.js";import{_ as t,z as a,o as s,E as r,A as n,F as d}from"./framework.CEZ28rDC.js";const _={__name:"NotFound",setup(c){return(u,o)=>(s(),a(d,null,[r(e),o[0]||(o[0]=n("div",{class:"NotFound"},"NotFound",-1))],64))}},l=t(_,[["__scopeId","data-v-2df56620"]]);export{l as default};

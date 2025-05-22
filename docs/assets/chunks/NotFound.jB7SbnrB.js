@@ -1,1 +1,0 @@
-import{_ as o,b as t,o as c}from"./framework.CUk_15SL.js";const e={},n={class:"NotFound"};function s(_,a){return c(),t("div",n,"NotFound")}const r=o(e,[["render",s],["__scopeId","data-v-00c767d8"]]);export{r as default};
