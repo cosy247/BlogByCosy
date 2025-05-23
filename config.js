@@ -4,6 +4,7 @@ if (import.meta.env?.BASE) {
 } else if (typeof process !== 'undefined' && process.env?.BASE) {
   base = process.env.BASE;
 }
+console.log('💎💎💎', base);
 
 export default {
   title: 'BlogByCosy',
