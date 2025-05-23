@@ -1,6 +1,6 @@
 let base = '/';
-if (import.meta.env?.BASE) {
-  base = import.meta.env.BASE;
+if (import.meta.env?.BASE_URL) {
+  base = import.meta.env.BASE_URL;
 } else if (typeof process !== 'undefined' && process.env?.BASE) {
   base = process.env.BASE;
 }

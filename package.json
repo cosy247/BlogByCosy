@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "new": "node ./src/bin/newDocs.js",
-    "dev": "vitepress dev . --no-cache",
+    "dev": "cross-env BASE=/BlogByCosy/ vitepress dev . --no-cache",
     "build": "vitepress build . --no-cache",
     "build:github": "cross-env BASE=/BlogByCosy/ vitepress build .",
     "preview": "vitepress preview ."
