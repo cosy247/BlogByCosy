@@ -7,7 +7,6 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const require = createRequire(import.meta.url);
-const docsData = require(path.join(__dirname, '../../', config.tempDir, 'docsData.json'));
 
 const stdio = require('readline').createInterface({
   input: process.stdin,
@@ -31,10 +30,6 @@ function getInput(questionText, defaultText) {
   });
 }
 
-function getDefaultValue(attrs, defaultValue) {
-  return new Function(...Object.keys(attrs), `return (\`${defaultValue}\`)`)(...Object.values(attrs));
-}
-
 // 执行函数
 (async (template) => {
   // 检查模板文件是否存在
@@ -51,7 +46,6 @@ function getDefaultValue(attrs, defaultValue) {
   const attrs = {
     $id: Date.now(),
     $filename: await getInput('🐲 请输入文件名 : '),
-    $pageList: docsData.pageList,
   };
 
   // 输入文件名
@@ -75,7 +69,6 @@ function getDefaultValue(attrs, defaultValue) {
     if (typeof temp.choices === 'function') {
       temp.choices = temp.choices(attrs);
     }
-
     attrs[temp.name] = (await inquirer.prompt(temp))[temp.name];
   }
 
