@@ -121,7 +121,7 @@ function goToDepth(target) {
 const currentTocId = ref(null);
 if (typeof window !== 'undefined') {
   window.addEventListener('scroll', () => {
-    const target = toc.value.find((m) => m.el.getBoundingClientRect().top > 100) || toc.value.at(-1);
+    const target = toc.value.find((m) => m.el.getBoundingClientRect().top > 50) || toc.value.at(-1);
     if (target) currentTocId.value = target.id;
   });
 }
