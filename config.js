@@ -4,7 +4,6 @@ if (import.meta.env?.BASE_URL) {
 } else if (typeof process !== 'undefined' && process.env?.BASE) {
   base = process.env.BASE;
 }
-console.log('💎💎💎', base);
 
 export default {
   title: 'BlogByCosy',
@@ -163,16 +162,18 @@ export default {
         required: true,
       },
       { type: 'list', name: 'archive', message: '文章归档:', choices: ['', '前端小dome'] },
-      {
-        type: 'checkbox',
-        name: 'recommendations',
-        message: '相关推荐:',
-        choices: (d) =>
-          d.$pageList.map((p) => ({
-            name: p.attrs.title,
-            value: p.attrs.id,
-          })),
-      },
+      // {
+      //   type: 'checkbox',
+      //   name: 'recommendations',
+      //   message: '相关推荐:',
+      //   choices: (d) => {
+      //     const choices = d.$pageList.map((p) => ({
+      //       name: p.attrs.title,
+      //       value: p.attrs.id,
+      //     }));
+      //     return choices.length ? choices : [''];
+      //   },
+      // },
       { type: 'confirm', name: 'shadow', message: '是否隐藏:', default: false },
       { type: 'number', name: 'top', message: '置顶等级:', default: 0 },
     ],
