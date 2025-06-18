@@ -1,11 +1,11 @@
 ---
 id: 6
 date: 2023/08/29 17:16
-title: CSS控制上级样式
-tag: CSS 前端
+title: 创建 Vue 项目
+tag: Vue 前端
 archive:
 recommendations: 2404159043318
-description: CSS控制上级样式
+description: 创建 Vue 项目
 ---
 
 # 多种方式创建 Vue 项目：从基础到进阶
