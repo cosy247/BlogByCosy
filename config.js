@@ -21,6 +21,8 @@ export default {
     theme: 'dark', // 使用 Dracula 主题
   },
 
+  draft: true,
+
   // 项目自动生成文件路径
   tempDir: '/temp',
   // 打包路径
