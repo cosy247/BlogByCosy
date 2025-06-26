@@ -3,7 +3,7 @@ import config from '../../config';
 import { multipleClassifyNames } from './classifyNames';
 
 // 计算两个字符串的 Jaccard 相似度
-function jaccardSimilarity(a, b) {
+function jaccardSimilarity(a = '', b = '') {
   const setA = new Set(a.split(''));
   const setB = new Set(b.split(''));
   const intersection = new Set([...setA].filter((x) => setB.has(x)));
@@ -27,7 +27,7 @@ export default createContentLoader(`../${config.srcDir}/**.md`, {
       multipleClassifyNames.forEach((classify) => {
         const classifyName = classify;
         if (!post.frontmatter[classifyName]) return;
-        post.frontmatter[classifyName] = post.frontmatter[classifyName]?.split?.(' ');
+        post.frontmatter[classifyName] = post.frontmatter[classifyName].split?.(' ');
       });
       // 获取相识文章
       const postsimilars = posts.reduce((acc, post0) => {
