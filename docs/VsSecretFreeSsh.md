@@ -15,7 +15,7 @@ description: Vscode 免密连接远程服务器
 
 ## 生成私钥和公钥
 
-在任意路径(一般为`C:\Users\mjren\.ssh`)的控制台中输入。
+在任意路径(一般为`C:\Users\用户名\.ssh`)的控制台中输入。
 
 ```
 ssh-keygen
@@ -31,7 +31,7 @@ ssh-keygen
 
 ```
 Generating public/private rsa key pair.
-Enter file in which to save the key (C:\Users\mjren/.ssh/id_rsa): test
+Enter file in which to save the key (C:\Users\用户名/.ssh/id_rsa): test
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
 Your identification has been saved in test
@@ -99,7 +99,7 @@ Host cosy
   HostName 122.521.21.251
   Port 22
   User root
-  IdentityFile C:\Users\xxx\.ssh\test
+  IdentityFile C:\Users\用户名\.ssh\test
 ```
 
 > IdentityFile：私钥文件路径
@@ -118,3 +118,10 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCzOMdL352fvFVpHKt5yFxxYtxWZnVDnghMFT8PB1DE
 ```
 
 这样只要使用其中任意一个对应的私钥都可以进行免密连接。
+
+## 清理缓存
+
+如果配置正确但是连接不上，可以尝试清理本地的连接缓存，删除以下两个文件：
+
+- `C:\Users\用户名\.ssh\known_hosts` 记录已连接的远程主机信息。
+- `C:\Users\用户名\.ssh\known_hosts_old` 旧版本的 known_hosts 文件。
