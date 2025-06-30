@@ -160,6 +160,7 @@ export default {
           'React',
           'Node',
           'Python',
+          'Git',
         ],
         required: true,
       },
