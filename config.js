@@ -128,12 +128,6 @@ export default {
         },
       ],
     },
-    // {
-    //   type: 'link',
-    //   name: '留言',
-    //   fontIcon: '&#xe744;',
-    //   link: '/comment',
-    // },
   ],
   // 脚本生成文章的模板设置
   template: {
