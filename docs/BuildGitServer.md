@@ -43,6 +43,7 @@ git init --bare
 
 到目前为止服务器仓库已经搭建完成，对应的 origin 地址为 `root@192.168.45.4:/git/test.git`。 根据自己的用户名，ip 地址和仓库地址进行修改。
 
+<!--
 ## 密码缓存
 
 在添加了远程地址后，进行推送，拉取等操作时还需要输入密码。可使用 git 缓存功能对用户密码进行缓存。
@@ -77,4 +78,4 @@ git config credential.helper "cache --timeout=3600"
 ```
 
 - core.bare 表示裸仓库
-- credential.helper 缓存用户信息策论
+- credential.helper 缓存用户信息策论 -->
