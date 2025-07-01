@@ -21,15 +21,6 @@ const asyncComponent = computed(() => {
     return defineAsyncComponent({ loader: () => import('./views/Blog.vue') });
   }
 });
-
-const consoleLog = console.log;
-console.log = (...args) => {
-  consoleLog(
-    '%c💎💎💎',
-    'background: linear-gradient(90deg, #f00 0%, #00f 100%) text; color: transparent; font-weight: 900;',
-    ...args
-  );
-};
 </script>
 
 <style scoped>
