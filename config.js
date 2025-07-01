@@ -48,6 +48,7 @@ export default {
     ],
     ['耐心是人生的关键。', 'Patience is the key in life.'],
   ],
+
   // 首页连接
   links: [
     {
