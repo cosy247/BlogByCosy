@@ -1,3 +1,7 @@
+<script setup>
+  import Timer from './components/Timer.vue'
+</script>
+
 ## 关于作者
 
 🎉🎉🎉 一名 99 年程序员，没事就记录记录技术生活咯。 🐱🐱🐱
@@ -19,3 +23,14 @@
 - Array.sort((a, b) => a.name.localeCompare(b.name, 'zh-CN'))
 - Object.fromEntries
 - 创建一个 rollup 包
+
+## 就当是个开始吧
+
+<div>
+  <Timer time="2025/7/1" title="早睡" color="#8a73"/>
+  <Timer time="2025/7/2" title="上瘾" color="#a873"/>
+  <Timer time="2025/7/2" title="提纲" color="#cc83"/>
+  <Timer time="2025/7/2" title="驼背" color="#28a3"/>
+</div>
+
+## Over
