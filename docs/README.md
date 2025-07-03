@@ -27,8 +27,8 @@
 ## 就当是个开始吧
 
 <div>
-  <Timer time="2025/7/1" title="早睡" color="#8a73"/>
-  <Timer time="2025/7/2" title="上瘾" color="#a873"/>
+  <Timer time="2025/7/3" title="早睡" color="#8a73"/>
+  <Timer time="2025/7/4" title="上瘾" color="#a873"/>
   <Timer time="2025/7/2" title="提纲" color="#cc83"/>
   <Timer time="2025/7/2" title="驼背" color="#28a3"/>
 </div>
