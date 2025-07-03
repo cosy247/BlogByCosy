@@ -16,10 +16,7 @@ export default createContentLoader(`../${config.srcDir}/**.md`, {
   excerpt: false,
   async transform(data) {
     const posts = JSON.parse(JSON.stringify(data)).filter((d) => {
-      if (process.env.MODE === 'dev') {
-        return d.frontmatter.id && d.frontmatter.hidden !== true;
-      }
-      return !d.url.startsWith('/@');
+      return d.frontmatter.id && (process.env.MODE === 'dev' || !d.url.startsWith('/@'));
     });
     posts.forEach((post) => (post.url = `${config.base}${post.url.slice(1)}`));
     posts.forEach((post) => {
