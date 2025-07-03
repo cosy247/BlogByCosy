@@ -6,6 +6,8 @@
   flex-direction: column;
   gap: 16px;
   z-index: 1;
+  line-height: 1.8em;
+  color: #213547;
 
   /* 标题 */
   h1,
@@ -13,6 +15,7 @@
   h3,
   h4 {
     color: #0366d6;
+    margin-top: 1em;
   }
   h1::before {
     content: '🐲';
@@ -151,5 +154,10 @@
     font-family: inherit;
     text-align: text-bottom;
     margin: 0 0.4em;
+  }
+
+  strong {
+    color: #0366d6;
+    font-style: oblique;
   }
 }

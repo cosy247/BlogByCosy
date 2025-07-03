@@ -45,6 +45,7 @@ function getInput(questionText, defaultText) {
   // 定义属性信息
   const attrs = {
     $id: Date.now(),
+    $time: new Date().toLocaleString().slice(0, -3),
     $filename: await getInput('🐲 请输入文件名 : '),
   };
 

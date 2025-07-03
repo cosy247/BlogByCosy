@@ -1,5 +1,6 @@
 ---
 id: { $id } # 文章id
+date: { $time } # 时间
 title: { title } # 文章标题
 description: { description } # 文章描述
 tag: { tags } # 文章标签
