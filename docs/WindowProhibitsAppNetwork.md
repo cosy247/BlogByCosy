@@ -1,6 +1,6 @@
 ---
 id: 1750403130903 # 文章id
-date: 2025-06-24 09:45
+date: 2025/06/24 09:45
 title: Window 限制某些应用联网 # 文章标题
 description: Window 限制某些应用联网 # 文章描述
 tag: Window使用 # 文章标签

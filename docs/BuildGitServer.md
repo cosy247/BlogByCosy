@@ -1,6 +1,6 @@
 ---
 id: 1751264797561 # 文章id
-date: 2025-07-01 15:52
+date: 2025/07/01 15:52
 title: 搭建git服务器(linux) # 文章标题
 description: 搭建git服务器(linux) # 文章描述
 tag: Git # 文章标签
