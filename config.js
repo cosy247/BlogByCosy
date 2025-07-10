@@ -9,7 +9,7 @@ export default {
   title: 'BlogByCosy',
   description: 'BlogByCosy',
   srcDir: './docs',
-  base,
+  base: '/',
   vite: {
     server: {
       port: 2470,
