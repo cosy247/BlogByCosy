@@ -19,21 +19,25 @@ top: 0 # 是否zhi置顶，数字越大优先级越高
 按 `F12` 打开控制台输入以下代码并回车，将自动投递：
 
 ```js
-(function clickTask(count = 1, jobs = [...document.querySelectorAll('.rec-job-list .job-name')]) {
-  const job = jobs.pop();
+(function clickTask(count = 1, jobCards = [...document.querySelectorAll('.job-card-box .job-name')]) {
+  const job = jobCards.pop();
   if (job) {
     const jobName = job.innerText;
     if (['外包', '驻场', '短期', '长期', '稳定'].some((str) => jobName.includes(str))) {
-      return clickTask(count, jobs);
+      console.log(`跳过🤖: ${jobName}🦄`);
+      return clickTask(count, jobCards);
     }
+
     job.click();
+    console.log(`已投${count++}份简历🤖: ${jobName}🦄`);
     document.querySelector('.op-btn.op-btn-chat')?.click();
-    console.log(`已投${count++}份简历🤖: ${job.innerText}🦄`);
+
     setTimeout(() => {
       document.querySelector('.default-btn.cancel-btn')?.click();
     }, 2000);
+
     setTimeout(() => {
-      clickTask(count, jobs);
+      clickTask(count, jobCards);
     }, 4000);
   } else {
     document.querySelector('.search-btn').click();
