@@ -30,9 +30,10 @@ top: 0 # 是否zhi置顶，数字越大优先级越高
 
     job.click();
     console.log(`已投${count++}份简历🤖: ${jobName}🦄`);
-    document.querySelector('.op-btn.op-btn-chat')?.click();
 
     setTimeout(() => {
+      document.querySelector('.op-btn.op-btn-chat')?.click();
+      document.querySelector('.default-btn.sure-btn')?.click();
       document.querySelector('.default-btn.cancel-btn')?.click();
     }, 2000);
 
