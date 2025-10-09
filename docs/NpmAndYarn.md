@@ -3,7 +3,7 @@ id: 1751523059645 # 文章id
 date: 2025/07/03 14:47
 title: npm 与 yarn 包管理工具比较 # 文章标题
 description: npm 与 yarn 包管理工具比较 # 文章描述
-tag: NPM,前端 # 文章标签
+tag: NPM 前端 # 文章标签
 archive: # 文章归档
 recommendations: { recommendations } # 相关推荐id
 shadow: false # 是否隐藏
