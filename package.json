@@ -5,7 +5,8 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "new": "node ./theme/bin/newDocs.js",
+    "new": "node ./bin/new.js",
+    "list": "node ./bin/list.js",
     "dev": "cross-env BASE=/ MODE=dev vitepress dev . --no-cache",
     "build": "vitepress build . --no-cache",
     "build:github": "cross-env BASE=/BlogByCosy/ vitepress build .",
