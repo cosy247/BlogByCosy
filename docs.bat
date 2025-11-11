@@ -2,10 +2,18 @@
 set "DIR=%~dp0"
 cd /d "%DIR%" >nul 2>&1
 
-if "%1%2"=="list" (
+if "%1"=="list" (
     npm run list
-) else if "%1%2"=="new" (
+) else if "%1"=="new" (
     npm run new
+) else if "%1"=="file" (
+    explorer.exe . 
+) else if "%1"=="cmd" ( 
+    cmd.exe /k cd "%DIR%" 
 ) else (
-    echo 用法: docs [docs list ^| docs new]
+    echo Usage: docs [list ^| new ^| file ^| cmd]
+    echo   list - Execute npm run list
+    echo   new  - Execute npm run new
+    echo   file - Open file explorer in current directory
+    echo   cmd  - Open CMD window in current directory
 )
