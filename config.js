@@ -131,6 +131,7 @@ export default {
       ],
     },
   ],
+
   // 脚本生成文章的模板设置
   template: {
     filePath: 'template.md',
@@ -157,6 +158,7 @@ export default {
           'Node',
           'Python',
           'Git',
+          'Mars3d'
         ],
         required: true,
       },
