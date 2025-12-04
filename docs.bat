@@ -10,7 +10,7 @@ if "%1"=="list" (
     npm run dev
 ) else if "%1"=="file" (
     explorer.exe . 
-) else if "%1"=="cmd" ( 
+) else if "%1"=="cmd" (
     cmd.exe /k cd "%DIR%" 
 ) else (
     echo Usage: docs [list ^| new ^| file ^| dev ^| cmd]
