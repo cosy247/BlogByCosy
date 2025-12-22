@@ -99,7 +99,7 @@
             target="_self">
             <p class="search-result-item-title">
               <span
-                v-for="(key, i) in item.frontmatter.pageTitle"
+                v-for="(key, i) in item.frontmatter.title"
                 :class="{ 'search-result-key': item.countIndexs && item.countIndexs.includes(i) }">
                 {{ key }}
               </span>
@@ -210,6 +210,11 @@ if (typeof window !== 'undefined') {
       goSearchLine();
     }
   });
+}
+
+function goSearchLine() {
+  if (!searchList.value[currentSearchLineIndex.value]) return;
+  window.location.href = searchList.value[currentSearchLineIndex.value].url;
 }
 </script>
 
