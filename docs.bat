@@ -9,7 +9,7 @@ if "%1"=="list" (
 ) else if "%1"=="dev" (
     npm run dev
 ) else if "%1"=="file" (
-    explorer.exe . 
+    explorer.exe .
 ) else if "%1"=="cmd" (
     cmd.exe /k cd "%DIR%" 
 ) else (
