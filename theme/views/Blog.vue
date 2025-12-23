@@ -222,7 +222,7 @@ function gotoRecom() {
   cursor: pointer;
 }
 .blog-mdView {
-  margin: 50px auto 0;
+  margin: 150px auto 0;
   width: 95%;
   max-width: var(--blog-width);
 }

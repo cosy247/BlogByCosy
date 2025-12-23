@@ -12,7 +12,7 @@ import Menu from './Menu.vue';
 <style>
 body {
   overflow-y: scroll;
-  padding: calc(60px + var(--outer-width)) 0 0 var(--outer-width);
+  padding: calc(var(--outer-width)) 0 0 var(--outer-width);
   box-sizing: border-box;
 }
 
