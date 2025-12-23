@@ -1,7 +1,7 @@
 <template>
   <PageOuter />
-  <div class="cover">
-    <div class="cover-content" :style="{ paddingTop: 70 * firstPageProportion + '%' }">
+  <div class="cover" ref="coverDom">
+    <div class="cover-content" :style="{ bottom: `calc(${50 - 50 * firstPageProportion}%)`, opacity: 1 - firstPageProportion }">
       <p class="cover-title" v-if="filter.type">
         {{ filter.type }}
         <span class="cover-title-value">.{{ filter.value }}</span>
@@ -81,12 +81,14 @@ const postCount = postsData.filter((p) => !p.hidden).length;
 const mottos = config.mottos[(Math.random() * config.mottos.length) >> 0];
 
 // 首屏滚动百分比
+const coverDom = ref(null);
 const firstPageProportion = ref(0);
 if (typeof window !== 'undefined') {
   window.addEventListener('scroll', () => {
-    const { clientHeight, scrollTop } = document.documentElement;
-    if (scrollTop < clientHeight) {
-      firstPageProportion.value = scrollTop / clientHeight;
+    const coverHeight = coverDom.value.clientHeight;
+    const { scrollTop } = document.documentElement;
+    if (scrollTop < coverHeight) {
+      firstPageProportion.value = scrollTop / coverHeight;
     }
   });
 }
@@ -97,9 +99,6 @@ if (typeof window !== 'undefined') {
   position: relative;
   width: 100%;
   height: calc(50vh - var(--outer-width));
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .cover:has(.cover-logo) {
@@ -107,13 +106,10 @@ if (typeof window !== 'undefined') {
 }
 
 .cover-content {
-  box-sizing: border-box;
-  padding-bottom: 10vh;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 37%);
   max-width: 67%;
-}
-
-.cover.filter .cover-content {
-  padding-bottom: 5vh;
 }
 
 .cover-title {
