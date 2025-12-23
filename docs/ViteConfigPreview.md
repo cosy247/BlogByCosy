@@ -48,7 +48,8 @@ export default defineConfig({
   build: {
     outDir: 'dist', // 构建输出目录
     assetsDir: 'assets', // 静态资源目录
-    target: 'es2015', // 构建目标浏览器环境
+    target: 'es2015', // 最终构建的浏览器兼容目标
+    cssTarget: 'chrome61', // 最终构建的浏览器兼容目标
     minify: 'esbuild', // 使用 esbuild 进行代码压缩
     chunkSizeWarningLimit: 500, // 警告 chunk 大小的限制
     rollupOptions: {
