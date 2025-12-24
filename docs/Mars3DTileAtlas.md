@@ -3,7 +3,7 @@ id: 1766560545823 # 文章id
 date: 2025/12/24 15:15 # 时间
 title: Mars3d 基于 Nginx 支持多个瓦片图集 # 文章标题
 description: Mars3d 基于 Nginx 支持多个瓦片图集 # 文章描述
-tag: 前端,Mars3d # 文章标签
+tag: 前端 Mars3d # 文章标签
 archive: # 文章归档
 # recommendations: { recommendations } # 相关推荐id
 shadow: false # 是否隐藏
