@@ -172,9 +172,9 @@ a {
     margin-bottom: 100px;
   }
 
-  #app .cover {
+  /* #app .cover {
     height: calc(100vh - 50px - var(--outer-width));
-  }
+  } */
 
   #app .menus {
     padding: 0 20px;
@@ -215,9 +215,9 @@ a {
     padding-bottom: 200px;
   }
 
-  #app .blog-mdView {
+  /* #app .blog-mdView {
     margin-top: 0px;
-  }
+  } */
 }
 
 @media (max-width: 810px) {

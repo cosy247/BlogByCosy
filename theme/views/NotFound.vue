@@ -1,5 +1,4 @@
 <template>
-  <PageOuter />
   <div class="NotFound">NotFound</div>
 </template>
 

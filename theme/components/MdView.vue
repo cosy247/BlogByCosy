@@ -1,5 +1,5 @@
 <template>
-  <Content class="mdContent" path="/README.md" />
+  <Content class="mdContent" />
 </template>
 
 <script setup>

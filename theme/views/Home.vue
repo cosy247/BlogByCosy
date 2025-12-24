@@ -40,12 +40,12 @@
 </template>
 
 <script setup>
-import PageOuter from '../components/PageOuter.vue';
 import Icon from '../components/Icon.vue';
 import { ref, computed } from 'vue';
 import config from '../../config';
 import { data as postsData } from '../data/posts.data';
 import { multipleClassifyNames } from '../data/classifyNames';
+import PageOuter from '../components/PageOuter.vue';
 
 // 筛选
 const filter = {};
@@ -103,6 +103,15 @@ if (typeof window !== 'undefined') {
 
 .cover:has(.cover-logo) {
   height: calc(100vh - var(--outer-width));
+}
+
+@media (max-width: 810px) {
+  .cover {
+    height: calc(50vh);
+  }
+  .cover:has(.cover-logo) {
+    height: calc(100vh);
+  }
 }
 
 .cover-content {
@@ -173,6 +182,7 @@ if (typeof window !== 'undefined') {
 
 .list {
   margin: auto;
+  min-height: 50vh;
   width: var(--content-width);
   max-width: var(--content-max-width);
 }
@@ -228,7 +238,7 @@ if (typeof window !== 'undefined') {
 }
 
 .list-over {
-  margin: 100px auto 300px;
+  padding: 100px 0px;
   text-align: center;
   height: 2px;
   line-height: 2px;

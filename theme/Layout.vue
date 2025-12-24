@@ -1,5 +1,8 @@
 <template>
-  <asyncComponent v-if="asyncComponent" />
+  <div class="page-main" :style="{ marginBottom: bottomHeight + 'px' }">
+    <asyncComponent v-if="asyncComponent" />
+    <div class="bottom-radius"></div>
+  </div>
 </template>
 
 <script setup>
@@ -7,6 +10,7 @@ import './assets/styles/common.css';
 import { useRoute } from 'vitepress';
 import { computed, defineAsyncComponent, onMounted } from 'vue';
 import config from '../config';
+import { bottomHeight } from './data';
 
 const route = useRoute();
 
@@ -69,6 +73,18 @@ const asyncComponent = computed(() => {
 
 .notFound-text {
   font-size: 10vmin;
+}
+
+.page-main {
+  margin-bottom: 100px;
+  background: white;
+}
+.bottom-radius {
+  width: 100%;
+  outline: var(--outer-width) solid #1a232c;
+  height: calc(var(--outer-width) * 2);
+  border-radius: var(--outer-width);
+  clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
 }
 </style>
 ·

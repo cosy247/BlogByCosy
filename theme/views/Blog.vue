@@ -29,7 +29,7 @@
     </div>
   </div>
   <!-- <div ref="mdView"> -->
-  <MdView class="blog-mdView" ref="mdView" />
+  <MdView class="blog-mdView" />
   <!-- </div> -->
   <template v-if="pageInfo.recommendations.length">
     <p class="recom-title" ref="recom">✨相关推荐✨</p>
@@ -41,7 +41,6 @@
 </template>
 
 <script setup>
-import PageOuter from '../components/PageOuter.vue';
 import MdView from '../components/MdView.vue';
 import Icon from '../components/Icon.vue';
 import { computed, onMounted, ref } from 'vue';
@@ -56,6 +55,7 @@ import { useData, useRoute } from 'vitepress';
 import { postsData } from '../data';
 import { classifyNames, multipleClassifyNames } from '../data/classifyNames';
 import config from '../../config';
+import PageOuter from '../components/PageOuter.vue';
 
 const route = useRoute();
 
@@ -106,10 +106,9 @@ onMounted(() => {
 });
 
 // 点击目录定位到目标标题
-const mdView = ref(null);
 function goToDepth(target) {
   if (typeof window === 'undefined') return;
-  let top = -200;
+  let top = -400;
   while (target) {
     top += target.offsetTop;
     target = target.parentElement;
