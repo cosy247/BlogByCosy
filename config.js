@@ -1,10 +1,3 @@
-let base = '/';
-if (import.meta.env?.BASE_URL) {
-  base = import.meta.env.BASE_URL;
-} else if (typeof process !== 'undefined' && process.env?.BASE) {
-  base = process.env.BASE;
-}
-
 export default {
   title: 'BlogByCosy',
   description: 'BlogByCosy',
@@ -117,12 +110,6 @@ export default {
           describe: 'VsCode插件，给页面添加背景图片。',
         },
         {
-          name: 'PackOnePage',
-          url: 'https://cosy247.top/alones/PackOnePage/index.html',
-          imgIcon: 'https://cosy247.github.io/PackOnePage/icon/icon.ico',
-          describe: '将html网页的js和css打包成一个html文件。',
-        },
-        {
           name: 'MarkdownInSider',
           url: 'https://marketplace.visualstudio.com/items?itemName=cosy247.markdown-in-sider',
           imgIcon: './MarkdownInSider.png',
@@ -158,7 +145,7 @@ export default {
           'Node',
           'Python',
           'Git',
-          'Mars3d'
+          'Mars3d',
         ],
         required: true,
       },
