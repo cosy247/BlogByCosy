@@ -23,6 +23,7 @@
 - Object.fromEntries
 - 创建一个 rollup 包
 - var let const
+- spring 动态代理
 
 ## 就当是个开始吧
 
