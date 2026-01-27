@@ -1,8 +1,8 @@
 ---
 id: 1767080727249 # 文章id
 date: 2025/12/30 15:45 # 时间
-title: Idea 2026 破解教程 # 文章标题
-description: Idea 2026 破解教程 # 文章描述
+title: Idea 2025 破解教程 # 文章标题
+description: Idea 2025 破解教程 # 文章描述
 tag: 随笔 # 文章标签
 archive: # 文章归档
 # recommendations: { recommendations } # 相关推荐id
@@ -10,9 +10,9 @@ shadow: false # 是否隐藏
 top: 0 # 是否zhi置顶，数字越大优先级越高
 ---
 
-# Idea 2026 破解教程
+# Idea 2025 破解教程
 
-## 下载安装 Idea 2026
+## 下载安装 Idea 2025
 
 推荐在官网 [下载 IntelliJ IDEA](https://www.jetbrains.com.cn/idea/download/?section=windows)
 
@@ -22,7 +22,7 @@ top: 0 # 是否zhi置顶，数字越大优先级越高
 
 ## 运行脚本
 
-点击 [下载激活脚本](./assets/@IdeaCrackTutorial/config-jetbrains.zip)。解压后得到如下结构：
+点击 [下载激活脚本](./assets/@IdeaCrackTutorial/jetbra.zip)。解压后得到如下结构：
 
 ![alt text](assets/@IdeaCrackTutorial/image-1.png)
 
