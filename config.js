@@ -146,6 +146,7 @@ export default {
           'Python',
           'Git',
           'Mars3d',
+          'Java',
           'SpringBoot',
         ],
         required: true,
