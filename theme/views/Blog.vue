@@ -1,5 +1,4 @@
 <template>
-  <PageOuter />
   <div class="blog-infos">
     <a :href="`${config.base}?${item.name}=${item.value}`" class="blog-info" v-for="item in classifys">
       <span class="blog-info-text">{{ item.value }}</span>
@@ -44,18 +43,10 @@
 import MdView from '../components/MdView.vue';
 import Icon from '../components/Icon.vue';
 import { computed, onMounted, ref } from 'vue';
-// import config from '../../config';
-// import { useRoute } from 'vue-router';
-// import { pageList } from '../../temp/docsData.json';
-// import { getPageMateById } from '../utils/getPage';
-// import Giscus from '@giscus/vue';
-// import { markTocMap } from '../utils/renderMark';
-// import { data as postsData } from '../data/posts.data';
-import { useData, useRoute } from 'vitepress';
-import { postsData } from '../data';
+import { useRoute } from 'vitepress';
+import { postsData, scrollTarget } from '../data';
 import { classifyNames, multipleClassifyNames } from '../data/classifyNames';
 import config from '../../config';
-import PageOuter from '../components/PageOuter.vue';
 
 const route = useRoute();
 
@@ -113,34 +104,29 @@ function goToDepth(target) {
     top += target.offsetTop;
     target = target.parentElement;
   }
-  window.scrollTo({ top, behavior: 'smooth' });
+  scrollTarget.value.scrollTo({ top, behavior: 'smooth' });
 }
 
 // 目录当前显示节点
 const currentTocId = ref(null);
-if (typeof window !== 'undefined') {
-  window.addEventListener('scroll', () => {
+onMounted(() => {
+  scrollTarget.value.addEventListener('scroll', () => {
     const target = toc.value.find((m) => m.el.getBoundingClientRect().top > 50) || toc.value.at(-1);
     if (target) currentTocId.value = target.id;
   });
-}
+});
 
 // 点击顶部按钮
 function gotoTop() {
   if (typeof window === 'undefined') return;
-  window.document.documentElement.scrollTop = 0;
+  scrollTarget.value.scrollTop = 0;
 }
 
 const recom = ref(null);
 function gotoRecom() {
   if (typeof window === 'undefined') return;
-  window.document.documentElement.scrollTop = recom.value.offsetTop - 100;
+  scrollTarget.value.scrollTop = recom.value.offsetTop - 100;
 }
-
-// const comment = ref(null);
-// function gotoComment() {
-//   window.document.documentElement.scrollTop = comment.value.offsetTop - 100;
-// }
 </script>
 
 <style scoped>
@@ -221,7 +207,7 @@ function gotoRecom() {
   cursor: pointer;
 }
 .blog-mdView {
-  margin: 150px auto 0;
+  margin: 100px auto 0;
   width: 95%;
   max-width: var(--blog-width);
 }

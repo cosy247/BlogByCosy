@@ -1,5 +1,4 @@
 <template>
-  <PageOuter />
   <div class="cover" ref="coverDom">
     <div class="cover-content" :style="{ bottom: `calc(${50 - 50 * firstPageProportion}%)`, opacity: 1 - firstPageProportion }">
       <p class="cover-title" v-if="filter.type">
@@ -45,7 +44,6 @@ import { ref, computed } from 'vue';
 import config from '../../config';
 import { data as postsData } from '../data/posts.data';
 import { multipleClassifyNames } from '../data/classifyNames';
-import PageOuter from '../components/PageOuter.vue';
 
 // 筛选
 const filter = {};

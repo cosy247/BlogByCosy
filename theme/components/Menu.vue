@@ -220,10 +220,10 @@ function goSearchLine() {
 
 <style scoped>
 .Menu {
-  position: fixed;
-  top: var(--outer-width);
-  left: calc(var(--outer-width) - 1px);
-  width: calc(100vw - 2 * var(--outer-width) + 2px);
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
   background: white;
   z-index: 500;
   box-shadow: 0 0 10px #8882;

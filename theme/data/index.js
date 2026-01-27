@@ -8,3 +8,4 @@ export const classifyData = classifyData0;
 export const readmeData = readmeData0;
 
 export const bottomHeight = ref(0);
+export const scrollTarget = ref(null);
