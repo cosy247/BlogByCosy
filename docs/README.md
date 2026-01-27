@@ -23,15 +23,15 @@
 - Object.fromEntries
 - 创建一个 rollup 包
 - var let const
-- spring 动态代理
-
-## 就当是个开始吧
-
-<div>
-  <Timer time="2025/7/5" title="早睡" color="#8a73"/>
-  <Timer time="2025/7/4" title="上瘾" color="#a873"/>
-  <Timer time="2025/7/2" title="提纲" color="#cc83"/>
-  <Timer time="2025/7/2" title="驼背" color="#28a3"/>
-</div>
-
-## Over
+- spring 动态代理 jdk cglib
+- spring @value spel 表达式
+- java 反射
+- java 注解
+- java 事务 ACID
+- java SPI
+- java springboot aot 了解
+- vue3 watchEffect effectScope
+- vue 修饰符 memo
+- vue toRefs
+- vue Teleport
+- vue markRaw
