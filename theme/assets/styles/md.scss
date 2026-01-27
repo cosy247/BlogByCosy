@@ -64,7 +64,9 @@
       position: absolute;
       right: 10px;
       top: 2px;
-      background: url('../images/copy.png') 0/100% 100% no-repeat, #333 !important;
+      background:
+        url('../images/copy.png') 0/100% 100% no-repeat,
+        #333 !important;
       height: 16px;
       width: 16px;
       border: 6px solid #0000;
@@ -159,6 +161,5 @@
 
   strong {
     color: #0366d6;
-    font-style: oblique;
   }
 }

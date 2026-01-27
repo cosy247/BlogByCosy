@@ -99,7 +99,7 @@ onMounted(() => {
 // 点击目录定位到目标标题
 function goToDepth(target) {
   if (typeof window === 'undefined') return;
-  let top = -400;
+  let top = -235;
   while (target) {
     top += target.offsetTop;
     target = target.parentElement;
