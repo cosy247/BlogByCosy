@@ -148,6 +148,7 @@ export default {
           'Mars3d',
           'Java',
           'SpringBoot',
+          '算法',
         ],
         required: true,
       },

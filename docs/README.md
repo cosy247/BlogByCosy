@@ -35,3 +35,5 @@
 - vue toRefs
 - vue Teleport
 - vue markRaw
+- Srpingboot bean 生命周期
+- v-memo v-pre v-text v-cloak
