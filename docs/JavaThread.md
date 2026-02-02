@@ -3,7 +3,7 @@ id: 1769737144995 # 文章id
 date: 2026/1/30 09:39 # 时间
 title: Java 线程总结 # 文章标题
 description: Java 线程总结 # 文章描述
-tag: Java # 文章标签
+tag: 后端 Java # 文章标签
 archive: # 文章归档
 # recommendations: { recommendations } # 相关推荐id
 shadow: false # 是否隐藏
@@ -352,9 +352,3 @@ public class UnsafeTicketSystem {
     }
 }
 ```
-
-## 参考
-
-<!-- Java 线程池 -->
-
-<!-- Java 线程间通信与协作 -->

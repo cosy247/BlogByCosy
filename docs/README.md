@@ -44,6 +44,7 @@
 - Java 异常处理
 - Java 模板方法
 - java 序列化 Serializable
+- springboot 属性依赖
 
 ### 其他
 
