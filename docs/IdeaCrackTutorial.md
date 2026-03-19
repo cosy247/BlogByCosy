@@ -22,7 +22,7 @@ top: 0 # 是否zhi置顶，数字越大优先级越高
 
 ## 运行脚本
 
-点击 [下载激活脚本](./assets/@IdeaCrackTutorial/jetbra.zip)。解压后得到如下结构：
+点击 [下载激活脚本](assets/@IdeaCrackTutorial/jetbra.zip)。解压后得到如下结构：
 
 ![alt text](assets/@IdeaCrackTutorial/image-1.png)
 
