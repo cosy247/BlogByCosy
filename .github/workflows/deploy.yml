@@ -2,22 +2,30 @@ name: Deploy
 
 on:
   push:
-    branches: [master] # 改成你的分支名
+    branches: [master]
 
 jobs:
-  build:
+  install:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+      - name: Install
+        run: npm install
 
-      - name: Install dependencies
-        run: npm install # 或者 npm install
-
+  build:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
       - name: Build
-        run: npm run build # 改成你实际的 build 命令
+        run: npm run build
