@@ -1,0 +1,28 @@
+name: Deploy
+
+on:
+  push:
+    branches: [master] # 改成你的分支名
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.12.2' # 改成你的 Node 版本
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Install dependencies
+        run: npm install # 或者 npm install
+
+      - name: Build
+        run: npm run build # 改成你实际的 build 命令

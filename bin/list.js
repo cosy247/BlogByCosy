@@ -21,7 +21,7 @@ async function collectMdFiles(dir) {
   let files = [];
   for (const entry of await fs.readdir(dir, { withFileTypes: true })) {
     const fullPath = path.join(dir, entry.name);
-    if (entry.isDirectory()) files.push(...await collectMdFiles(fullPath));
+    if (entry.isDirectory()) files.push(...(await collectMdFiles(fullPath)));
     else if (entry.isFile() && path.extname(fullPath) === '.md') files.push(fullPath);
   }
   return files;
@@ -34,12 +34,12 @@ async function extractInfo(filePath) {
     // 匹配标题（忽略#注释）
     const titleMatch = content.match(/^\s*title\s*:\s*(['"]?)(.*?)\1\s*(?:#.*)?$/m);
     const title = titleMatch ? titleMatch[2].trim() : '';
-    
+
     // 提取日期（仅保留有日期的文件）
     const dateMatch = content.match(/^\s*date\s*:\s*(\d{4}[-/]\d{1,2}[-/]\d{1,2}\s+\d{1,2}:\d{2})/m);
     if (!dateMatch) return null;
     const date = new Date(dateMatch[1].replace(/-/g, '/'));
-    
+
     return { filePath, title, date };
   } catch (err) {
     console.error(`读取失败 ${filePath}:`, err.message);
@@ -63,19 +63,15 @@ async function main() {
     });
 
     // 计算最长路径长度（用于对齐）
-    const maxPathLength = fileInfos.reduce((max, info) => 
-      Math.max(info.filePath.length, max), 0);
+    const maxPathLength = fileInfos.reduce((max, info) => Math.max(info.filePath.length, max), 0);
 
     // 输出格式（时间补零）
     console.log(`找到 ${fileInfos.length} 个带日期的markdown文件：\n`);
     fileInfos.forEach((info) => {
       const pinnedMark = path.basename(info.filePath).startsWith('@') ? '📌' : '📘';
       const dateStr = formatDate(info.date); // 使用补零后的日期格式
-      console.log(
-        `${pinnedMark} ${info.filePath.padEnd(maxPathLength)} ${dateStr}  ${info.title}`
-      );
+      console.log(`${pinnedMark} ${info.filePath.padEnd(maxPathLength)} ${dateStr}  ${info.title}`);
     });
-
   } catch (err) {
     console.error(err.code === 'ENOENT' ? `错误：docs目录不存在 - ${docsDir}` : `执行出错: ${err.message}`);
   }
