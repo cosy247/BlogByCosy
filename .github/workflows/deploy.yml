@@ -10,11 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.12.2' # 改成你的 Node 版本
-
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
