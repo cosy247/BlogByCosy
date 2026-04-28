@@ -4,6 +4,5 @@ node_modules
 _docs
 temp
 dist
-BlogByCosy
 .vitepress/cache
 temporary
