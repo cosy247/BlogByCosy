@@ -1,33 +1,48 @@
-name: Deploy
+name: 部署 VitePress 项目到 GitHub Pages
 
+# 触发条件：推送到 main 分支时执行
 on:
   push:
     branches: [master]
 
+# 权限配置（必须，否则无法部署 Pages）
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
-      - uses: actions/checkout@v4
+      # 1. 拉取代码
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Cache dependencies
-        uses: actions/cache@v4
+      # 2. 安装 Node.js
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          node-version: 20
+          cache: 'npm'
 
-      - name: Install
-        run: npm install
+      # 3. 安装依赖并打包
+      - name: 安装依赖 & 构建
+        run: |
+          npm install
+          npm run build
 
-      - name: Build
-        run: npm run build
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      # 4. 上传构建产物（dist 文件夹）
+      - name: 上传 Pages 产物
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: gh-pages
-          cname: cosy246.site
+          path: './dist'
+
+      # 5. 部署到 GitHub Pages
+      - name: 部署
+        id: deployment
+        uses: actions/deploy-pages@v4
