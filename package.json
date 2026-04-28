@@ -9,7 +9,6 @@
     "list": "node ./bin/list.js",
     "dev": "cross-env BASE=/ MODE=dev vitepress dev . --no-cache",
     "build": "vitepress build . --no-cache",
-    "build:github": "cross-env BASE=/BlogByCosy/ vitepress build .",
     "preview": "vitepress preview ."
   },
   "devDependencies": {
