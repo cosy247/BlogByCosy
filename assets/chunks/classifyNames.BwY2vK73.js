@@ -1,0 +1,1 @@
+import{c as a}from"./theme.CkIk36s-.js";const l=a.menus.filter(s=>s.type==="classify"&&s.classify.multiple).map(s=>s.classify.name),i=a.menus.filter(s=>s.type==="classify"&&!s.classify.multiple).map(s=>s.classify.name),c=l.concat(i);export{c,l as m};

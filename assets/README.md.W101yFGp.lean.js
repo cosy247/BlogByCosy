@@ -1,0 +1,1 @@
+import{a as i,o as a,P as e}from"./chunks/framework.C4T-_spZ.js";const n=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"README.md","filePath":"README.md"}'),t={name:"README.md"},c=Object.assign(t,{setup(o){return(r,l)=>(a(),i("div",null,l[0]||(l[0]=[e("",9)])))}});export{n as __pageData,c as default};

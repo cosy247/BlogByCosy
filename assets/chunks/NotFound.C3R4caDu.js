@@ -1,0 +1,1 @@
+import{_ as o,a as c,o as e}from"./framework.C4T-_spZ.js";const t={},n={class:"NotFound"};function s(_,a){return e(),c("div",n,"NotFound")}const d=o(t,[["render",s],["__scopeId","data-v-69c7e29c"]]);export{d as default};
