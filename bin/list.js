@@ -59,19 +59,24 @@ async function main() {
       const aPin = path.basename(a.filePath).startsWith('@');
       const bPin = path.basename(b.filePath).startsWith('@');
       if (aPin !== bPin) return aPin ? 1 : -1;
-      return b.date - a.date;
+      return a.date - b.date;
     });
 
     // 计算最长路径长度（用于对齐）
     const maxPathLength = fileInfos.reduce((max, info) => Math.max(info.filePath.length, max), 0);
 
     // 输出格式（时间补零）
-    console.log(`找到 ${fileInfos.length} 个带日期的markdown文件：\n`);
-    fileInfos.forEach((info) => {
+    let flag = false;
+    fileInfos.forEach((info, index) => {
       const pinnedMark = path.basename(info.filePath).startsWith('@') ? '📌' : '📘';
       const dateStr = formatDate(info.date); // 使用补零后的日期格式
+      if (!flag && path.basename(info.filePath).startsWith('@')) {
+        flag = true;
+        console.log('');
+      }
       console.log(`${pinnedMark} ${info.filePath.padEnd(maxPathLength)} ${dateStr}  ${info.title}`);
     });
+    console.log(`\n🦋 共 ${fileInfos.length} 个文档！\n`);
   } catch (err) {
     console.error(err.code === 'ENOENT' ? `错误：docs目录不存在 - ${docsDir}` : `执行出错: ${err.message}`);
   }
