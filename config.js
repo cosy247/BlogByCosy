@@ -137,6 +137,7 @@ export default {
           '图集',
           '前端',
           '后端',
+          'Nginx',
           'JS',
           'CSS',
           'HTML',

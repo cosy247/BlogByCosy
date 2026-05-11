@@ -1,6 +1,6 @@
 ---
 id: 1749709816380 # 文章id
-date: 2025-06-18 15:42
+date: 2025/06/18 15:42
 title: VSCode 插件开发：交互控件 API 介绍 # 文章标题
 description: VSCode 插件开发：交互控件 API 介绍 # 文章描述
 tag: Vscode插件开发 # 文章标签
