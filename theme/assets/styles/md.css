@@ -95,13 +95,13 @@
       }
     }
   }
-  & .code-block {
+  .code-block {
     position: relative;
     border-radius: 5px;
     overflow: hidden;
     background: #282c34;
   }
-  & .code-block-lang {
+  .code-block-lang {
     position: absolute;
     left: 16px;
     top: 0px;
@@ -135,7 +135,7 @@
     border-top: none;
   }
 
-  & blockquote {
+  blockquote {
     padding: 1em;
     background: #eff0f3;
     border-left: 0.5em solid #819be6;

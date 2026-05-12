@@ -4,5 +4,5 @@
 
 <script setup>
 import { Content } from 'vitepress';
-import '../assets/styles/md.scss';
+import '../assets/styles/md.css';
 </script>

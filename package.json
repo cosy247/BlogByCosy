@@ -7,14 +7,11 @@
   "scripts": {
     "new": "node ./bin/new.js",
     "list": "node ./bin/list.js",
-    "dev": "cross-env BASE=/ MODE=dev vitepress dev . --no-cache",
+    "dev": "vitepress dev . --no-cache",
     "build": "vitepress build . --no-cache",
     "preview": "vitepress preview ."
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
-    "sass": "^1.89.0",
-    "sass-embedded": "^1.89.0",
     "vitepress": "^1.6.3"
   },
   "dependencies": {
