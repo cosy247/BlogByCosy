@@ -17,7 +17,7 @@ description: Vscode 免密连接远程服务器
 
 在任意路径(一般为`C:\Users\用户名\.ssh`)的控制台中输入。
 
-```
+```bash
 ssh-keygen
 ```
 
@@ -29,7 +29,7 @@ ssh-keygen
 
 如下输出表示生成成功：
 
-```
+```bash
 Generating public/private rsa key pair.
 Enter file in which to save the key (C:\Users\用户名/.ssh/id_rsa): test
 Enter passphrase (empty for no passphrase):
@@ -80,15 +80,47 @@ Host cosy
 
 ![alt text](assets/VsSecretFreeSsh/image-3.png)
 
-打开服务器文件，没有的话就创建一个：
+打开服务器文件，没有的话就创建一个，这里是root用户：
 
-```
+```bash
 /root/.ssh/authorized_keys
+```
+
+其他用户文件路径如下：
+
+```bash
+/home/[username]/.ssh/authorized_keys
 ```
 
 将刚刚生成的公钥文件内容复制到文件中，文件中有内容的话想换行在复制。
 
 ![alt text](assets/VsSecretFreeSsh/image-2.png)
+
+> > 这里要注意权限问题，普通用户可以使用以下代码设置权限：
+
+```bash
+# 1. 修复家目录权限
+chmod 755 /home/[username]
+
+# 2. 修复 .ssh 目录权限
+chmod 700 /home/[username]/.ssh
+
+# 3. 修复 authorized_keys 文件权限
+chmod 600 /home/[username]/.ssh/authorized_keys
+
+# 4. 验证修复结果
+ls -ld /home/[username]
+ls -ld /home/[username]/.ssh
+ls -l /home/[username]/.ssh/authorized_keys
+```
+
+出现一下内容表示设置成功：
+
+```bash
+drwxr-xr-x 24 lenovo lenovo 4096 ... /home/lenovo
+drwx------ 2 lenovo lenovo 4096 ... /home/lenovo/.ssh
+-rw------- 1 lenovo lenovo 92 ... /home/lenovo/.ssh/authorized_keys
+```
 
 ## 本机使用私钥
 
@@ -112,7 +144,7 @@ Host cosy
 
 需要在服务器上存放多个公钥时直接在`/root/.ssh/authorized_keys`文件中换行追加即可。
 
-```
+```bash
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDbKInL/8zpkQBhGjKWw2/+DRDuTEedCQztlh50aM3LBYc/7ze3aWLwQPLZ/pqx8sM+Ur7g9Z7Vl4qJi56ViWeUdXfc9TCcDl88PlN8g0mJ67d8FLh8M...
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCzOMdL352fvFVpHKt5yFxxYtxWZnVDnghMFT8PB1DE8AMjUrz3BWuyCWPrVQEg5lftA1KOUsnJqBRNcVoi1yWVfSSW2CXLTbY7bjpKDhQ9iLlc8LtNj...
 ```
