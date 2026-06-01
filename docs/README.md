@@ -10,19 +10,14 @@
 
 ### 前端
 
-- 让自己的组件库支持按需引入
 - this 指向
 - node exports
 - CSS 实现页面的整页滚动
-- vue.config.js
 - npm install -s -d 的区别
-- js 数组操作
-- Array.sort((a, b) => a.name.localeCompare(b.name, 'zh-CN'))
 - 创建一个 rollup 包
 - Object.fromEntries
 - var let const
 - vue3 watchEffect effectScope
-- vue 修饰符 memo
 - vue toRefs
 - vue Teleport
 - vue markRaw
@@ -52,3 +47,7 @@
 - vscode 侧边栏文件编辑插件
 - vscode 侧边栏文件编辑插件
 - vscode 侧边栏 bongo 插件
+
+### 大模型
+
+Python → NumPy → Pandas → Transformer → HuggingFace → FastAPI → Docker → LangChain/LangGraph → Agent（含 RAG + Tool Calling） → MLL

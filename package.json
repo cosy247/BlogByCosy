@@ -8,7 +8,8 @@
     "new": "node ./bin/new.js",
     "list": "node ./bin/list.js",
     "dev": "vitepress dev . --no-cache",
-    "build": "vitepress build . --no-cache",
+    "build": "vitepress build . --no-cache && npm run alones",
+    "alones": "node -e \"require('fs').cpSync('alones', 'dist/alones', {recursive:true})\"",
     "preview": "vitepress preview ."
   },
   "devDependencies": {
