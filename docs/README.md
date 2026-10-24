@@ -23,6 +23,12 @@
 - vue markRaw
 - v-memo v-pre v-text v-cloak
 - 正则表达式相关函数
+- Set Map {}
+- V8使用隐藏类（也叫Maps/Shapes）
+- Promise
+- proprety
+- symbol
+- yield 迭代器
 
 ### 后端
 
